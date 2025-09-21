@@ -6,6 +6,42 @@ S = \{ x^{(n)} : n\ge m \}.
 Is the converse true?
 \end{problem}
 
+\begin{proof}
+    Suppose $L$ is a limit point of the sequence. By definition,
+    \[
+    \forall N \geq m, \forall \varepsilon > 0,\ \exists n \geq N \text{ such that } d(x^{(n)}, L) \leq \varepsilon.
+    \]
+    This implies that for every $\varepsilon > 0$, there exists $n \geq m$ with
+    \[
+    x^{(n)} \in B(L,\varepsilon) \cap S \neq \varnothing.
+    \]
+    Hence,
+    \[
+    \forall \varepsilon > 0,\ B(L,\varepsilon)\cap S \neq \varnothing 
+    \quad \Rightarrow \quad 
+    L \text{ is an adherent point of } S.
+    \]
+
+    Now, we check the converse. The converse statement is \textbf{NOT} true.  
+    Consider $X = \mathbb{R}$ with the standard metric, and let $m=1$. Define
+    \[
+    x^{(n)} = \frac{1}{n}, \quad \text{so } S = \{1, \tfrac{1}{2}, \tfrac{1}{3}, \dots \}.
+    \]
+    It is clear that $1$ is an adherent point of $S$, since for every $\varepsilon > 0$,
+    \[
+    1 \in (1-\varepsilon, 1+\varepsilon), 
+    \quad \Rightarrow \quad 
+    B(1,\varepsilon)\cap S \neq \varnothing.
+    \]
+    However, $1$ is not a limit point of the sequence. Indeed, if $N \geq 2$, then for all $n \geq N$,
+    \[
+    d(x^{(n)},1) = \bigg| \frac{1}{n} - 1 \bigg| \geq \frac{1}{2}.
+    \]
+    So if we take $\varepsilon = 0.48763$ and $N = 2$, there is no $n \geq N$ such that $d(x^{(n)},1)\leq \varepsilon$.
+    Therefore, $1$ is not a limit point of $(x^{(n)})_{n=1}^\infty$, 
+    even though it is an adherent point of $S$.
+\end{proof}
+
 \begin{problem}
     The following construction generalizes the construction of the reals from the rationals in Chapter~5, allowing one to view any metric space as a subspace of a complete metric space. In what follows we let $(X,d)$ be a metric space.
 \begin{enumerate}
@@ -45,6 +81,22 @@ Is the converse true?
   \]
 \end{enumerate}
 \end{problem}
+
+\begin{proof}[a] 
+    We verify the following properties:
+    \begin{itemize}
+        \item Reflexive: $\operatorname{LIM}_{n\to\infty} x_n$ and $\operatorname{LIM}_{n\to\infty} x_n$ are equal since $d$ is metric, so $\forall n, d(x_n, x_n) = 0$.
+        \item Symmetry: If $\operatorname{LIM}_{n\to\infty} x_n$ and $\operatorname{LIM}_{n\to\infty} y_n$ are equal, this mean $\lim_{n\to\infty} d(x_n,y_n) = 0$. And since $d$ is metric, so $\lim_{n\to\infty} d(y_n,x_n) = 0$, hence $\operatorname{LIM}_{n\to\infty} y_n$ and $\operatorname{LIM}_{n\to\infty} x_n$ are equal.
+        \item Transitive: If $\operatorname{LIM}_{n\to\infty} x_n$ and $\operatorname{LIM}_{n\to\infty} y_n$ are equal and $\operatorname{LIM}_{n\to\infty} y_n$ and $\operatorname{LIM}_{n\to\infty} z_n$ are equal, this mean $\lim_{n\to\infty} d(x_n,y_n) = 0$ and $\lim_{n\to\infty} d(y_n,z_n) = 0$, since $d$ is metric, so $0 \leq \lim_{n\to\infty} d(x_n,z_n) \leq \lim_{n\to\infty} d(x_n,y_n) + \lim_{n\to\infty} d(y_n,z_n) = 0$. By squeeze lemma, $\lim_{n\to\infty} d(x_n,z_n) = 0$, so  $\operatorname{LIM}_{n\to\infty} x_n$ and $\operatorname{LIM}_{n\to\infty} z_n$ are equal.
+    \end{itemize}
+\end{proof}
+
+\begin{proof}[b]
+    We verify the following properties:
+    \begin{itemize}
+        \item The limit existence: 
+    \end{itemize}
+\end{proof}
 
 \begin{problem}
     In the following, all the sets are subsets of a metric space $(X,d)$.
@@ -110,6 +162,44 @@ d'(x,y) = \left| \frac{1}{x} - \frac{1}{y} \right|, \qquad \forall x,y \in (0,1]
  \item[(e)] Is $((0,1],d')$ a complete metric space? How about $((0,1],d)$?
 \end{enumerate}
 \end{problem}
+
+\begin{proof}[a]
+    We verify the following properties:
+    \begin{itemize}
+        \item $d'(x,y) \geq 0$ since $\lvert \cdot \rvert \geq 0$.
+        \item $d'(x,y) = 0 \iff \lvert\frac{1}{x} - \frac{1}{y}\rvert \iff x=y$.
+        \item $d'(x,y) = \lvert\frac{1}{x} - \frac{1}{y}\rvert = \lvert\frac{1}{y} - \frac{1}{x}\rvert = d'(y,x)$.
+        \item We know if $a, b \in \mathbb{R}$, the triangular inequality $\lvert a \rvert + \lvert b \rvert \geq \lvert a+b \rvert$ holds.
+        Then we can plug $a = \frac{1}{x} - \frac{1}{y}$ and $b = \frac{1}{y} - \frac{1}{z}$ in. Then we can get $\lvert \frac{1}{x} - \frac{1}{y} + \frac{1}{y} - \frac{1}{z} \rvert \leq \lvert \frac{1}{x} - \frac{1}{y} \rvert + \lvert \frac{1}{y} - \frac{1}{z} \rvert$. Hence $d'(x,z) \leq d'(x,y) + d'(y,z)$.
+    \end{itemize}
+    Hence, $d'$ is indeed a metric on $(0.1]$.
+\end{proof}
+
+\begin{proof}[b]
+    We assume that $d(x,y) = \varepsilon'' < \varepsilon$.
+    \begin{claim}
+        We claim that if we pick $\varepsilon' = \varepsilon - \varepsilon'' > 0$, then $B_{d'}(y,\varepsilon') \subseteq B_d(x,\varepsilon)$
+    \end{claim}
+    \begin{explanation}
+        $\forall z \in B_{d'}(y, \varepsilon')$, $\lvert \frac{1}{y} - \frac{1}{z} \rvert < \varepsilon'$. Then $\lvert \frac{z-y}{zy} \rvert < \varepsilon'$, $\lvert z-y \rvert < \varepsilon'zy$ (Since $z > 0$ and $y > 0$). \\
+        Hence we know that $d(y,z) = \lvert y-z \rvert < \varepsilon'zy < \varepsilon'$. \\
+        Since $d$ is metric, so $d(x,z) \leq d(x,y) + d(y,z) < \varepsilon'' + (\varepsilon - \varepsilon'') = \varepsilon$. \\
+        Hence $z \in B_d(x, \varepsilon)$.
+    \end{explanation}
+    By claim, we done.
+\end{proof}
+
+\begin{proof}[c]
+    To prove this, we need to show given $x \in (0,1], \varepsilon >0, B = B_{d'}(x, \varepsilon)$, for every $y \in B$, we can find $\varepsilon' > 0$ such that $B_d(y, \varepsilon') \subseteq B = B_{d'}(x, \varepsilon)$
+    We may assume that $d'(x,y) = \varepsilon'' < \varepsilon$.
+    \begin{claim}
+        We claim that if we pick $\varepsilon' = ? > 0$, then then $B_{d}(y,\varepsilon') \subseteq B_{d'}(x,\varepsilon)$
+    \end{claim}
+    \begin{explanation}
+        
+    \end{explanation}
+    
+\end{proof}
 
 \begin{problem}
     \begin{enumerate}
