@@ -295,9 +295,9 @@ Is the converse true?
       B_X \left( x, r^{\prime}  \right) \subseteq (X\setminus B)
     \end{dcases} \text{ occurs.}
   \end{align*}
-  However, if \(B_X \left( x, r^{\prime}  \right) \subseteq B  \), then \(x \in B_X \left( x, r^{\prime}  \right) \subseteq B \subseteq \overline{B}  \). However, \(x \in \partial A \subseteq \overline{A} \), so \(x \in \overline{A} \cap \overline{B} = \varnothing   \), which is a contradiction. Thus, we know \(B_X \left( x, r^{\prime}  \right) \subseteq B \). Now since \(x \in \partial A\), so \(\forall r > 0\), we have \(\varnothing \neq B_X (x, r) \cap A \subseteq B_X(x, r) \cap (A \cup B)\). Now we want to show \(B_X(x, r) \cap (X \setminus A) \cap (X \setminus B) \neq \varnothing \).  
+  However, if \(B_X \left( x, r^{\prime}  \right) \subseteq B  \), then \(x \in B_X \left( x, r^{\prime}  \right) \subseteq B \subseteq \overline{B}  \). However, \(x \in \partial A \subseteq \overline{A} \), so \(x \in \overline{A} \cap \overline{B} = \varnothing   \), which is a contradiction. Thus, we know \(B_X \left( x, r^{\prime}  \right) \subseteq X\setminus B \). Now since \(x \in \partial A\), so \(\forall r > 0\), we have \(\varnothing \neq B_X (x, r) \cap A \subseteq B_X(x, r) \cap (A \cup B)\). Now we want to show \(B_X(x, r) \cap (X \setminus A) \cap (X \setminus B) \neq \varnothing \).  
   \begin{itemize}
-    \item Case 1: \(r \ge r^{\prime} \), then we have \(B_X(x, r) \subseteq B_X \left( x, r^{\prime}  \right) \subseteq X \setminus B\) and thus 
+    \item Case 1: \(r \le r^{\prime} \), then we have \(B_X(x, r) \subseteq B_X \left( x, r^{\prime}  \right) \subseteq X \setminus B\) and thus 
     \[
       B_X (x, r) \cap \left( X \setminus A \right) \subseteq X \setminus B \implies B_X(x, r) \cap \left( X \setminus A \right) \cap \left( X \setminus B \right) \neq \varnothing    
     \] since \(B_X(x, r) \cap \left( X \setminus A \right) \neq \varnothing  \). 
@@ -337,7 +337,7 @@ that $A$ is open in $Y$ if and only if it is open in $X$.
 \begin{proof}
   \vphantom{text}
   \begin{itemize}
-    \item [\((\implies )\)] Since \(A\) is open in \(Y\), so there exists open \(O \subseteq X\) s.t. \(A = O \cap Y\). Since \(O\) and \(Y\) are both open sets in \(X\), so there exists \(r_1, r_2 > 0\) s.t. 
+    \item [\((\implies )\)] Since \(A\) is open in \(Y\), so there exists open \(O \subseteq X\) s.t. \(A = O \cap Y\). Since \(O\) and \(Y\) are both open sets in \(X\), so for all $x \in A$, there exists \(r_1, r_2 > 0\) s.t. 
     \[
       B_X (x, r_1) \subseteq O \quad \text{and} \quad B_X(x, r_2) \subseteq Y.
     \]
