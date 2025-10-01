@@ -44,6 +44,109 @@ The problem is not that $X$ is incomplete, but rather that it is ``infinite-dime
  
   \end{enumerate}
 \end{problem}
+\begin{proof}[(a)]
+  We first show that \(d_{\ell ^1}\) is a metric: 
+  \begin{itemize}
+    \item For any \((a_n)_{n=0}^{\infty} \in X\), we have 
+    \[d_{\ell ^1}\left( (a_n)_{n=0}^{\infty} , (a_n)_{n=0}^{\infty}  \right) = \sum_{n=0}^{\infty} \vert a_n - a_n \vert = 0.   \] 
+    \item For any distinct \((a_n)_{n=0}^{\infty}, (b_n)_{n=0}^{\infty} \in X\), we have 
+    \[
+      d_{\ell ^1} \left( (a_n)_{n=0}^{\infty}, (b_n)_{n=0}^{\infty} \right) = \sum_{n=0}^{\infty} \left\vert a_n - b_n \right\vert > 0.   
+    \]
+    \item For any \((a_n)_{n=0}^{\infty}, (b_n)_{n=0}^{\infty} \in X\), we have 
+    \[
+      d_{\ell ^1} \left( (a_n)_{n=0}^{\infty}, (b_n)_{n=0}^{\infty} \right) = d_{\ell ^1} \left( (b_n)_{n=0}^{\infty}, (a_n)_{n=0}^{\infty} \right).  
+    \]
+    \item For any \((a_n)_{n=0}^{\infty}, (b_n)_{n=0}^{\infty}, (c_n)_{n=0}^{\infty} \in X\), we have 
+    \begin{align*} 
+      d_{\ell ^1} \left( (a_n)_{n=0}^{\infty} , (c_n)_{n=0}^{\infty}  \right) &= \sum_{n=0}^{\infty} \left\vert a_n - c_n \right\vert \le \sum_{n=0}^{\infty} \left\vert a_n - b_n \right\vert + \left\vert b_n - c_n \right\vert \\
+      &= d_{\ell ^1} \left( (a_n)_{n=0}^{\infty} , (b_n)_{n=0}^{\infty}  \right) + d_{\ell ^1} \left( (b_n)_{n=0}^{\infty} , (c_n)_{n=0}^{\infty}  \right).     
+    \end{align*} 
+  \end{itemize} 
+  We then show that \(d_{l^{\infty} }\) is also a metric: 
+  \begin{itemize}
+    \item For any \((a_n)_{n=0}^{\infty} \in X\), we have 
+    \[
+      d_{\ell ^{\infty} } \left( (a_n)_{n=0}^{\infty} , (a_n)_{n=0}^{\infty}  \right) = \sup _{n \in \mathbb{N} } \vert a_n - a_n \vert = 0. 
+    \]
+    \item For any distinct \((a_n)_{n=0}^{\infty}, (b_n)_{n=0}^{\infty} \in X\), we have 
+    \[
+      d_{\ell ^{\infty} } \left( (a_n)_{n=0}^{\infty} , (b_n)_{n=0}^{\infty}  \right) = \sup _{n \in \mathbb{N} } \vert a_n - b_n  \vert > 0.  
+    \]
+    \item For any \((a_n)_{n=0}^{\infty}, (b_n)_{n=0}^{\infty} \in X\), we have 
+    \[
+      d_{\ell ^{\infty} } \left( (a_n)_{n=0}^{\infty} , (b_n)_{n=0}^{\infty}  \right) = d_{\ell ^{\infty} } \left( (b_n)_{n=0}^{\infty} , (a_n)_{n=0}^{\infty}  \right).  
+    \]
+    \item For any \((a_n)_{n=0}^{\infty}, (b_n)_{n=0}^{\infty}, (c_n)_{n=0}^{\infty} \in X\), we have 
+   \begin{align*}
+    d_{\ell ^{\infty} } \left( (a_n)_{n=0}^{\infty} , (c_n)_{n=0}^{\infty}  \right) &= \sup _{n \in \mathbb{N} } \vert a_n - c_n \vert \le \sup _{n \in \mathbb{N} } \vert a_n - b_n \vert + \vert b_n - c_n \vert \\
+    &\le \sup _{n \in \mathbb{N} } \vert a_n - b_n \vert + \sup _{n \in \mathbb{N} } \vert b_n - c_n \vert \\
+    &= d_{\ell ^{\infty} } \left( (a_n)_{n=0}^{\infty} , (b_n)_{n=0}^{\infty}  \right) + d_{\ell ^{\infty} } \left( (b_n)_{n=0}^{\infty} , (c_n)_{n=0}^{\infty}  \right).  
+   \end{align*}
+  \end{itemize} 
+  Now we show that there exists a sequence of \(X\), say \(\left( x^{(n)} \right)_{n=1}^{\infty}  \) s.t. \(\left( x^{(n)} \right)_{n=1}^{\infty}  \) converges with respect to \(d_{\ell ^{\infty} }\) but not to \(d_{\ell ^1}\). Now we let \(\left( x^{(n)} \right)_{n=1}^{\infty}  \) to be
+  \[
+    x^{(k)}_n = \begin{dcases}
+      \frac{1}{k}, &\text{ if } 0 \le n \le k - 1;\\
+      0 , &\text{ if } n \ge k .
+    \end{dcases}
+  \]    
+  We first show that \(\left( x_n \right)_{n=1}^{\infty}  \) converges with respect to \(d_{\ell ^{\infty} }\). Note that 
+  \[
+    d_{\ell ^{\infty} } \left( x^{(p)}, (0) \right) = \left\vert \frac{1}{p} - 0 \right\vert = \frac{1}{p} 
+  \] where \((0)\) is the sequence with all entries \(0\). Hence, for every \(\varepsilon > 0\), then there exists \(N > 0\) s.t. \(\frac{1}{N} < \varepsilon \), and thus for all \(p \ge N\), we have 
+  \[
+    d_{\ell ^{\infty} } \left( x^{(p)}, 0 \right) = \frac{1}{p} \le \frac{1}{N} < \varepsilon. 
+  \] Now we show that \(\left( x^{(n)} \right)_{n=1}^{\infty}  \) does not converge with respect to \(d_{\ell ^1}\). Suppose for contradiction, \(\left( x^{(n)} \right)_{n=1}^{\infty}\) converges with respect to \(d_{\ell ^1}\), then \(\left( x^{(n)} \right)_{n=1}^{\infty}\) is a Cauchy sequence in \((X, d_{\ell ^1})\) since every convergent sequence is a Cauchy sequence. Now if \(\left( x^{(n)} \right)_{n=1}^{\infty}\) is a Cauchy sequence, then for all \(\varepsilon > 0\), there exists \(N > 0\) s.t. \(p, q \ge N\) implies \(d_{\ell ^1} \left( x^{(p)}, x^{(q)} \right) < \varepsilon  \). Now if we pick some \(\varepsilon < 1\), and the corresponding \(N\) is \(N_{\varepsilon } \), and let \(q = N_{\varepsilon } \), then we know for all \(p > 2N_{\varepsilon } > N_{\varepsilon } \), we must have 
+  \begin{align*}
+    1 &> \varepsilon > d_{\ell ^1} \left( x^{(p)}, x^{(N_{\varepsilon } )} \right) \\
+    &= \sum_{n=0}^{\infty} \left\vert x_n^{(p)} - x_n^{(N_{\varepsilon } )} \right\vert = \sum_{n=0}^{p} \left\vert x_n^{(p)} - x_n^{(N_{\varepsilon })} \right\vert \\
+    &= \sum_{n=0}^{N_{\varepsilon } } \left\vert \frac{1}{p} - \frac{1}{N_{\varepsilon }} \right\vert + \sum_{n=N_{\varepsilon } + 1}^{p} \left\vert \frac{1}{p} - 0 \right\vert \\
+    &= N_{\varepsilon } \left( \frac{1}{p} - \frac{1}{N_{\varepsilon }} \right) + \frac{p - N_{\varepsilon } }{p} = 2 - \frac{2N_{\varepsilon } }{p} > 1,  
+  \end{align*}  
+  which is a contradiction. Hence, \(\left( x_n \right)_{n=1}^{\infty}  \) cannot be Cauchy with respect to \(d_{\ell ^1}\), and thus it does not converge with respect to \(d_{\ell ^1}\). 
+  
+  Now we show that any sequence converges in the \(d_{\ell ^1}\) metric automatically converges in the \(d_{\ell ^{\infty} }\) metirc. If \(\left( x_n \right)_{n=1}^{\infty}  \) converges to \(y\), then for all \(\varepsilon > 0\), there exists \(N > 0\) s.t. \(k \ge N\) implies 
+  \[
+    \sum_{n=0}^{\infty} \left\vert x_n^{(k)} - y_n \right\vert < \varepsilon ,  
+  \] and thus for all \(k \ge N\), we have \(\sup _{n \in \mathbb{N} } \left\vert x_n^{(k)} - y_n \right\vert < \varepsilon \). Hence, \(\left( x^{(n)} \right)_{n=1}^{\infty}  \) also converges to \(y\) in the \(d_{\ell ^{\infty} }\) metric.  
+\end{proof}
+\begin{proof}[(b)]
+  We first show that \(\left\{ e^{(n)} \right\}_{n=1}^{\infty}  \) is closed. Suppose \(\left\{ e^{(n_j)} \right\}_{j=1}^{\infty} \subseteq \left\{ e^{(n)} \right\}_{n=1}^{\infty} \) converges to some \(y \in X\), then for all \(\varepsilon > 0\), there exists \(N > 0\) s.t. \(k \ge N\) implies \(\sum_{n=0}^{\infty} \left\vert e^{(n_k)}_n - y_n \right\vert < \varepsilon   \). Then we do case analysis: 
+  \begin{itemize}
+    \item Case 1: \(\left\{ n_k \right\}_{k=1}^{\infty}  \) has no constant tail, that is, there does not exists \(N^{\prime}  > 0\) s.t. \(k \ge N^{\prime} \) implies \(n_k = n_{N^{\prime} }\). If we pick some \(k^{\prime} > k \ge N\) with \(n_k \neq n_{k^{\prime} }\) (we can do this since the sequence has no constant tail), then we will have 
+    \begin{align*}
+      d_{\ell ^1} \left( e^{n_k}, y \right) &= \sum_{n=0}^{\infty} \left\vert e_n^{(n_k)} - y_n \right\vert = \left\vert 1 - y_{n_k} \right\vert + \sum_{n \neq n_k} \left\vert y_n \right\vert < \varepsilon. 
+    \end{align*}
+    Hence, we must have \(y_{n_k} = 1\) and \(y_n = 0\) for all \(n \neq n_k\), otherwise the above equation cannot holds for all \(\varepsilon > 0\). However, if we write down the same equation but replace \(n_k\) with \(n_{k^{\prime} }\), that is,
+    \[
+      d_{\ell ^1} \left( e^{n_{k^{\prime}} }, y \right) = \sum_{n=0}^{\infty} \left\vert e_n^{(n_{k^{\prime} })} - y_n \right\vert = \left\vert 1 - y_{n_{k^{\prime} }} \right\vert + \sum_{n \neq n_{k^{\prime} }} \left\vert y_n \right\vert < \varepsilon, 
+    \] then we have \(y_{n_{k^{\prime} }} = 1\) and \(y_{n} = 0\) for all \(n \neq n_{k^{\prime} }\), but this means \(y_{n_k} = 1\) and \(y_{n_k} = 0\) since \(n_k \neq n_{k^{\prime} }\), so this is a contradiction, and so it is impossible that \(\left\{ n_k \right\}_{k=1}^{\infty}  \) has no constant tail if \(\left\{ e^{(n_j)} \right\}_{j=1}^{\infty}  \) converges.     
+    \item Case 2: \(\left\{ n_k \right\}_{k=1}^{\infty}  \) has constant tail i.e. there exists \(N^{\prime} >0\) s.t. \(k \ge N^{\prime} \) implies \(n_k = n_{N^{\prime} }\). If so, we will show that \(\left\{ e^{(n_k)} \right\}_{k=1}^{\infty}  \) converges to \(y \in X\) s.t. 
+    \[
+      y_n = \begin{dcases}
+        1, &\text{ if } n = n_{N^{\prime} } ;\\
+        0, &\text{ if } n \neq n_{N^{\prime} }.
+      \end{dcases}
+    \]
+    Here we know for all \(\varepsilon > 0\), if \(k \ge N^{\prime} \), then 
+    \[
+      d_{\ell ^1} \left( e^{(n_k)}, y \right) = \sum_{n=0}^{\infty} \left\vert e_n^{(n_k)} - y_n \right\vert = \left\vert 1 - y_{n_k} \right\vert + \sum_{n \neq n_k}\left\vert y_n \right\vert = 0 + 0 = 0 < \varepsilon   
+    \] since for all \(k \ge N^{\prime} \) we have \(n_k = n_{N^{\prime} }\). Now since the limit of a sequence is unique, so \(\left\{ e^{(n_k)} \right\}_{k=1}^{\infty}  \) converges to this \(y\) and does not converge to any other \(y^{\prime} \in X\). Note that \(y \in \left\{ e^{(n)} \right\}_{n=1}^{\infty}  \), so \(\left\{ e^{(n_k)} \right\}_{k=1}^{\infty}  \) converges in \(\left\{ e^{(n)} \right\}_{n=1}^{\infty}  \).      
+  \end{itemize} 
+  Since we have discussed all cases, so we know if \(\left\{ e^{(n_k)} \right\}_{k=1}^{\infty}  \) converges, then it must converges in \(\left\{ e^{(n)} \right\}_{n=1}^{\infty}  \), which means \(\left\{ e^{(n)} \right\}_{n=1}^{\infty}  \) is closed. 
+  
+  Now we show that \(\left\{ e^{(n)} \right\}_{n=1}^{\infty}  \) is bounded. Note that 
+  \[
+    e^{(n)} \in B_{\left( X, d_{\ell ^1} \right) } \left( (0), 1.1 \right) \quad \forall n \in \mathbb{N}  
+  \] since 
+  \[
+    d_{\ell ^1} \left( e^{(n)}, (0) \right) = 1 < 1.1 \quad \forall n \in \mathbb{N} .
+  \]
+  Hence, we have \(\left\{ e^{(n)} \right\}_{n=1}^{\infty} \subseteq B_{\left( X, d_{\ell ^1} \right) } \left( (0), 1.1 \right) \), and thus \(\left\{ e^{(n)} \right\}_{n=1}^{\infty}  \) is bounded. 
+  
+  Now we show that \(\left\{ e^{(n)} \right\}_{n=1}^{\infty}  \) is not compact. Consider \(\left\{ e^{(n)} \right\}_{n=1}^{\infty}  \) itself, which is a subsequence of \(\left\{ e^{(n)} \right\}_{n=1}^{\infty}  \). Since it corresponds to the Case 1 above, so it does not converges in \((X, d_{\ell ^1})\), and thus there is a subsequence of \(\left\{ e^{(n)} \right\}_{n=1}^{\infty}  \) that does not converge, and thus \(\left\{ e^{(n)} \right\}_{n=1}^{\infty}  \) is not compact.    
+\end{proof}
 %────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 
 \begin{problem}[24pts]
@@ -66,6 +169,73 @@ Also ensure that each sequence $(x^{(n;j+1)})_{n=1}^\infty$ is a subsequence of 
 Then show that the ``diagonal'' sequence $(x^{(n;n)})_{n=1}^\infty$ is a Cauchy sequence, and then use the completeness hypothesis.
 \end{enumerate}
 \end{problem}
+
+\begin{proof}[a]
+    A metric space $(X,d)$ is bounded if and only if exists $x_0 \in X, R > 0$ such that $X \subseteq B_X(x_0, R)$. \\
+    We define $R' = \max\{d(x^{(i)},x^{(j)})) \mid 1 \leq i,j \leq n\}$. Then we choose $x_0 = x^{(1)}, R = R' + 48763$. \\
+    Then we show that $X \subseteq B_X(x_0, R)$. Suppose $x \in \bigcup_{i=1}^{n} B(x^{i}, \varepsilon)$, Then $x \in B(x^{(j)}, \varepsilon)$ for some $j$.
+    By triangular inequality:
+    \[
+    d(x, x_0) \leq d(x, x^{(j)}) + d(x^{(j)}, x_0) \leq \varepsilon + R' < 48763 + R' = R
+    \]
+    So, $X = \bigcup_{i=1}^{n} B(x^{i}, \varepsilon)\subseteq B_X(x_0, R)$, and hence $X$ is bounded.
+\end{proof}
+\begin{proof}[b]
+    \vphantom{text}
+    \begin{itemize}
+        \item For Complete: Given any Cauchy sequence $(x^{(n)})_{n=1}^{\infty}$ in $(X, d)$, since $(X, d)$ is compact, $\exists (x^{(n_k)})_{k=1}^{\infty}$ such that $x^{(n_j)} \to x' \in X$. 
+        \begin{claim}
+            For a Cauchy sequence \(\left\{ x^{(n)} \right\}_{n=1}^{\infty}  \), if there exists a subsequence \(\left\{ x^{(n_j)} \right\}_{j=1}^{\infty}  \) converges to \(x\), then \(\left\{ x^{(n)} \right\}_{n=1}^{\infty}  \) also converges to \(x\).
+        \end{claim}
+        \begin{explanation}
+            For all \(\varepsilon > 0\), we know there exists \(N > 0\) s.t. \(j \ge N\) implies 
+            \[
+                d\left( x^{(n_j)}, x \right) < \frac{\varepsilon}{2}. 
+            \]  
+            Also, there exists \(N^{\prime} > 0\) s.t. \(i, j \ge N^{\prime} \) implies
+            \[
+                d\left( x^{(i)}, x^{(j)} \right) < \frac{\varepsilon}{2}. 
+            \]  
+            Hence, if we pick some \(d \ge N\) and \(n_d \ge N^{\prime} \), then we know for all \(n \ge N^{\prime} \), we have 
+            \[
+                d \left( x^{(n)}, x \right) \le d \left( x^{(n)}, x^{(n_d)} \right) + d \left( x^{(n_d)}, x \right) < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon,
+            \] which means \(\left\{ x^{(n)} \right\}_{n=1}^{\infty}  \) converges to \(x\).
+        \end{explanation}
+        And by this claim we can know $(x^{(n)})$ is also converge to $x' \in X$, so every Cauchy sequence converge in $(X, d)$ and hence it is complete.
+
+        \item For totally bounded: Suppose it not. Then there exists $\varepsilon > 0$ such that the union of finite balls with radius $\varepsilon$ cannot cover X.
+        Then we may construct $(x^{(n)})_{n=1}^{\infty}$ by the following Inductive step:
+        \begin{itemize}
+            \item Base case($n = 1$): Choose any $x^{(1)} = x \in X$,.
+            \item Suppose for $n = k$, the Inductive step hold, for $n = k + 1$, let $x^{k+1} = x \in X \setminus (\bigcup_{i=1}^{k} B(x^{(i)}, \varepsilon))$ (This $x$ must exist, otherwise the $\bigcup_{i=1}^{k} B(x^{(i)}, \varepsilon)$ will cover $X$ and this contradict to hypothesis assumption.) 
+        \end{itemize}
+        So by this Induction, we can successfully construct a sequence $(x^{(n)})_{n=1}^{\infty}$, and for this sequence, $\forall i \neq j, d(x^{(i)}, x^{(j)}) \geq \varepsilon$. \\
+        The sequence converge to $x$ if $\forall \varepsilon' > 0, \exists N$ such that $\forall n \geq N, d(x_n, x) < \varepsilon'$. \\
+        Suppose exist a subsequence $(x^{(n_k)})_{k=1}^{\infty}) \to x'$. \\
+        If we take $\varepsilon' = \frac{\varepsilon}{2}, \exists N$ such that $\forall k \geq N, d(x^{(n_k)}, x') < \varepsilon'$. \\
+        Suppose $n_a, n_b \geq N$, by triangular inequality,
+        \[
+            d(x^{(n_a)}, x^{(n_b)}) \leq d(x^{(n_a)}, x^{(n_k)}) + d(x^{(n_k)}, x^{(n_b)}) < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon.
+        \]
+        This will contradict to $d(x^{(n_a)}, x^{(n_b)}) \geq \varepsilon$, so $(X,d)$ should totally bounded.
+    \end{itemize}
+\end{proof}
+\begin{proof}[c]
+    First, we construct $(x^{(n;j)})_{n=1}^\infty$ by the following step:
+    \begin{itemize}
+        \item First, we take $\varepsilon = 1$, by definition, $X \subseteq \bigcup_{i=1}^{L_1} B(x^{(i;1)}, 1)$. Since $(x^{(n)})$ have infinitely many points, by pigeonhole principle, $B(x^{(i)}, 1)$ must have infinitely many points in $B(x^{(j)}, 1)$ for some $1 \leq j \leq L_1$, and we collect these point (the order preserve) to get $(x^{(n;1)})_{n=1}^\infty \subseteq (x^{(n)})_{n=1}^\infty$.
+        \item Then, we take $\varepsilon = \frac{1}{2}$, by definition, $X \subseteq \bigcup_{i=1}^{L_2} B(x^{(i;2)}, 1)$. By same argument, since $(x^{(n;1)})$ have infinitely many points, $(x^{(n;1)})$ must have infinitely many points in $B(x^{(j)}, \frac{1}{2})$ for some $1 \leq j \leq L_2$, and we collect these point (the order preserve) to get $(x^{(n;2)})_{n=1}^\infty \subseteq (x^{(n;1)})_{n=1}^\infty$.
+        \item We recursively do the procedure. For $j$-th times, we take $\varepsilon = \frac{1}{j}$. The we can get a "nested" sequences that 
+        \[
+        (x^{(n)})_{n=1}^\infty  \supseteq(x^{(n;1)})_{n=1}^\infty \supseteq(x^{(n;2)})_{n=1}^\infty \supseteq ...
+        \]
+    \end{itemize}
+    Then we show that $(x^{(n;n)})_{n=1}^\infty$ is Cauchy sequence. \\
+    \[
+    \forall \varepsilon > 0, \exists N = \lceil\frac{2}{\varepsilon}\rceil, \forall n, m \geq N, d(x_n, x_m) \leq d(x_n, x_N) + d(x_N, x_m) < \frac{1}{N} + \frac{1}{N} = \frac{2}{N} \leq \lceil\frac{2}{\varepsilon}\rceil = \varepsilon.
+    \]
+    Hence $(x^{(n;n)})_{n=1}^\infty$ is Cauchy sequence, and by the completeness, it converge in $(X, d)$. So for every sequence, there exist a subsequence converge to $x' \in X$, and by definition we can conclude that $X$ is compact.
+\end{proof}
 %────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 
 \begin{problem}[16pts]
@@ -83,6 +253,23 @@ Then for every $x \in X$ there exists a ball $B(x,\varepsilon)$ containing $x$ w
 Now use the hypothesis.
   \end{enumerate}
 \end{problem}
+\begin{proof}[(a)]
+  \vphantom{text}
+  \begin{itemize}
+    \item [\((\implies )\)] Suppose \((X, d)\) is compact, then for all sequence \(\left\{ a_n \right\}_{n=1}^{\infty} \subseteq X \), we know there exists a subsequence \(\left\{ a_{n_k} \right\}_{k=1}^{\infty}  \) converges to some \(L \in X\). Now we claim that \(L\) is a limit point of \(\left\{ a_n \right\}_{n=1}^{\infty}  \). For all \(\varepsilon > 0\), we know there exists \(N_{\varepsilon } > 0\) s.t. \(k \ge N_{\varepsilon }\) implies \(d \left( a_{n_k}, L \right) < \varepsilon  \). Hence, given any \(\varepsilon > 0\) and \(N > 0\), we know there exists \(k \ge \max \left\{ N_{\varepsilon }, N  \right\} \) s.t. \(d \left( a_{n_k}, L \right) < \varepsilon  \). Note that \(n_k \ge k\)  since \(\left\{ a_{n_k} \right\}_{k=1}^{\infty}  \) is a subsequence of \(\left\{ a_n \right\}_{n=1}^{\infty}  \) and thus \(1 \le n_1 \le n_2 < \dots \). By this, we know \(n_k \ge k \ge N\), and \(d \left( a_{n_k}, L \right) < \varepsilon  \), which means \(L\) is a limit point of \(\left\{ a_n \right\}_{n=1}^{\infty}  \). Thus, every sequence in \(X\) has at least one limit point in \(X\).                      
+    \item [\((\impliedby )\)] If every sequence in \(X\) has at least one limit point in \(X\), then consider a sequence \(\left\{ a_n \right\}_{n=1}^{\infty}  \), and suppose \(L\) is a limit point of \(\left\{ a_n \right\}_{n=1}^{\infty}  \). Then for all \(\varepsilon > 0\) and \(N_{\varepsilon } > 0 \), we know there exists \(n_{\varepsilon } > N_{\varepsilon }\) s.t. \(d\left( a_{n_{\varepsilon }}, L \right) < \varepsilon \). Now we construct a subsequence \(\left\{ a_{n_p} \right\}_{p=1}^{\infty}  \) s.t. \(d\left( a_{n_p}, L \right) < \frac{1}{p} \). First, we pick \(\varepsilon = \frac{1}{1}\) and \(N_{1 } = 1 \), then there is a \(n_1 > N_{1} \) s.t. \(d\left( a_{n_1}, L \right) < \frac{1}{1} \). Then this is the \(a_{n_1} \) we want. Next, we pick \(\varepsilon = \frac{1}{2}\) and \(N_2 = n_1 + 1\), then there is a \(n_2 > N_2 > n_1\) s.t. \(d \left( a_{n_2}, L \right) < \frac{1}{2} \). By repeating this step, we can construct \(\left\{ a_{n_p} \right\}_{p=1}^{\infty}  \). Note that \(1 \le n_1 < n_2 < \dots \), so \(\left\{ a_{n_p} \right\}_{p=1}^{\infty}  \) is a subsequence of \(\left\{ a_{n} \right\}_{n=1}^{\infty}  \) and \(d\left( a_{n_p}, L \right) < \frac{1}{p}\) for all \(p \ge 1\). Now we claim that \(\left\{ a_{n_p} \right\}_{p=1}^{\infty}  \) converges to \(L\). For all \(\varepsilon > 0\), we can pick some \(N > 0\) s.t. \(\frac{1}{N} < \varepsilon \), then for all \(k \ge N\), we have 
+    \[
+      d \left( a_{n_k}, L \right) < \frac{1}{k} < \frac{1}{N} < \varepsilon.
+    \]
+    Hence, we know \(\left\{ a_{n_p} \right\}_{p=1}^{\infty}  \) converges to \(L\) and thus \((X, d)\) is compact.   
+  \end{itemize}
+\end{proof}
+\begin{proof}[(b)]
+  If \((X, d)\) is not compact, then \(\exists \left( x^{(n)} \right)_{n=1}^{\infty}  \) which has no limit point by (a). Thus, for all \(L \in X\) and for all \(\varepsilon > 0\), we know there exists some \(N > 0\) s.t. \(n \ge N\) implies \(d \left( x^{(n)}, L \right) \ge \varepsilon  \). Now for all \(x \in X\), we can pick some \(\varepsilon_x > 0\) so that \(X \subseteq \bigcup_{x \in X} B(x, \varepsilon_x) \), and by the hypothesis given in the problem, we know \(X \subseteq \bigcup_{i=1}^{n} B(x_i, \varepsilon _{x_i})\) for some \(x_i\)'s in \(X\). Now since for every \(1 \le j \le n\), there exists \(N_j > 0\) s.t. \(n \ge N_j\) implies \(d \left( x^{(n)}, x_j \right) \ge \varepsilon_{x_j} \), so \(B(x_j, \varepsilon _{x_j})\) contains at most \(N_j - 1\) points of \(\left( x^{(n)} \right)_{n=1}^{\infty}  \) . Hence, \(\bigcup_{i=1}^{n} B(x_i, \varepsilon _{x_{i} }) \) contains finitely many points of \(\left( x^{(n)} \right)_{n=1}^{\infty}  \). However,
+  \[
+    \left( x^{(n)} \right)_{n=1}^{\infty} \subseteq X \subseteq \bigcup_{i=1}^{n} B(x_i, \varepsilon _{x_i}),  
+  \] so this is a contradiction. Hence, \((X, d)\) is compact.                      
+\end{proof}
 %────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 
 \begin{problem}[10pts]
@@ -100,6 +287,16 @@ Show that the entire collection has non-empty intersection, thus
 Show by counterexample that this statement fails if $X$ is not compact.
  
 \end{problem}
+
+\begin{proof}
+    Suppose it is not, $\bigcap_{\alpha \in I} K_\alpha = \varnothing$, this implies $\bigcup_{\alpha \in I} (X \setminus K_\alpha) = X$, and hence $X \subseteq \bigcup_{\alpha \in I} (X \setminus K_\alpha)$. \\
+    By the theorem we have shown in class, since $X$ is compact, there exists some finite subset $F'\subset I$ such that $X \subseteq \bigcup_{\alpha \in F'} (X \setminus K_\alpha) \subseteq X$, and this implies $X = \bigcup_{\alpha \in F'} (X \setminus K_\alpha)$. \\
+    Then we take complement for both side, we will get $\varnothing = \bigcap_{\alpha \in F'} K_\alpha$. However, this contradict with the assumption that $\varnothing \neq \bigcap_{\alpha \in F'} K_\alpha$.
+
+    For the counterexample, let we take $X = \mathbb{R}$, and $d$ is standard metric, and we let $K_{\alpha} = [\alpha, \infty)$. \\
+    This is clearly that $\forall \alpha, K_{\alpha}$ is closed set, and for all finite subset $F$, $\bigcap_{\alpha \in F} K_\alpha = [\alpha', \infty)$, where $\alpha' $ is the largest index among $F$. \\
+    However, the intersection for all $K_{\alpha}$ is $(\infty, \infty)$, which is an empty set, so we construct a not compact example that the statement fails.
+\end{proof}
 %────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 
 \begin{problem}[24pts]
@@ -148,6 +345,35 @@ Conclude that $f$ is continuous if and only if $g$ is continuous.
 
 \end{enumerate}
 \end{problem}
+\begin{proof}[(a)]
+   We want to show that for all \(x_0 \in E\) and  for all \(\varepsilon > 0\), there is an \(\delta > 0\) s.t. 
+   \[
+    \iota_{E \to X} \left( B_E(x_0, \delta ) \right) \subseteq B_X (\iota_{E \to X}(x_0), \varepsilon ). 
+   \] Note that \(\iota_{E \to X} \left( B_E(x_0, \delta ) \right) = B_E(x_0, \delta )\), and we can just pick \(\delta = \varepsilon \) since 
+   \[
+    B_E(x_0, \varepsilon ) \subseteq B_X(x_0, \varepsilon ) = B_X(\iota_{E \to X} (x_0), \varepsilon ).
+   \] Hence, we know \(\iota_{E \to X}\) is continuous at every \(x_0 \in E\), which means \(\iota_{E \to X}\) is continuous.       
+\end{proof}
+\begin{proof}[(b)]
+  Note that \(f \vert _E = f \circ \iota_{E \to X}\), and since by (a) we have shown that \(\iota_{E \to X}\) is continuous at every \(x_0 \in E\)  and also we know \(f\) is continuous at every \(x \in X\), so we know \(f \vert_E\) is continuous.
+  \begin{note}
+    We have proved that the composition of two continuous function is still continuous during the lecture.
+  \end{note}    
+  However, the converse of this statement is not true. Consider \(X = \mathbb{R}, Y = \left\{ 0, 1 \right\}  \) and \(d_X\) and \(d_Y\) are both standard metric, and if \(E = \left\{ 0 \right\} \), and suppose we have \(f: X \to Y\) defined by 
+  \[
+    f(x) = \begin{dcases}
+      0, &\text{ if } x=0 ;\\
+      1, &\text{ if } x \neq 0.
+    \end{dcases}
+  \]
+  Then \(f\vert_E\) is continuous at \(0\) since for all \(\varepsilon > 0\), we can pick \(\delta = 48763\), and thus 
+  \[
+    \left\{ 0 \right\} = B_E (0, 48763) \subseteq f\vert_E^{-1} \left( B_Y(f\vert_E(0), \varepsilon ) \right) = f\vert_E^{-1}(B_Y(0, \varepsilon )) = f\vert_E^{-1}(\left\{ 0 \right\} ) = \left\{ 0 \right\} . 
+  \] However, in \(f\), if we pick some \(\varepsilon < 1\), then \(B_Y(0, \varepsilon ) = \left\{ 0 \right\} \), and thus for any \(\delta > 0\), the ball \(B_X(0, \delta )\) is not contained in \(f^{-1} \left( B_Y(0, \varepsilon ) \right) = f^{-1}(\left\{ 0 \right\} ) = \left\{ 0 \right\} \).     
+\end{proof}
+\begin{proof}[(c)]
+  If \(f\) is continuous at \(x_0 \in X\), then for all sequences \(\left( x^{(n)} \right)_{n=1}^{\infty}  \) that converge to \(x_0\), we know \(\lim_{n \to \infty} f \left( x^{(n)} \right) = f(x_0)  \). Since \(f(x) = g(x)\) for all \(x \in X\), so we have \(\lim_{n \to \infty} g \left( x^{(n)} \right) = g(x_0)  \), which shows \(g\) is also continuous at \(x_0\). Hence, \(f\) is continuous at \(x_0\) implies \(g\) is continuous at \(x_0\). Now if \(g\) is continuous at \(x_0\), then we can do same thing to conclude that \(f\) is continuous at \(x_0\), and thus we know \(f\) is continuous at \(x_0\) iff \(g\) is continuous at \(x_0\). Now since this statement can be used for any \(x_0 \in X\), so \(f\) is continuous if and only if \(g\) is continuous.                      
+\end{proof}
 %────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 
 \begin{problem}[20pts]
@@ -167,3 +393,35 @@ for every subset $A$ of $X$.
 
  \end{enumerate}
 \end{problem}
+
+\begin{proof}[a]
+
+\vphantom{text}
+\begin{itemize}
+    \item [\((\implies )\)] if $x \in \overline{A}$, then exists a convergent sequence $(x^{(n)})_{n=1}^\infty \in A$ in $(X, d_X)$ such that $\lim_{n \to \infty} x^{(n)} \to x$. And since $f$ is continuous, $\lim_{n \to \infty} f(x^{(n)}) \to f(x)$ in $(Y, d_Y)$. \\
+    Let $y = f(x)$, $y \in f(\overline{A})$ since $x \in \overline{A}$. And we know $(f(x^{(n)}))_{n=1}^\infty \in f(A)$ converge to $y$, so $y \in \overline{f(A)}$.
+    Since $\forall x\in \overline{A}$, the above proof is true, so $f(\overline{A}) \subseteq \overline{f(A)}$.
+    \item [\((\impliedby )\)] Let $C$ is closed set in $Y$, and $f^{-1}(C) \subseteq X$. \\
+    We want to show that $f^{-1}(C)$ is closed. \\
+    $\forall (x^{(n)})_{n=1}^{\infty} \in f^{-1}(C)$ converge to $x'$ in X, $x' \in \overline{f^{-1}(C)}$, then $f(x') \in f(\overline{f^{-1}(C)})$, by hypothesis, $f(x') \in \overline{f(f^{-1}(C))} = \overline{C} = C$ (since $C$ is closed). This mean $x' \in f^{-1}(C)$. \\
+    So $\overline{f^{-1}(C)} \subseteq f^{-1}(C)$, so $f^{-1}(C)$ is closed, and hence $f$ is continuous on $X$.
+\end{itemize}
+\end{proof}
+
+\begin{proof}[b]
+    \vphantom{text}
+    \begin{itemize}
+        \item [\((\implies )\)] For every compact subset of $X$, let it $K$, for every $(x^{(n)})_{n=1}^{\infty} \to x \in K$. Since $\lim_{n \to \infty} x^{(n)} = x \in K \subseteq X$, and $f$ is continuous on $X$, this means $\lim_{n \to \infty} f(x^{(n)}) = f(x)$ in $(Y, d_Y)$. Hence $f$ is continuous on $K$, and for every compact subset $K \subseteq X$, the proof above is true.
+        \item [\((\impliedby )\)] $\forall p \in X, \forall (x^{(n)})_{n=1}^{\infty} \to p \in X$, we claim that $S = \{p, x^{(1)}, x^{(2)}, ...\} \subseteq X$ is compact subset.
+        \begin{explanation}
+            We show that we pick any sequence in $S$, let it $(z^{(n)})_{n=1}^{\infty}$, we can always find a subsequence $(z^{(n_k)})_{k=1}^{\infty}$ such that it converge in $S$.
+            \begin{itemize}
+                \item Case 1: If $p$ appears infinitely many times, we can very easy pick $z^{(n_k)} = \{p, p, p, ...\}$, and since this is the constant sequence, so it converge to $p \in S$. 
+                \item Case 2: If we only pick finite kinds of terms from $S$ to construct $(z^{(n)})$. Then by pigeonhole principle, there exists some terms of $S$ appear infinitely many times in $(z^{(n)})$, let one of that terms is $z' \in S$, we can also very simple to pick $z^{(n_k)} = \{z', z', z', ...\}$, and since this is the constant sequence, so it converge to $z' \in S$.
+                \item Case 3: If we pick infinitely many kinds of terms from $S$ to construct $(z^{(n)})$. Then we can pick $(n_j)_{j=1}^{\infty}$ such that $(n_j)$ is strictly increasing and $(z^{(n_k)})$ is the subsequence of $(x^{(n)})$, then $(z^{(n_k)})_{k=1}^{\infty}$ converge to $p \in S$ since $(x^{(n)})_{n=1}^{\infty} \to p$.
+            \end{itemize}
+            Hence, $S$ is compact.
+        \end{explanation}
+        And since $p \in S$, by hypothesis, $f$ is continuous at $p$, and we can do the same proof for all $p \in X$, so $f$ is continuous.
+    \end{itemize}
+\end{proof}
