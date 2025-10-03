@@ -106,7 +106,7 @@ The problem is not that $X$ is incomplete, but rather that it is ``infinite-dime
   \end{align*}  
   which is a contradiction. Hence, \(\left( x_n \right)_{n=1}^{\infty}  \) cannot be Cauchy with respect to \(d_{\ell ^1}\), and thus it does not converge with respect to \(d_{\ell ^1}\). 
   
-  Now we show that any sequence converges in the \(d_{\ell ^1}\) metric automatically converges in the \(d_{\ell ^{\infty} }\) metirc. If \(\left( x_n \right)_{n=1}^{\infty}  \) converges to \(y\), then for all \(\varepsilon > 0\), there exists \(N > 0\) s.t. \(k \ge N\) implies 
+  Now we show that any sequence converges in the \(d_{\ell ^1}\) metric automatically converges in the \(d_{\ell ^{\infty} }\) metric. If \(\left( x_n \right)_{n=1}^{\infty}  \) converges to \(y\), then for all \(\varepsilon > 0\), there exists \(N > 0\) s.t. \(k \ge N\) implies 
   \[
     \sum_{n=0}^{\infty} \left\vert x_n^{(k)} - y_n \right\vert < \varepsilon ,  
   \] and thus for all \(k \ge N\), we have \(\sup _{n \in \mathbb{N} } \left\vert x_n^{(k)} - y_n \right\vert < \varepsilon \). Hence, \(\left( x^{(n)} \right)_{n=1}^{\infty}  \) also converges to \(y\) in the \(d_{\ell ^{\infty} }\) metric.  
@@ -173,7 +173,7 @@ Then show that the ``diagonal'' sequence $(x^{(n;n)})_{n=1}^\infty$ is a Cauchy 
 \begin{proof}[a]
     A metric space $(X,d)$ is bounded if and only if exists $x_0 \in X, R > 0$ such that $X \subseteq B_X(x_0, R)$. \\
     We define $R' = \max\{d(x^{(i)},x^{(j)})) \mid 1 \leq i,j \leq n\}$. Then we choose $x_0 = x^{(1)}, R = R' + 48763$. \\
-    Then we show that $X \subseteq B_X(x_0, R)$. Suppose $x \in \bigcup_{i=1}^{n} B(x^{i}, \varepsilon)$, Then $x \in B(x^{(j)}, \varepsilon)$ for some $j$.
+    Then we show that $X \subseteq B_X(x_0, R)$. Suppose $x \in \bigcup_{i=1}^{n} B(x^{(i)}, \varepsilon)$ and pick $\varepsilon = 1016$, Then $x \in B(x^{(j)}, \varepsilon)$ for some $j$.
     By triangular inequality:
     \[
     d(x, x_0) \leq d(x, x^{(j)}) + d(x^{(j)}, x_0) \leq \varepsilon + R' < 48763 + R' = R
@@ -207,34 +207,39 @@ Then show that the ``diagonal'' sequence $(x^{(n;n)})_{n=1}^\infty$ is a Cauchy 
         Then we may construct $(x^{(n)})_{n=1}^{\infty}$ by the following Inductive step:
         \begin{itemize}
             \item Base case($n = 1$): Choose any $x^{(1)} = x \in X$,.
-            \item Suppose for $n = k$, the Inductive step hold, for $n = k + 1$, let $x^{k+1} = x \in X \setminus (\bigcup_{i=1}^{k} B(x^{(i)}, \varepsilon))$ (This $x$ must exist, otherwise the $\bigcup_{i=1}^{k} B(x^{(i)}, \varepsilon)$ will cover $X$ and this contradict to hypothesis assumption.) 
+            \item Suppose for $n = k$, the inductive step hold, for $n = k + 1$, let $x^{(k+1)} = x \in X \setminus (\bigcup_{i=1}^{k} B(x^{(i)}, \varepsilon))$ (This $x$ must exist, otherwise the $\bigcup_{i=1}^{k} B(x^{(i)}, \varepsilon)$ will cover $X$ and this contradict to hypothesis assumption.) 
         \end{itemize}
-        So by this Induction, we can successfully construct a sequence $(x^{(n)})_{n=1}^{\infty}$, and for this sequence, $\forall i \neq j, d(x^{(i)}, x^{(j)}) \geq \varepsilon$. \\
-        The sequence converge to $x$ if $\forall \varepsilon' > 0, \exists N$ such that $\forall n \geq N, d(x_n, x) < \varepsilon'$. \\
-        Suppose exist a subsequence $(x^{(n_k)})_{k=1}^{\infty}) \to x'$. \\
+        So by this induction, we can successfully construct a sequence $(x^{(n)})_{n=1}^{\infty}$, and for this sequence, $\forall i \neq j, d(x^{(i)}, x^{(j)}) \geq \varepsilon$. \\
+        The sequence converges to $x$ if $\forall \varepsilon' > 0, \exists N$ such that $\forall n \geq N, d(x^{(n)}, x) < \varepsilon'$. \\
+        Suppose exist a subsequence $(x^{(n_k)})_{k=1}^{\infty} \to x'$. \\
         If we take $\varepsilon' = \frac{\varepsilon}{2}, \exists N$ such that $\forall k \geq N, d(x^{(n_k)}, x') < \varepsilon'$. \\
         Suppose $n_a, n_b \geq N$, by triangular inequality,
         \[
             d(x^{(n_a)}, x^{(n_b)}) \leq d(x^{(n_a)}, x^{(n_k)}) + d(x^{(n_k)}, x^{(n_b)}) < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon.
         \]
-        This will contradict to $d(x^{(n_a)}, x^{(n_b)}) \geq \varepsilon$, so $(X,d)$ should totally bounded.
+        This will contradict to $d(x^{(n_a)}, x^{(n_b)}) \geq \varepsilon$, and hence the convergent subsequence doesn't exist. However since $(X,d)$ is compact, so this is absurd, and hence $(X,d)$ should be totally bounded.
     \end{itemize}
 \end{proof}
 \begin{proof}[c]
     First, we construct $(x^{(n;j)})_{n=1}^\infty$ by the following step:
     \begin{itemize}
-        \item First, we take $\varepsilon = 1$, by definition, $X \subseteq \bigcup_{i=1}^{L_1} B(x^{(i;1)}, 1)$. Since $(x^{(n)})$ have infinitely many points, by pigeonhole principle, $B(x^{(i)}, 1)$ must have infinitely many points in $B(x^{(j)}, 1)$ for some $1 \leq j \leq L_1$, and we collect these point (the order preserve) to get $(x^{(n;1)})_{n=1}^\infty \subseteq (x^{(n)})_{n=1}^\infty$.
-        \item Then, we take $\varepsilon = \frac{1}{2}$, by definition, $X \subseteq \bigcup_{i=1}^{L_2} B(x^{(i;2)}, 1)$. By same argument, since $(x^{(n;1)})$ have infinitely many points, $(x^{(n;1)})$ must have infinitely many points in $B(x^{(j)}, \frac{1}{2})$ for some $1 \leq j \leq L_2$, and we collect these point (the order preserve) to get $(x^{(n;2)})_{n=1}^\infty \subseteq (x^{(n;1)})_{n=1}^\infty$.
+        \item First, we take $\varepsilon = 1$, by definition, $X \subseteq \bigcup_{i_1=1}^{L_1} B(x_{i_1}, 1)$ for some $L_1$. Since $(x^{(n)})_{n=1}^\infty$ have infinitely many points, by pigeonhole principle, $(x^{(n)})_{n=1}^\infty$ must have infinitely many terms lie in $B(x^{(j)}, 1)$ for some $1 \leq j \leq L_1$, and we collect these point (the order preserve) to get $(x^{(n;1)})_{n=1}^\infty \subseteq (x^{(n)})_{n=1}^\infty$.
+        \item Then, we take $\varepsilon = \frac{1}{2}$, by definition, $X \subseteq \bigcup_{i_2=1}^{L_2} B(x_{i_2}, 1)$ for some $L_2$. By same argument, since $(x^{(n;1)})_{n=1}^\infty$ have infinitely many points, $(x^{(n;1)})_{n=1}^\infty$ must have infinitely many terms lie in $B(x^{(j)}, \frac{1}{2})$ for some $1 \leq j \leq L_2$, and we collect these point (the order preserve) to get $(x^{(n;2)})_{n=1}^\infty \subseteq (x^{(n;1)})_{n=1}^\infty$.
         \item We recursively do the procedure. For $j$-th times, we take $\varepsilon = \frac{1}{j}$. The we can get a "nested" sequences that 
         \[
         (x^{(n)})_{n=1}^\infty  \supseteq(x^{(n;1)})_{n=1}^\infty \supseteq(x^{(n;2)})_{n=1}^\infty \supseteq ...
         \]
     \end{itemize}
     Then we show that $(x^{(n;n)})_{n=1}^\infty$ is Cauchy sequence. \\
-    \[
-    \forall \varepsilon > 0, \exists N = \lceil\frac{2}{\varepsilon}\rceil, \forall n, m \geq N, d(x_n, x_m) \leq d(x_n, x_N) + d(x_N, x_m) < \frac{1}{N} + \frac{1}{N} = \frac{2}{N} \leq \lceil\frac{2}{\varepsilon}\rceil = \varepsilon.
-    \]
-    Hence $(x^{(n;n)})_{n=1}^\infty$ is Cauchy sequence, and by the completeness, it converge in $(X, d)$. So for every sequence, there exist a subsequence converge to $x' \in X$, and by definition we can conclude that $X$ is compact.
+    \begin{align*}
+    &\forall \varepsilon > 0,\ \exists N = \left\lceil \tfrac{2}{\varepsilon} \right\rceil,\ 
+       \forall n, m \geq N, \\[6pt]
+    &\quad d(x^{(n;n)}, x^{(m;m)}) \\
+    &\leq d(x^{(n;n)}, x^{(N;N)}) + d(x^{(N;N)}, x^{(m;m)}) \\[6pt]
+    &< \tfrac{1}{N} + \tfrac{1}{N} = \tfrac{2}{N} \\[6pt]
+    &\leq \varepsilon.
+    \end{align*}
+    Hence $(x^{(n;n)})_{n=1}^\infty$ is Cauchy sequence, and by the completeness, it converges in $(X, d)$. So for every sequence, there exist a subsequence converge to $x' \in X$, and by definition we can conclude that $X$ is compact.
 \end{proof}
 %────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 
@@ -293,8 +298,8 @@ Show by counterexample that this statement fails if $X$ is not compact.
     By the theorem we have shown in class, since $X$ is compact, there exists some finite subset $F'\subset I$ such that $X \subseteq \bigcup_{\alpha \in F'} (X \setminus K_\alpha) \subseteq X$, and this implies $X = \bigcup_{\alpha \in F'} (X \setminus K_\alpha)$. \\
     Then we take complement for both side, we will get $\varnothing = \bigcap_{\alpha \in F'} K_\alpha$. However, this contradict with the assumption that $\varnothing \neq \bigcap_{\alpha \in F'} K_\alpha$.
 
-    For the counterexample, let we take $X = \mathbb{R}$, and $d$ is standard metric, and we let $K_{\alpha} = [\alpha, \infty)$. \\
-    This is clearly that $\forall \alpha, K_{\alpha}$ is closed set, and for all finite subset $F$, $\bigcap_{\alpha \in F} K_\alpha = [\alpha', \infty)$, where $\alpha' $ is the largest index among $F$. \\
+    For the counterexample, let we take $X = \mathbb{R}$, and $d$ is standard metric, it is clearly that $(X,d)$ is not compact, and we let $I = \{1,2,3,..\}$ and $K_{\alpha} = [\alpha, \infty)$. \\
+    This is clearly that $\forall \alpha \in I, K_{\alpha}$ is closed set, and for all finite subset $F$, $\bigcap_{\alpha \in F} K_\alpha = [\alpha', \infty)$, where $\alpha' $ is the largest index among $F$. \\
     However, the intersection for all $K_{\alpha}$ is $(\infty, \infty)$, which is an empty set, so we construct a not compact example that the statement fails.
 \end{proof}
 %────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
@@ -398,12 +403,11 @@ for every subset $A$ of $X$.
 
 \vphantom{text}
 \begin{itemize}
-    \item [\((\implies )\)] if $x \in \overline{A}$, then exists a convergent sequence $(x^{(n)})_{n=1}^\infty \in A$ in $(X, d_X)$ such that $\lim_{n \to \infty} x^{(n)} \to x$. And since $f$ is continuous, $\lim_{n \to \infty} f(x^{(n)}) \to f(x)$ in $(Y, d_Y)$. \\
-    Let $y = f(x)$, $y \in f(\overline{A})$ since $x \in \overline{A}$. And we know $(f(x^{(n)}))_{n=1}^\infty \in f(A)$ converge to $y$, so $y \in \overline{f(A)}$.
-    Since $\forall x\in \overline{A}$, the above proof is true, so $f(\overline{A}) \subseteq \overline{f(A)}$.
+    \item [\((\implies )\)] %If $x \in \overline{A}$, then exists a convergent sequence $(x^{(n)})_{n=1}^\infty \in A$ in $(X, d_X)$ such that $\lim_{n \to \infty} x^{(n)} \to x$. And since $f$ is continuous, $\lim_{n \to \infty} f(x^{(n)}) \to f(x)$ in $(Y, d_Y)$. \\
+    $\forall y \in f(\overline{A})$, $\exists x \in \overline{A}$ such that $f(x) = y$, and since $x \in \overline{A}$, there exists a convergent sequence $(x^{(n)})_{n=1}^\infty \in A$ which is converge to $x$ in $(X, d_X)$. And since $f$ is continuous, $\lim_{n \to \infty} f(x^{(n)}) \to f(x) = y$ in $(Y, d_Y)$. So we know $(f(x^{(n)}))_{n=1}^\infty \in f(A)$ converge to $y$, so $y \in \overline{f(A)}$, and hence $f(\overline{A}) \subseteq \overline{f(A)}$, the above proof is true for every subset $A$ of $X$, so we have proved.
     \item [\((\impliedby )\)] Let $C$ is closed set in $Y$, and $f^{-1}(C) \subseteq X$. \\
     We want to show that $f^{-1}(C)$ is closed. \\
-    $\forall (x^{(n)})_{n=1}^{\infty} \in f^{-1}(C)$ converge to $x'$ in X, $x' \in \overline{f^{-1}(C)}$, then $f(x') \in f(\overline{f^{-1}(C)})$, by hypothesis, $f(x') \in \overline{f(f^{-1}(C))} = \overline{C} = C$ (since $C$ is closed). This mean $x' \in f^{-1}(C)$. \\
+    $\forall (x^{(n)})_{n=1}^{\infty} \in f^{-1}(C)$ converge to $x'$ in $X$, $x' \in \overline{f^{-1}(C)}$, then $f(x') \in f(\overline{f^{-1}(C)})$, by hypothesis, $f(x') \in \overline{f(f^{-1}(C))} = \overline{C} = C$ (since $C$ is closed). This mean $x' \in f^{-1}(C)$. \\
     So $\overline{f^{-1}(C)} \subseteq f^{-1}(C)$, so $f^{-1}(C)$ is closed, and hence $f$ is continuous on $X$.
 \end{itemize}
 \end{proof}
