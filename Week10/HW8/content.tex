@@ -12,8 +12,77 @@ centered at \(0\) with radius of convergence \(1\), which
 \item[(e)] converges pointwise on \((-1,1)\), but does not converge uniformly on \((-1,1)\).
 \end{enumerate}
 \end{problem}
+\begin{proof}[(a)]
+    Suppose \(\left( c_n \right)_{n=0}^{\infty} = \left( 1 \right)_{n=0}^{\infty}   \), then the radius of convergence \(R = \frac{1}{\limsup_{n \to \infty} 1 } = 1\). Also, when \(x = 1\), the power series is \(\sum_{n=0}^{\infty} 1 \), which diverges, while \(x = -1\), \(\sum_{n=0}^{\infty} (-1)^n \) also diverges since it oscillates.     
+\end{proof}
 
-\begin{problem}[25pts \noindent\textbf{Exercise 4.2.7.} ]
+\begin{proof}[(b)]
+    Suppose \(\left( c_n \right)_{n=1}^{\infty} = \left( \frac{1}{n} \right)_{n=1}^{\infty}   \), then if the radius of convergence is \(R\), then 
+    \[
+        R = \frac{1}{\limsup_{n \to \infty} \left( \frac{1}{n} \right)^{\frac{1}{n}}  }.
+    \] 
+    Note that
+    \[
+        \lim_{n \to \infty} \left( \frac{1}{n} \right)^{\frac{1}{n}} = \lim_{n \to \infty} n^{-\frac{1}{n}} = 1  
+    \] since suppose \(y_n = n^{-\frac{1}{n}} \), then \(\ln y_n = -\frac{1}{n} \ln n\) for \(y > 0\), and thus 
+    \[
+        \lim_{n \to \infty} \ln y_n = \lim_{n \to \infty} -\frac{\ln n}{n} = \lim_{n \to \infty} \frac{\frac{1}{n}}{1} = 0,
+    \] which means \(\lim_{n \to \infty} y_n = e^0 = 1 \). Note that \(\sum_{n=1}^{\infty} \frac{1}{n} \) diverges by the \(p\)-series test and \(\sum_{n=1}^{\infty} (-1)^n \frac{1}{n} \) converges since \(\lim_{n \to \infty} \frac{1}{n} = 0 \) and \(\left( \frac{1}{n} \right)_{n=1}^{\infty}  \) decreasing so we can use alternating series test. Hence, the power series 
+    \[
+        \sum_{n=1}^{\infty} \frac{1}{n} x^n 
+    \]
+    diverges at \(x = 1\) but converges at \(x = -1\).       
+\end{proof}
+
+\begin{proof}[(c)]
+    Suppose \(\left( c_n \right) = \left( (-1)^n \frac{1}{n} \right)_{n=1}^{\infty}   \), then the radius converges is 
+    \[
+        R = \frac{1}{\limsup_{n \to \infty} \left\vert (-1)^n \frac{1}{n} \right\vert^{\frac{1}{n}}  } = \frac{1}{\limsup_{n \to \infty} \left( \frac{1}{n} \right)^{\frac{1}{n}}  } = 1
+    \] by (b). Now if \(x = 1\), then the series becomes 
+    \[
+        \sum_{n=1}^{\infty} (-1)^n \frac{1}{n}, 
+    \] which has been argued to be convergent in (b). If \(x = -1\), then the series becomes 
+    \[
+        \sum_{n=1}^{\infty} (-1)^n \frac{1}{n} (-1)^n = \sum_{n=1}^{\infty} \frac{1}{n},  
+    \] which has been argued to be convergent in (b). Hence, this power series converges at \(x=1\) but diverges at \(x = -1\).   
+\end{proof}
+
+\begin{proof}[(d)]
+    Suppose \(\left( c_n \right)_{n=1}^{\infty} = \left( \frac{1}{n^2} \right)_{n=1}^{\infty} \), then the radius of convergence is 
+    \[
+        R = \frac{1}{\limsup_{n \to \infty} \left( \frac{1}{n^2} \right)^{\frac{1}{n}}  } = 1
+    \] since \(\lim_{n \to \infty} \left( \frac{1}{n^2} \right)^{\frac{1}{n}} = 1  \). Now if \(x = 1\), then the series becomes 
+    \[
+        \sum_{n=1}^{\infty} \frac{1}{n^2} 
+    \] converges by \(p\)-series test, while if \(x = -1\), then the series becomes 
+    \[
+        \sum_{n=1}^{\infty} (-1)^n \frac{1}{n^2}, 
+    \] which converges by alternating series test. Hence, this power series converges at both \(x = 1\) and \(x = -1\).  
+\end{proof}
+
+\begin{proof}[(e)]
+    Consider the power series 
+    \[
+        \sum_{n=0}^{\infty} x^n = \frac{1}{1-x},
+    \] then we know the radius of convergence of this power series is \(1\). Now we show that it converges pointwise on \((-1,1)\) but not uniformly on \((-1,1)\). First, suppose
+    \[
+        S_N(x) = \sum_{n=0}^N x^n = \frac{1 - x^{N+1}}{1-x}, 
+    \]   
+    then for all \(\varepsilon > 0\) and fixed \(x \in (-1, 1)\), there exists \(N > 0\) s.t. \(x^{N+1} < (1-x) \varepsilon \), so for all \(n \ge N\) we have 
+    \[
+        \left\vert \frac{1 - x^{n+1}}{1-x} - \frac{1}{1-x} \right\vert = \frac{x^{n+1}}{1-x} \le \frac{x^{N+1}}{1-x} < \varepsilon, 
+    \] 
+    so it converges pointwise on \((-1,1)\). Now we show that it does not converge uniformly on \((-1, 1)\). If so, then for some fixed \(N \in \mathbb{N} \) we have 
+    \[
+        \frac{x^{N+1}}{1-x} < \varepsilon, \quad \forall x \in (-1, 1) \text{ and } \varepsilon > 0,
+    \] but 
+    \[
+        \lim_{x \to 1^-} \frac{x^{N+1}}{1-x} = \infty, 
+    \]    
+    so this is impossible, and thus \(\sum_{n=0}^{\infty} x^n \) does not converge uniformly on \((-1, 1)\).     
+\end{proof}
+
+\begin{problem}[25pts \noindent\textbf{Exercise 4.2.7.}]
     Let \(m \ge 0\) be a positive integer, and let \(0  < r\) be real numbers.  
 Prove the identity
 \[
@@ -29,6 +98,47 @@ Using Proposition 4.2.6, conclude the identity
 for all integers \(m \ge 0\) and all \(x \in (-r, r)\).  
 Also explain why the series on the right-hand side is absolutely convergent.
 \end{problem}
+\begin{proof}
+    Fix \(x \in (-r, r)\). Suppose 
+    \[
+        S_N(x) = \sum_{n=0}^N x^{n} r^{-n} = \sum_{n=0}^N \left( \frac{x}{r} \right)^{n} = \frac{1 - \left( \frac{x}{r} \right)^{N+1} }{1 - \frac{x}{r}},  
+    \] then we know 
+    \[
+        \lim_{N \to \infty} S_N(x) = \lim_{N \to \infty} \frac{1 - \left( \frac{x}{r} \right)^{N+1} }{1 - \frac{x}{r}} = \frac{1}{1 - \frac{x}{r}} = \frac{r}{r - x}  
+    \] since \(\left\vert \frac{x}{r} \right\vert  < 1\). Hence, 
+    \[
+        \frac{r}{r-x} = \sum_{n=0}^{\infty} x^n r^{-n}, \quad \forall x \in (-r, r). 
+    \]
+    Now we show 
+    \[
+        \frac{r}{(r-x)^{\,m+1}} = \sum_{n=m}^{\infty} \frac{n!}{m!(n-m)!}\, x^{\,n-m} r^{-n}
+    \] for all integers \(m \ge 0\) and all \(x \in (-r, r)\) by induction. 
+    \begin{itemize}
+        \item Base case: for \(m = 0\), we have proved that it is true. 
+        \item Now suppose for \(m = k-1\) this is true, then 
+        \[
+            \frac{r}{(r-x)^k} = \sum_{n=k-1}^{\infty} \frac{n!}{(k-1)!(n-k+1)!}x^{n-k+1} r^{-n}, 
+        \] then by Proposition 4.2.6 we know it is differentiable for all \(x \in (-r, r)\) and thus 
+        \[
+            k \cdot r (r-x)^{-k-1} = \sum_{n=k}^{\infty} \frac{n!}{(k-1)!(n-k+1)!} \cdot (n-k+1) x^{n-k} r^{-n}, 
+        \] which gives 
+        \[
+            \frac{r}{(r-x)^{k+1}} = \sum_{n=k}^{\infty} \frac{n!}{k!(n-k)!} x^{n-k} r^{-n}. 
+        \]
+        Hence, this statement is true for \(m = k\) and all \(x \in (-r, r)\), and thus the induction is finished. Now we show 
+        \[
+            \sum_{n=m}^{\infty} \frac{n!}{m!(n-m)!}x^{n-m}r^{-n} 
+        \] converges absolutely for all \(x \in (-r, r)\). We can first rewrite the series by letting \(k = n-m\), so
+        \[
+            \sum_{n=m}^{\infty} \frac{n!}{m!(n-m)!}x^{n-m}r^{-n} = \sum_{k=0}^{\infty} \frac{(k+m)!}{m!k!}x^k r^{-k-m}. 
+        \]  
+        Hence, we know 
+        \begin{align*}
+            \lim_{k \to \infty} \left\vert \frac{\frac{(k+m+1)!}{m!(k+1)!} x^{k+1} r^{-k-m-1}}{\frac{(k+m)!}{m!k!} x^k r^{-k-m}} \right\vert = \lim_{k \to \infty} \left\vert \frac{(k+m+1)x}{(k+1)r} \right\vert = \left\vert \frac{x}{r} \right\vert < 1,    
+        \end{align*}
+        and thus by ratio test we know this power series converges absolutely.
+    \end{itemize}  
+\end{proof}
 
 \begin{problem}[25pts]
     Let \(E\) be a subset of \(\mathbb{R}\), let \(a\) be an interior point of \(E\), and let \(f:E\to\mathbb{R}\) be a function which is real analytic at \(a\) and has a power series expansion
@@ -73,6 +183,158 @@ for any real number \(x\).
 \end{enumerate}
 \end{problem}
 
+\begin{proof}[(a)]
+    $(b-s, b+s) \subseteq (a-r, a+r)$ means 
+    \[
+        \begin{cases}
+        b - s \ge a - r, \\
+        b + s \le a + r, \\
+        r \ge s.
+        \end{cases}
+    \]
+    This implies that $\lvert a-b \rvert \le r-s$, and since $s > 0$, $\lvert a-b \rvert < r$.
+\end{proof}
+
+\begin{proof}[(b)]
+    The series converges for every $x$ with $\lvert x-a \rvert < r$. For fixed $\varepsilon > 0$, we can pick $x_0$ such that $x_0-a = r - \frac{\varepsilon}{2} < r$. Then the series $\sum_{n=0}^{\infty} c_n(x_0-a)^n$ converges absolutely, i.e.
+    \[
+    \sum_{n=0}^{\infty} \lvert c_n \rvert \lvert (x_0-a) \rvert^n  < \infty
+    \]
+    Let $M = \sum_{n=0}^{\infty} \lvert c_n \rvert \lvert (x_0-a) \rvert^n$. Since
+    \[
+    \forall n, \lvert c_n \rvert \lvert (x_0-a) \rvert^n \ge 0, \text{so }\lvert c_n \rvert \lvert (x_0-a) \rvert^n \le M \text{ for all $n$}.
+    \]
+    And this implies 
+    \[
+    \forall n, \lvert c_n \rvert \le M \lvert (x_0-a) \rvert^{-n}.
+    \]
+    Since $x_0-a = r - \frac{\varepsilon}{2} > 0$, $\lvert c_n \rvert \le M (r-\frac{\varepsilon}{2})^{-n}$, and $r - \frac{\varepsilon}{2} > r - \varepsilon$, so $\lvert c_n \rvert \le M (r-\varepsilon)^{-n}$, and hence 
+    \[
+    \forall \varepsilon, \exists C = M \text{ such that } \lvert c_n \rvert \le M (r-\varepsilon)^{-n}.
+    \]
+    
+\end{proof}
+
+\begin{proof}[(c)]
+    From (a) we have $\lvert a-b \rvert < r$, we can pick $\varepsilon > 0$ such that $0 < \varepsilon < r - \lvert b-a \rvert$, and let $q = \frac{\lvert b-a \rvert}{r-\varepsilon} < 1$. \\
+    By (b), $\exists C > 0$ with $\lvert c_n \rvert \le C (r-\varepsilon)^{-n}$ for all $n$. Then $\forall n \ge m$,
+    \[
+    \lvert \binom{n}{m} (b-a)^{n-m} c_n \rvert \le C \binom{n}{m} \lvert b-a \rvert^{n-m} (r-\varepsilon)^{-n} = C\binom{n}{m}q^{n-m} (r-\varepsilon)^{-m}
+    \]
+    \begin{claim}
+        $\sum_{k=0}^{\infty} \binom{m+k}{m} q^k = \frac{1}{(1-q)^{m+1}}$ respect to $\lvert q \rvert < 1$
+    \end{claim}
+    \begin{explanation}
+        By geometric series property, we know 
+        \[
+        \frac{1}{1-q} = \sum_{k=0}^{\infty} q^k , \text{ if $\lvert q \rvert $ < 1}
+        \]
+        Then we differentiate both side for $m$ times, for left hand side, we can get:
+        \[
+        \frac{d^m}{dq^m} \frac{1}{1-q} = \frac{d^m}{dq^m} (1-q)^{-1} = (m)(m-1)...(1)(1-q)^{-(m+1)} = \frac{m!}{(1-q)^{m+1}}
+        \]
+        And for right hand side, we can get:
+        \[
+        \frac{d^m}{dq^m} \sum_{k=0}^{\infty} q^k = \sum_{k=m}^{\infty} \frac{k!}{(k-m)!} q^{k-m}
+        \]
+        And let $j = k-m$,
+        \[
+        \sum_{k=m}^{\infty} \frac{k!}{(k-m)!} q^{k-m} = \sum_{j=0}^{\infty} \frac{(j+m)!}{j!} q^{j} = m! \sum_{j=0}^{\infty} \binom{j+m}{m} q^{j}
+        \]
+        And compare both side, and cancel $m!$, we can conclude that
+        \[
+        \frac{1}{(1-q)^{m+1}} = \sum_{k=0}^{\infty} \binom{m+k}{m} q^{k}
+        \]
+    \end{explanation}
+    Then we let $k = n-m$, we know
+    \[
+    \lvert \binom{n}{m} (b-a)^{n-m} c_n \rvert \le C (r-\varepsilon)^{-m}\binom{m+k}{m}q^{k}
+    \]
+    \[
+    \sum_{k=0}^{\infty}C(r-\varepsilon)^{-m}\binom{m+k}{m}q^k = C(r-\varepsilon)^{-m}\sum_{k=0}^{\infty}\binom{m+k}{m}q^k = C(r-\varepsilon)^{-m}\frac{1}{(1-q)^{m+1}}
+    \]
+    ,which is bounded. So
+    \[
+    d_m \coloneqq \sum_{n=m}^{\infty} \lvert \binom{n}{m} (b-a)^{n-m} c_n \rvert \le  \sum_{k=0}^{\infty}C(r-\varepsilon)^{-m}\binom{m+k}{m}q^k = \frac{C(r-\varepsilon)^{-m}}{(1-q)^{m+1}} < \infty
+    \]
+    Hence the series $d_m$ is absolutely convergent $\implies$ $d_m$ is welled-defined.
+\end{proof}
+
+\begin{proof}[(d)]
+    From (a), we have $\lvert b-a \rvert < r-s$. \\
+    Fixed $0 < \varepsilon < s \le r$, let $\delta = \frac{\varepsilon}{2}$ and $R = r - \delta$ ($\lvert b-a \rvert < R < r$).\\
+    By part (b), 
+    \[
+    \forall n, \exists C_0 \text{ such that } \lvert c_n \rvert \le C_0R^{-n},
+    \]
+    and also $R > \lvert b-a \rvert \implies \frac{\lvert b-a \rvert }{R} < 1$.
+    \[
+    \begin{aligned}
+    \lvert d_m \rvert &\le  \sum_{n=m}^{\infty}\binom{n}{m} \lvert (b-a) \rvert^{n-m} \lvert c_n \rvert \le C_0 \sum_{n=m}^{\infty}\binom{n}{m} \lvert (b-a) \rvert^{n-m} R^{-n} \\
+    &= C_0\sum_{n=m}^{\infty}\binom{n}{m} (\frac{\lvert b-a \rvert}{R})^{n-m} R^{-m} = C_0R^{-m}\sum_{k=0}^{\infty}\binom{m+k}{m} \lvert (\frac{\lvert b-a \rvert}{R}) \rvert^k \\
+    &= C_0R^{-m}\frac{1}{(1-\frac{\lvert b-a \rvert}{R})^{m+1}} = C_0\frac{R}{(R-\lvert b-a \rvert)}\frac{1}{(R-\lvert b-a \rvert)^m},
+    \end{aligned}
+    \]
+    and 
+    \[R - \lvert b-a \rvert > (r - \frac{\varepsilon}{2}) - (r-s) = s - \frac{\varepsilon}{2} > s - \varepsilon
+    \]
+    This will imply 
+    \[
+    (R - \lvert b-a \rvert)^{-m} < (s - \varepsilon)^{-m} \text{ , and  }\frac{R}{(R-\lvert b-a \rvert)} = \frac{r - \frac{\varepsilon}{2}}{r - \frac{\varepsilon}{2} - \lvert b-a \rvert} \le \frac{r - \frac{\varepsilon}{2}}{s - \frac{\varepsilon}{2}}
+    \]
+    Therefore, when $C \coloneqq C_0 \cdot\frac{r - \frac{\varepsilon}{2}}{s - \frac{\varepsilon}{2}}$, $\lvert d_m \rvert \le C (s-\varepsilon)^{-m}, \forall m \ge 0$.
+\end{proof}
+
+\begin{proof}[(e)]
+
+Fix with $\lvert x-b \rvert < s$, we can choose $0 < \varepsilon < s - \lvert x-b \rvert$. \\
+From (d),
+\[
+\forall m \ge 0, \exists C \text{ such that } \lvert d_m \rvert \le C(s - \varepsilon)^{-m},
+\]
+and hence
+\[
+\sum_{m=0}^{\infty} \lvert d_m \rvert \lvert x-b \rvert^m \le C \sum_{m=0}^{\infty} (\frac{\lvert x-b\rvert}{s- \varepsilon})^m < \infty
+\]
+So $\sum_{m=0}^{\infty}d_m(x-b)^m$ is absolutely convergent for $\lvert x-b \rvert < s$. \\
+
+The binomial identity tell us
+\[
+(x-a)^n = \sum_{m=0}^{n} \binom{n}{m}(b-a)^{n-m}(x-b)^m
+\]
+So
+\[
+\sum_{n=0}^{\infty}(\lvert b-a\rvert + \lvert x-b \rvert)^n \lvert c_n \rvert = \sum_{n=0}^{\infty}\sum_{m=0}^{n} \binom{n}{m} \lvert b-a\rvert^{n-m}\lvert x-b \rvert^m \lvert c_n \rvert
+\]
+Since $\lvert b-a \rvert \le r-s$ and $\lvert x-b \rvert < s$, $\lvert b-a\rvert + \lvert x-b \rvert < r$, we can pick $\delta$ that $0 < \delta < r - (\lvert b-a\rvert + \lvert x-b \rvert)$. \\
+By (b), $\exists C_0$ such that $\lvert c_n \rvert \le C_0(r-\delta)^{-n}$. Therefore
+\[
+\sum_{n=0}^{\infty}(\lvert b-a\rvert + \lvert x-b \rvert)^n \lvert c_n \rvert \le C_0\sum_{n=0}^{\infty}(\frac{\lvert b-a\rvert + \lvert x-b \rvert}{r-\delta})^n < \infty
+\]
+Thus the double series of absolute values converge, and Fubini's theorem justifies
+\[
+\sum_{n=0}^{\infty}c_n\sum_{m=0}^{n} \binom{n}{m} (b-a)^{n-m}(x-b)^m = \sum_{m=0}^{\infty}(\sum_{n=m}^{\infty} \binom{n}{m} (b-a)^{n-m}c_n)(x-b)^m
+\]
+And this imply
+\[
+\sum_{n=0}^{\infty}c_n(x-a)^n = \sum_{m=0}^{\infty} d_m(x-b)^m
+\]
+Since the left hand side equals $f(x)$ for $x\in (a-r, a+r)$, and right hand side is absolutely convergent for $x \in (b-s, b+s)$, and from (a) we know $(b-s, b+s) \subseteq (a-r, a+r)$, so 
+\[
+\forall x \in (b-s, b+s), \sum_{m=0}^{\infty} d_m(x-b)^m \text{ converges absolutely and equals to $f(x)$}.
+\]
+
+\end{proof}
+
+\begin{proof}[(f)]
+    Pick any $b \in (a-r, a+r)$, then $b - (a-r) > 0$ and $(a+r) - b > 0$, then we can choose
+    \[
+    s = \frac{1}{48763} \min\{b-(a-r), (a+r) -b\} > 0, \text{ so that } (b-s, b+s) \subseteq (a-r, a+r)
+    \]
+    Part (e) we proved the series $\sum_{m=0}^{\infty} d_m(x-b)^m$ is absolutely convergent for all $x \in (b-s, b+s)$, and equals to $f(x)$. This means $f$ has power-series expansion centered at $b$ that converges to $f$ in a neighborhood of $b$, and hence $f$ is real-analytic at $b$.\\
+    Since $b$ is arbitrary in $(a-r, a+r)$, we can use same argument for all $b \in (a-r, a+r)$, so $f$ is real-analytic at every point of $(a-r, a+r)$.
+\end{proof}
+
 \begin{problem}[25pts]
     \vphantom{text}
   \begin{enumerate}
@@ -85,3 +347,43 @@ for any real number \(x\).
 
   \end{enumerate} 
 \end{problem}
+
+\begin{proof}[(a)]
+    Let $f(x) = \sum_{n=0}^{\infty} a_nx^n$, which converges for $\lvert x \rvert < 1$.\\
+    % Since all $a_n \ge 0$, the partial sums 
+    % \[
+    % S_N(x) = \sum_{n=0}^{N} a_nx^n 
+    % \]
+    % increase in both $N$ and $x$.\\
+    Fix $M$, for $x < 1$,
+    \[
+    f(x) = \sum_{n=0}^{\infty} a_nx^n \ge \sum_{n=0}^{M} a_nx^n
+    \]
+    Now let $x \to 1^-$,
+    \[
+    \lim_{x \to 1^-} f(x) \ge \lim_{x \to 1^-} \sum_{n=0}^{M} a_nx^n = \sum_{n=0}^{M} a_n
+    \]
+    Then we show that $\sum a_n \to \infty$. Suppose it is not, then $\sum a_n$ is bounded, and we know for all n, $a_n \ge 0$. this means $\sum a_n$ is monotonically increasing, and hence $\sum a_n$ converges, which is a contradiction. \\
+    Since $\sum a_n \to \infty$, we can make $\sum_{n=0}^{M} a_n$ arbitrarily large by choosing $M$ large enough, and hence $f(x) \to + \infty$ as $x \to 1^-$.
+
+\end{proof}
+
+\begin{proof}[(b)]
+    Let $S_N = \sum_{n=0}^{N} a_n$ \\
+    Let $f(x) = \sum_{n=0}^{\infty} a_nx^n \to A < \infty$ as $x \to 1^-$. \\
+    Since $f(x)$ converges at $x = 1^-$, the radius of convergence $R \ge 1$. \\
+    Suppose $S_N$ didn't converge; then $S_N = \sum a_n$ diverges. by (a), $\sum a_n x^n$ diverges, and hence $f(x) \to \infty$, which is a contradiction. Therefore, $S_N$ must converge, and hence $\sum a_n$ converges. \\
+    Suppose $\sum a_n$ converges to $S$. We separate to two cases depend on the value of $R$:
+    \begin{itemize}
+        \item Case 1$(R > 1)$: $f(x) = \sum_{n=0}^{\infty} a_nx^n$ is converge at $x = 1$, 
+        \[
+            A = \lim_{x \to 1^-} f(x) = f(1) = \sum_{n=0}^{\infty} a_n1^n = \sum_{n=0}^{\infty} a_n = S.
+        \]
+        \item Case 2$(R = 1)$: Since $\sum a_n$ converge, Abel's theorem tells us that
+        \[
+            A = \lim_{x \to 1^-} f(x) = \lim_{x \to 1^-} \sum_{n=0}^{\infty} a_nx^n = \sum_{n=0}^{\infty} a_n1^n = \sum_{n=0}^{\infty} a_n =S,
+        \]
+    \end{itemize}
+    
+    and hence $A = S$, so $\sum a_n$ converges to $A$.
+\end{proof}
