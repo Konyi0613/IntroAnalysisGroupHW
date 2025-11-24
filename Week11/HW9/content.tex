@@ -10,6 +10,84 @@ $\sum_{n=0}^{\infty} S_nx^n$
  specific power series that you need to choose,).}
 \end{enumerate}
 \end{problem}
+\begin{proof}[(1)]
+\[
+\sum_{n=0}^\infty S_n x^n = g(x), 
+\qquad 
+\sum_{n=0}^\infty a_n x^n = f(x)
+\]
+
+\[
+\sum_{n=0}^N S_n x^n = G_N(x), 
+\qquad 
+\sum_{n=0}^N a_n x^n = F_N(x)
+\]
+
+It suffices to prove that if \( g \) converges at \( x \), then \( f \) converges at \( x \).
+Now fix \( |x| < r \), so \( g \) converges at \( x \).
+
+\begin{align*}
+(1-x) G_N(x)
+&= \sum_{n=0}^N S_n x^n - \sum_{n=0}^N S_n x^{n+1} \\
+&= \sum_{n=0}^N S_n x^n - \sum_{n=1}^{N+1} S_{n-1} x^n \\
+&= S_0 + \sum_{n=1}^N (S_n - S_{n-1}) x^n - S_N x^{N+1} \\
+&= F_N(x) - S_N x^{N+1}.
+\end{align*}
+
+Thus
+\[
+F_N(x) = (1-x) G_N(x) - S_N x^{N+1}.
+\]
+
+Taking limits as \(N \to \infty\):
+\[
+f(x) = (1-x) g(x) - \lim_{N\to\infty} S_N x^{N+1}.
+\]
+
+Since \( g(x) \) converges absolutely, \(\lim_{N\to\infty} S_N x^{N+1}\).
+Thus
+
+\[
+f(x) = (1-x) g(x)
+\]
+
+Because \(g(x)\) converges when \(|x|<r\), \(f(x)\) converges.
+
+\[
+f(x) \text{ converges for all } |x| < r
+\quad\Rightarrow\quad
+r \le R.
+\]
+\end{proof}
+
+\begin{proof}[(2)]
+Use the notation in the above question.
+
+\[
+g(x) = f(x)\left(\sum_{n=0}^\infty x^n\right),
+\qquad
+\text{radius of } \sum x^n = 1.
+\]
+
+Above equation is true because 
+\begin{align*}
+a_0 + (a_0 + a_1)x + (a_0 + a_1 + a_2)x^2 + \cdots
+&= (a_0 + a_1 x + a_2 x^2 + \cdots)(1 + x + x^2 + \cdots).
+\end{align*}
+
+If \( g(x) \) is to converge, then both \( f(x) \) and \( \sum x^n \) must converge.
+
+\[
+\Rightarrow r \le R 
+\qquad\text{and}\qquad 
+r \le 1.
+\]
+
+Thus
+\[
+r = \min\{R, 1\}.
+\]
+\end{proof}
 
 \begin{problem}[30pts]
     For each real $t$, define 
@@ -85,6 +163,202 @@ Derive the following further properties:
 \end{itemize}
 \end{problem}
 
+\begin{proof}[(a)]
+    Let 
+    \[
+    h(x) =
+    \begin{cases}
+    \dfrac{e^x-1}{x}, & x \neq 0,\\[6pt]
+    1, & x = 0.
+    \end{cases}
+    \]
+    Then 
+    \[
+    g(x) = \frac{1}{h(x)} \text{ for all $x$.}
+    \]
+    We use the power series of $e^x$, we can get
+    \[
+    e^x - 1 = \sum_{n=1}^{\infty} \frac{x^n}{n!} \text{ for $x \ne 0$} h(x) = \frac{e^x-1}{x} = \sum_{n=0}^{\infty} \frac{x^n}{(n+1)!}
+    \]
+    So for $x \ne 0$, 
+    \[
+    h(x) = \frac{e^x-1}{x} = \sum_{n=0}^{\infty} \frac{x^n}{(n+1)!},
+    \]
+    and 
+    \[
+    \sum_{n=0}^{\infty} \frac{0^n}{(n+1)!} = 1 = h(0)
+    \]
+    So $h$ is given by a power series around $0$, and by ratio test, 
+    \[
+    \lim_{n \to \infty} \left \vert \frac{\frac{1}{(n+1)!}}{\frac{1}{n!}}\right \vert = \lim_{n \to \infty} \frac{1}{n+1} \to 0,
+    \]
+    So it is converge on $\mathbb{R}$, and hence $h$ is analytic on $\mathbb{R}$.
+    And by the fact that $h(0) \ne 0$ and $h$ is analytic on $\mathbb{R}$, then $\frac{1}{h}$ is analytic on smaller interval $(-\delta, \delta)$, we can conclude that $g(x)$ is analytic on $(-\delta, \delta)$. \\
+    In the lecture, we have shown that $\exp(tx)$ is real analytic on $\mathbb{R}$. \\
+    Since
+    \[
+    e^{tx} : (-\delta, \delta) \to \mathbb{R} \text{ and } g: (-\delta, \delta) \to \mathbb{R} \text{ are both analytic on $(-\delta, \delta)$.}
+    \]
+    So $f(x) = e^{tx}g(x)$ is also real analytic on $(-\delta, \delta)$. \\
+    Therefore $f_t$ admits a power series expansion in $x$ for all $\lvert x \rvert < \delta$.
+\end{proof}
+
+\begin{proof}[(b)]
+    Since $f_t(x) = e^{xt}g(x)$, we know that $g(x) = f_0(x)$. \\
+    And
+    \[
+    f_t(x) = \sum_{n=0}^{\infty} P_n(t)\frac{x^n}{n!},
+    \]
+    so
+    \[
+    f_0(x) = \sum_{n=0}^{\infty} P_n(0)\frac{x^n}{n!},
+    \]
+    and hence
+    \[
+    f_t(x) = e^{xt} f_0(x) = e^{xt}\sum_{n=0}^{\infty} P_n(0)\frac{x^n}{n!}
+    \]
+    And we know that
+    \[
+    e^{xt} = \sum_{m=0}^{\infty} \frac{(xt)^m}{m!} = \sum_{m=0}^{\infty} \frac{t^mx^m}{m!},
+    \]
+    so
+    \[
+    e^{xt} \sum_{n=0}^{\infty} P_n(0)\frac{x^n}{n!} = \sum_{m=0}^{\infty} \frac{t^mx^m}{m!} \sum_{n=0}^{\infty} P_n(0)\frac{x^n}{n!}
+    \]
+    We can use the Cauchy product to find the coefficient of $x^N$, which is
+    \[
+    \sum_{m=0}^{N} \left( \frac{t^m}{m!} \right) \left( \frac{P_{N-m}(0)}{(N-m)!}\right) = \frac{1}{N!}\sum_{m=0}^{N} \left( \frac{N!}{m!(N-m)!}\right) P_{N-m}(0) t^m
+    \]
+    We substitute $k = N-m$, then $m = N-k$, then the coefficient of $x^N$ is 
+    \[
+    \frac{1}{N!}\sum_{k=0}^{N} \binom{N}{k} P_{k}(0) t^{N-k}
+    \]
+    Therefore,
+    \[
+     e^{xt} \sum_{n=0}^{\infty} P_n(0)\frac{x^n}{n!} = \sum_{N=0}^{\infty} \left( \sum_{k=0}^{N} \binom{N}{k} P_{k}(0) t^{N-k}\right) \frac{x^N}{N!},
+    \]
+    so
+    \[
+    f_t(x) = \sum_{n=0}^{\infty} P_n(t)\frac{x^n}{n!} = \sum_{N=0}^{\infty} \left( \sum_{k=0}^{N} \binom{N}{k} P_{k}(0) t^{N-k}\right) \frac{x^N}{N!},
+    \]
+    then we can compare the coefficient of $x^N$ for all $N$, we can get
+    \[
+    P_n(t) = \sum_{k=0}^{n} \binom{n}{k} P_{k}(0) t^{n-k}
+    \]
+\end{proof}
+
+\begin{proof}[(c)]
+    Notice that 
+    \[
+    f_0(0) = 1 = \sum_{n=0}^{\infty} P_0(0) \frac{0^n}{n!} = P_0(0),
+    \]
+    and hence $B_0 = 1$. \\
+    For $n = 1$ case, from (f) we know $P_1(1-t) = -P_1(t)$, and hence $P_1(1) = -P_1(0)$; and from (e) we know $P_1(1) - P_1(0) = 1 \cdot 0^{1-1} = 1$. Combine these two equations we can conclude that $B_1 = P_1(0) = -\frac{1}{2}$. \\
+    For $n \ge 2$ case, from (e) we know $P_n(1) - P_n(0) = n \cdot 0^{n-1} = 0$, and hence $B_n = P_n(0) = P_n(1)$. And notice from (b), we have derived that 
+    \[
+    P_n(t) = \sum_{k=0}^{n} \binom{n}{k} P_{k}(0) t^{n-k},
+    \]
+    so
+    \[
+    B_n = P_n(1) = \sum_{k=0}^{n} \binom{n}{k} P_{k}(0) 1^{n-k} = \sum_{k=0}^{n} \binom{n}{k} B_k = \sum_{k=0}^{n-1} \binom{n}{k} B_k + B_n,
+    \]
+    and hence
+    \[
+    \sum_{k=0}^{n-1} \binom{n}{k} B_k = 0, \forall n \ge 2
+    \]
+\end{proof}
+
+\begin{proof}[(d)]
+    From the equation that 
+    \[
+    \frac{d}{dt} f_t(x) = \frac{d}{dt} \sum_{n=0}^{\infty} P_n(t)\frac{x^n}{n!} = \sum_{n=0}^{\infty} P'_n(t)\frac{x^n}{n!},
+    \]
+    and
+    \[
+    \frac{d}{dt} f_t(x) = \frac{d}{dt} e^{tx} f_0(x) = xe^{tx}f_0(x) = xf_t(x) = x \cdot \sum_{n=0}^{\infty} P_n(t)\frac{x^n}{n!},
+    \]
+    \[
+    \frac{d}{dt} f_t(x) = \sum_{n=0}^{\infty} P_n(t)\frac{x^{n+1}}{n!} = \sum_{m=1}^{\infty} P_{m-1}(t)\frac{x^m}{(m-1)!}
+    \]
+    So we can derive that
+    \[
+    \sum_{n=0}^{\infty} P'_n(t)\frac{x^n}{n!} = \sum_{n=1}^{\infty} P_{n-1}(t)\frac{x^n}{(n-1)!}
+    \]
+    Then we can compare the coefficients of $x^N$ of the two sides, we can get
+    \[
+    P'_n(t) = n \cdot P_{n-1}(t), \forall n \ge 1
+    \]
+\end{proof}
+
+\begin{proof}[(e)]
+    If $x \ne 0$, 
+    \[
+    f_{t+1}(x) - f_t(x) = \frac{xe^{x(t+1)}}{e^x-1} - \frac{xe^{xt}}{e^x-1} = xe^{xt}
+    \]
+    If $x = 0$, $f_{t+1}(x) - f_t(x) = 1-1 = 0 = 0 \cdot e^{0t} = 0$\\
+    So
+    \[
+    f_{t+1}(x) - f_t(x) = xe^{xt} = x \cdot \sum_{n=0}^{\infty} \frac{t^nx^n}{n!} = \sum_{m=1}^{\infty} \frac{t^m}{(m-1)!}x^m
+    \]
+    And from power series,
+    \[
+    f_{t+1}(x) - f_t(x) = \sum_{n=0}^{\infty} (P_n(t+1) - P_n(t)) \frac{x^n}{n!}
+    \]
+    Then we can compare the coefficients of $x^N$ of the two sides, we can get
+    \[
+    P_n(t+1) - P_n(t) = n \cdot t^{n-1}, \forall n \ge 1
+    \]
+\end{proof}
+
+\begin{proof}[(f)]
+    If $x \ne 0$,
+    \[
+    f_t(-x) = \frac{(-x)\cdot e^{-xt}}{e^{-x}-1} = \frac{(-x)\cdot e^{x-xt}}{1-e^x} = \frac{x\cdot e^{(1-t)x}}{e^x-1} = f_{1-t}(x)
+    \]
+    If $x = 0$, $f_t(-0) = 1 = f_{1-t}(0)$, trivially. \\
+    So we know that $f_t(-x) = f_{1-t}(x)$. \\
+    We know that 
+    \[
+    f_t(-x) = \sum_{n=0}^{\infty} P_n(t) \frac{(-x)^n}{n!}
+    \]
+    and
+    \[
+    f_{1-t}(x) = \sum_{n=0}^{\infty} P_n(1-t) \frac{x^n}{n!}
+    \]
+    Then we can compare the coefficients of $x^N$ of the two sides, we can get
+    \[
+    P_n(1-t) = (-1)^nP_n(t), \forall n
+    \]
+\end{proof}
+
+\begin{proof}[(g)]
+    From (c), we know that $P_n(1) = P_n(0) = B_n, \forall n \ge 2$. \\
+    From (f), we know that $P_n(1) = (-1)^n P_n(0),\forall n$, and hence $B_n = (-1)^nB_n, \forall n \ge 2$. So when $n$ is odd and $n \ge 2$, $B_n = -B_n$, so $B_n = 0$. \\
+    Hence $\forall m \ge 1, B_{2m+1} = 0$.
+\end{proof}
+
+\begin{proof}[(h)]
+    From (e), we know $P_{n+1}(t+1) - P_{n+1}(t) = (n+1)t^n$. \\
+    And we know that
+    \[
+    \begin{aligned}
+        P_{n+1}(k) - P_{n+1}(k-1) &= (n+1)(k-1)^n \\
+        P_{n+1}(k-1) - P_{n+1}(k-2) &= (n+1)(k-2)^n \\
+        \vdots \\
+        P_{n+1}(2) - P_{n+1}(1) &= (n+1)(1)^n \\
+        P_{n+1}(1) - P_{n+1}(0) &= (n+1)(0)^n \\
+    \end{aligned}
+    \]
+    And we can sum all the equation up, and we can get
+    \[
+    P_{n+1}(k) - P_{n+1}(0) = (n+1) \sum_{t=0}^{k-1} t^n,
+    \]
+    and we can conclude that
+    \[
+    \frac{P_{n+1}(k) - P_{n+1}(0)}{n+1} = 1^n + 2^n + \dots + (k-1)^n
+    \]
+\end{proof}
+
 \begin{problem}[15pts \textbf{Exercise 4.2.7}]
     Show that for every integer $n \ge 3$, we have
 $$
@@ -97,11 +371,81 @@ Conclude that $n! e$ is not an integer for every $n \ge 3$.
 Deduce from this that $e$ is irrational.  
 \textit{(Hint: prove by contradiction.)} 
 \end{problem}
+\begin{proof}
+    For \(n \ge 3\), we know 
+    \[
+        (n+k)! = (n+k)(n+k-1)\dots (n+1) n! > 2^k
+    \] for all \(k = 1,2,3,\dots \) since \(n + i > 2\) for all \(1 \le i \le k\). Hence, 
+    \[
+        \sum_{k=1}^{\infty} \frac{1}{(n+k)!} < \sum_{k=1}^{\infty} \frac{1}{2^k n!} = \frac{1}{n!} \sum_{k=1}^{\infty} \frac{1}{2^k} = \frac{1}{n!} \left( \frac{\frac{1}{2}}{1 - \frac{1}{2}} \right) = \frac{1}{n!},    
+    \] and since \(\frac{1}{(n+k)!} > 0\) for all \(k = 1,2,3,\dots \), so 
+    \[
+        0 < \sum_{k=1}^{\infty} \frac{1}{(n+k)!} < \frac{1}{n!}. 
+    \]  
+    Thus, we know 
+    \begin{align*}
+        n! e &= n! \left( 1 + \frac{1}{1!} + \frac{1}{2!} + \dots  \right) = n! \left( 1 + \frac{1}{1!} + \dots + \frac{1}{n!} + \sum_{k=1}^{\infty} \frac{1}{(n+k)!}  \right) \\
+        &< n!  \left( 1 + \frac{1}{1!} + \dots + \frac{1}{n!} + \frac{1}{n!} \right) = n! \sum_{m=0}^n \frac{1}{m!} + 1.  
+    \end{align*}
+    Also, we know 
+    \begin{align*}
+        n! e = n! \sum_{m=0}^{\infty} \frac{1}{m!} > n! \sum_{m=0}^n \frac{1}{m!},  
+    \end{align*}
+    so 
+    \[
+        n! \sum_{m=0}^n \frac{1}{m!} < n! e < n! \sum_{m=0}^n \frac{1}{m!} + 1,  
+    \] which means \(n! e\) is not an integer. Now if \(e\) is rational, then \(e = \frac{q}{p}\) for some \(q \in \mathbb{Z} \) and \(p \in \mathbb{N} \), so \(n! e = \frac{n! q}{p}\), and if we pick \(n = \max \left\{ 3, p \right\} \), then we know \(\frac{n! q}{p}\) is an integer since \(p \mid n!\), but \(\frac{n! q}{p} = n! e\) is not an integer, so it is a contradiction, and thus \(e\) is irrational.            
+\end{proof}
 
 \begin{problem}[10pts \textbf{Exercise 4.5.6}]
 Prove that the natural logarithm function $\ln x$ is real analytic on $(0,+\infty)$.  
   Hint: For any $a>0$, consider the change of variable $y=x-a$.
 \end{problem}
+\begin{proof}
+From Thm.\ 4.5.6,
+\[
+\ln(1-x) = -\sum_{n=1}^{\infty} \frac{x^n}{n}
+\quad\Longrightarrow\quad
+\ln(1+x) = \sum_{n=1}^{\infty} (-1)^{n+1} \frac{x^n}{n},
+\qquad |x|<1 .
+\]
+
+Let \(x = y+a\). Then
+\[
+\ln x = \ln(y+a) = \ln a + \ln\!\left(1+\frac{y}{a}\right),
+\qquad (a>0).
+\]
+
+Since
+\[
+\ln\!\left(1+\frac{y}{a}\right)
+= \sum_{n=1}^{\infty} (-1)^{n+1} \frac{y^n}{n a^n},
+\qquad |y| < a,
+\]
+we substitute \(y = x-a\) to obtain
+\begin{align*}
+\ln x
+&= \ln a + \sum_{n=1}^{\infty} (-1)^{n+1} \frac{(x-a)^n}{n a^n},
+\qquad |x-a| < a.
+\end{align*}
+
+Thus
+\[
+\ln x = \sum_{n=0}^{\infty} c_n (x-a)^n
+\quad\text{for some coefficients } c_n.
+\]
+
+Because \(a>0\) is arbitrary in \((0,+\infty)\), the above expansion is valid on the interval
+\[
+(x-a) \in (-a, a) \quad\Longleftrightarrow\quad x \in (0, 2a).
+\]
+
+Since this holds for every \(a \in (0,+\infty)\), we conclude:
+
+\[
+\boxed{\text{\(\ln x\) is real analytic on } (0,+\infty).}
+\]
+\end{proof}
 
 \begin{problem}[10pts \textbf{Exercise 4.5.7}]
 Let $f : (0,\infty) \to \mathbb{R}$ be a positive, real analytic function such that 
@@ -109,6 +453,46 @@ $f'(x) = f(x)$ for all $x \in \mathbb{R}$.
 Show that $f(x) = C e^x$ for some positive constant $C$; justify your reasoning.  
 \textit{(Hint: there are basically three different proofs available. One proof uses the logarithm function, another proof uses the function $e^{-x}$, and a third proof uses power series. Of course, you only need to supply one proof.)}
 \end{problem}
+
+\begin{proof}
+Let \( f \) be any function satisfying
+\[
+f'(x) = f(x), \qquad \forall x \in \mathbb{R}.
+\]
+
+Let
+\[
+g(x) = e^{-x} f(x).
+\]
+
+Then
+\begin{align*}
+g'(x)
+&= (-e^{-x}) f(x) + e^{-x} f'(x) \\
+&= -e^{-x} f(x) + e^{-x} f(x) \\
+&= 0.
+\end{align*}
+
+From the Fundamental Theorem of Calculus,
+\[
+g(a) - g(b) = \int_a^b g'(t)\,dt = 0,
+\qquad \text{for } a < b.
+\]
+
+Thus \( g(x) \) is constant for all \( x \in \mathbb{R} \); write this constant as \( C \).
+
+\[
+C = e^{-x} f(x)
+\quad\Longrightarrow\quad
+f(x) = C e^{x}.
+\]
+
+Hence the general solution is
+\[
+\boxed{f(x) = C e^{x}}.
+\]
+
+\end{proof}
 
 \begin{problem}[10pts \textbf{Exercise 4.5.8}]
     Let $m > 0$ be an integer.  
@@ -120,11 +504,40 @@ $$ without using the L'Hopital's rule.
 \noindent
 \textit{(Hint: $e^x \ge \sum_{k=0}^{m+1} \frac{x^k}{k!}$ for $x>0$.)}
 \end{problem}
+\begin{proof}
+    Note that for \(x > 0\), 
+    \[
+        e^x = \sum_{k=0}^{\infty} \frac{x^k}{k!} > \sum_{k=0}^{m+1} \frac{x^k}{k!}.  
+    \] 
+    Thus, 
+    \[
+        \frac{e^x}{x^m} \ge \left( \sum_{k=0}^m \frac{1}{x^{m-k} k!}  \right) + \frac{x}{(m+1)!} > \frac{x}{(m+1)!}.
+    \]
+    Since \(\lim_{x \to +\infty} \frac{x}{(m+1)!} = +\infty  \), so \(\lim_{m \to +\infty} \frac{e^x}{x^m} = +\infty  \).  
+
+\end{proof}
 
 \begin{problem}[10pts \textbf{Exercise 4.5.9}]
 Let $P(x)$ be a polynomial, and let $c>0$.  
-Show that there exists a real number $N > 0$ such that $e^x > |P(x)|$ for all $x > N$; 
+Show that there exists a real number $N > 0$ such that $e^{cx} > |P(x)|$ for all $x > N$; 
 thus an exponentially growing function, no matter how small the growth rate $c$, 
 will eventually overtake any given polynomial $P(x)$, no matter how large.  
 \textit{(Hint: use Exercise 4.5.8.)}
 \end{problem}
+\begin{proof}
+    If \(P(x)\) is a constant polynomial, then there exists \(N > 0\) s.t. \(x > N\) implies \(e^{cx} > \vert P(x) \vert \) since \(e^{cx}\) is strictly increasing and has no upper bound. Now suppose \(P(x) = a_m x^m + \dots + a_1 x + a_0\) for some \(m \ge 1\), then by Problem 6 we know for all \(m \in \mathbb{N} \) we have  
+    \[
+        \lim_{cx \to \infty} \frac{e^{cx}}{c^m x^m} = \infty, 
+    \] so for all \(i = 1,2, \dots , m\), there exists \(N_i > 0\) s.t. \(cx \ge N_i\) implies 
+    \[
+        \frac{e^{cx}}{c^i x^i} > (m+1) \left\vert \frac{a_i}{c^i} \right\vert \iff e^{cx} > (m+1) \vert a_i \vert x^i.
+    \]       
+    Also, we know there exists \(N_0 > 0\) s.t. \(x > N_0 \) implies \(e^{cx} > (m + 1) \vert a_0 \vert \) since \(e^{cx}\) is strictly increasing and has no upper bound.  
+    Hence, we know \(x > \max \left\{ N_0, \left\lceil \frac{N_1}{c} \right\rceil, \left\lceil \frac{N_2}{c} \right\rceil, \dots , \left\lceil \frac{N_m}{c} \right\rceil    \right\} \) implies 
+    \[
+        (m+1) \cdot e^{cx} > \sum_{i=0}^m (m+1) \vert a_i \vert x^i = (m+1) \left\vert P(x) \right\vert,
+    \] which means 
+    \[
+        e^{cx} > \vert P(x) \vert, 
+    \] so we're done.
+\end{proof}
