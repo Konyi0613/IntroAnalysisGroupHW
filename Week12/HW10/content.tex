@@ -16,8 +16,48 @@ Show that $\tan^{-1}$ is differentiable and
 \frac{d}{dx} \tan^{-1}(x) = \frac{1}{1+x^2}.
 \]
 \end{problem}
+\begin{proof}
+    Since \(\sin (x)\) and \(\cos (x)\) are both differentiable on \(\left( - \frac{\pi}{2}, \frac{\pi}{2} \right) \), and \(\cos (x) \neq 0\) on \(\left( -\frac{\pi}{2}, \frac{\pi}{2} \right) \), so \(\tan (x)\) is differentiable and 
+    \begin{align*}
+         \frac{\mathrm{d}}{\mathrm{d}x} \tan (x) &= \frac{\mathrm{d}}{\mathrm{d}x} \frac{\sin (x)}{\cos (x)} = \frac{(\sin (x))^{\prime} \cos (x) - \sin (x) \left( \cos (x) \right)^{\prime}  }{\cos ^2(x)} 
+         \\ &= \frac{\cos ^2(x) + \sin ^2(x)}{\cos ^2(x)} = 1 + \frac{\sin ^2(x)}{\cos ^2(x)} = 1 + \tan^2(x).
+    \end{align*} 
+    Hence, 
+    \[
+        \frac{\mathrm{d}}{\mathrm{d}x} \tan (x) = 1 + \tan ^2(x) \ge 1 > 0 
+    \]    
+    for all \(x \in \left( -\frac{\pi}{2}, \frac{\pi}{2} \right) \) and thus \(\tan (x)\) is monotone increasing. Note that 
+    \[
+        \lim_{x \to \frac{\pi}{2}} \tan (x) = \lim_{x \to \left( \frac{\pi}{2} \right)^- } \tan (x) = \lim_{x \to \left( \frac{\pi}{2} \right)^- } \frac{\sin (x)}{\cos (x)},
+    \]  
+    and \(\sin (x) \to 1\) and \(\cos (x) \to 0^+\) as \(x \to \left( \frac{\pi}{2} \right)^- \), so 
+    \[
+        \lim_{x \to \left( \frac{\pi}{2} \right)^- } \frac{\sin (x)}{\cos (x)} = +\infty . 
+    \]  
+    Similarly, since \(\sin (x) \to -1\) and \(\cos (x) \to 0^+\) as \(x \to \left( -\frac{\pi}{2} \right)^+ \), so 
+    \[
+        \lim_{x \to -\frac{\pi}{2}} \tan (x) = \lim_{x \to \left( -\frac{\pi}{2} \right)^+ } \tan (x) = \lim_{x \to \left( -\frac{\pi}{2} \right)^+ } \frac{\sin (x)}{\cos (x)} = -\infty.   
+    \]   
+    Hence, we have shown that 
+    \[
+        \lim_{x \to \frac{\pi}{2}} \tan (x) = +\infty , \quad \lim_{x \to \left( - \frac{\pi}{2} \right) } \tan (x) = -\infty. 
+    \]
+    By this, we know \(\tan (x)\) is a bijection from \(\left( -\frac{\pi}{2}, \frac{\pi}{2} \right) \to \mathbb{R}  \), and thus the inverse function \(\tan ^{-1}(x)\) is well-defined. Also, since 
+    \[
+        \tan \left( \tan ^{-1}(x) \right) = x, 
+    \]   
+    so by differentiating on both sides, we have 
+    \begin{align*}
+        1 &= (x)^{\prime} = \left( \tan \left( \tan ^{-1}(x) \right)  \right)^{\prime} = \tan ^{\prime} \left( \tan ^{-1}(x) \right) \cdot \left( \tan ^{-1}(x) \right)^{\prime}  \\
+        &= \left( 1 + \left( \tan \left( \tan ^{-1}(x) \right)  \right)^2  \right) \cdot \left( \tan ^{-1} (x) \right)^{\prime} = (1 + x^2) \cdot \left( \frac{\mathrm{d}}{\mathrm{d}x} \tan ^{-1}(x)  \right).   
+    \end{align*}
+    Hence, 
+    \[
+        \frac{\mathrm{d}}{\mathrm{d}x} \tan ^{-1} (x) = \frac{1}{1 + x^2}. 
+    \]
+\end{proof}
 
-\begin{problem}[15pts \textbf{Exercise 4.7.9} ]
+\begin{problem}[15pts \textbf{Exercise 4.7.9}]
     Recall the arctangent function $\tan^{-1}$ from Exercise 4.7.8.  
 By modifying the proof of Theorem 4.5.6(e), establish the identity
 \[
@@ -34,6 +74,100 @@ Using Abel's theorem (Theorem 4.3.1) to extend this identity to the case $x=1$, 
 Conclude in particular that $4 - \tfrac{4}{3} < \pi < 4$.  
 (One can of course compute $\pi = 3.1415926\ldots$ to much higher accuracy, though if one wishes to do so it is advisable to use a different formula than the one above, which converges very slowly.)
 \end{problem}
+
+\begin{proof}
+    From the previous question, we know that
+    \[
+    \frac{\mathrm{d}}{\mathrm{d}x} \tan ^{-1} (x) = \frac{1}{1 + x^2},
+    \]
+    and hence
+    \[
+    \frac{\mathrm{d}}{\mathrm{d}x} \tan ^{-1} (x) = \frac{1}{1 - (-x^2)} = \sum_{n=0}^{\infty} (-x^2)^n = \sum_{n=0}^{\infty} (-1)^n(x^{2n}), \quad \text{for }\lvert x\rvert < 1.
+    \]
+    And hence if $t \in (-1,1)$
+    \[
+    \int_0^t \left( \frac{\mathrm{d}}{\mathrm{d}x} \tan ^{-1} (x)\right) \mathrm{d}x = \int_0^t \left( \sum_{n=0}^{\infty} (-1)^n(x^{2n})\right) \mathrm{d}x.
+    \]
+    So we have
+    \[
+    \left.\tan ^{-1} (x) \right|_0^t = \left. \left( \sum_{n=0}^{\infty} \frac{1}{2n+1} (-1)^n(x^{2n+1}) \right)\right|_0^t
+    \]
+    \[
+    \tan ^{-1} (t) = \sum_{n=0}^{\infty} \frac{(-1)^n(t^{2n+1})}{2n+1}
+    \]
+    Now replace $x = t$, then for all $x \in (-1,1)$, we can get
+    \[
+    \tan ^{-1} (x) = \sum_{n=0}^{\infty} \frac{(-1)^n(x^{2n+1})}{2n+1}.
+    \]
+    Since
+    \[
+    \limsup_{n \to \infty} \left \vert \frac{1}{2n+1}\right \vert^{\frac{1}{n}} = 1,
+    \]
+    the radius of convergence of $\sum_{n=0}^{\infty} \frac{(-1)^n(t^{2n+1})}{2n+1}$ is 1. \\
+    We want to extend the identity for $x=1$, we want to show that 
+    \[
+    \sum_{n=0}^{\infty} \frac{(-1)^n(1^{2n+1})}{2n+1} = \sum_{n=0}^{\infty} \frac{(-1)^n}{2n+1} \text{ converge.}
+    \]
+    Let $a_n = \frac{1}{2n+1}$, then $a_n > 0$ for all $n$, and $\{a_n\}$ is decreasing, and $a_n \to 0$ as $n \to \infty$, So $\sum (-1)^na_n$ converges by alternating series test, and hence $\sum_{n=0}^{\infty} \frac{(-1)^n}{2n+1}$ converges. \\
+    By Abel's Theorem,
+    \[
+    \tan ^{-1} (1) = \frac{\pi}{4} = 1 - \frac{1}{3} + \frac{1}{5} - \cdots,
+    \]
+    and hence
+    \[
+    \pi = 4 - \frac{4}{3} + \frac{4}{5} - \cdots = 4 \sum_{n=0}^{\infty} \frac{(-1)^n}{2n+1}.
+    \]
+    Then we show that $\frac{4}{3} < \pi < 4$. First we show the upper bound, write
+    \[
+    \pi = S = 4 - \Bigl(\frac{4}{3}-\frac{4}{5}+\frac{4}{7}-\frac{4}{9}+\cdots\Bigr).
+    \]
+    Now group the terms inside the parentheses in pairs:
+    \[
+    \frac{4}{3}-\frac{4}{5}+\frac{4}{7}-\frac{4}{9}+\cdots
+    =
+    \Bigl(\frac{4}{3}-\frac{4}{5}\Bigr)
+    +\Bigl(\frac{4}{7}-\frac{4}{9}\Bigr)
+    +\Bigl(\frac{4}{11}-\frac{4}{13}\Bigr)+\cdots .
+    \]
+    Each pair is positive because its first denominator is smaller:
+    \[
+    \frac{4}{3}-\frac{4}{5} > 0,\quad
+    \frac{4}{7}-\frac{4}{9} > 0,\quad \ldots
+    \]
+    Hence the whole series in parentheses is a sum of positive terms, so it is
+    \emph{positive}. Therefore
+    \[
+    \pi = S = 4 - (\text{positive number}) < 4.
+    \]
+    Then we show the lower bound, write
+    \[
+    \pi = S = \Bigl(4-\frac{4}{3}\Bigr)
+       +\Bigl(\frac{4}{5}-\frac{4}{7}+\frac{4}{9}-\frac{4}{11}+\cdots\Bigr).
+    \]
+    Again, group the infinite tail in pairs:
+    \[
+    \frac{4}{5}-\frac{4}{7}+\frac{4}{9}-\frac{4}{11}+\cdots
+    =
+    \Bigl(\frac{4}{5}-\frac{4}{7}\Bigr)
+    +\Bigl(\frac{4}{9}-\frac{4}{11}\Bigr)
+    +\Bigl(\frac{4}{13}-\frac{4}{15}\Bigr)+\cdots .
+    \]
+    Each of these pairs is also positive, e.g.
+    \[
+    \frac{4}{5}-\frac{4}{7} > 0,\quad
+    \frac{4}{9}-\frac{4}{11} > 0,\quad \ldots
+    \]
+    so every partial sum of this tail is positive, and hence its limit (the value
+    of the tail) is a positive number. Thus
+    \[
+    \pi = S = \Bigl(4-\frac{4}{3}\Bigr) + (\text{positive number})
+        > 4-\frac{4}{3}.
+    \]
+    Combining the two inequalities, we can prove that
+    \[
+    4 - \frac{4}{3} < \pi < 4.
+    \]
+\end{proof}
 
 \begin{problem}[30pts \textbf{Exercise 4.7.10}]
     Let $f : \mathbb{R} \to \mathbb{R}$ be the function
@@ -72,7 +206,205 @@ $j \le 32^m x_0 \le j+1$, thanks to Exercise 5.4.3.)
 \end{enumerate}
 \end{problem}
 
+\begin{proof}[(a)]
+
+Let \( M_n = 4^{-n} \). Then
+\[
+\sum_{n=1}^\infty M_n = \sum_{n=1}^\infty 4^{-n} < \infty.
+\]
+Since
+\[
+|4^{-n}\cos(32^n \pi x)| \le 4^{-n} = M_n,
+\]
+the Weierstrass \(M\)-test implies that
+\[
+\sum_{n=1}^\infty 4^{-n}\cos(32^n \pi x)
+\]
+converges uniformly on \(\mathbb{R}\). 
+\\
+
+Since each term \(4^{-n}\cos(32^n\pi x)\) is continuous, hence every partial sum
+\[
+f_N(x) = \sum_{n=1}^N 4^{-n}\cos(32^n\pi x)
+\]
+is continuous.  
+Since \(f_N \to f\) uniformly and each \(f_N\) is continuous, the limit \(f\) is continuous.
+
+\end{proof}
+\begin{proof}[(b)]
+Let
+\[
+x=\frac{j}{32^m}, \qquad y=\frac{j+1}{32^m}.
+\]
+Then
+\[
+f(y)-f(x)
+= \sum_{n=1}^\infty 4^{-n} 
+\left[ \cos(32^n\pi y) - \cos(32^n\pi x) \right].
+\]
+
+Split the sum at \(n=m\):
+\begin{align*}
+f(y)-f(x)
+=&
+\underbrace{
+\sum_{n=1}^{m-1} 4^{-n} 
+\left[ \cos(32^n\pi y) - \cos(32^n\pi x) \right]
+}_{A}\\
++&
+\underbrace{
+\sum_{n=m+1}^{\infty} 4^{-n} 
+\left[ \cos(32^n\pi y) - \cos(32^n\pi x) \right]
+}_{B}\\
++&
+\underbrace{
+4^{-m} \left[ \cos(\pi(j+1)) - \cos(\pi j) \right]
+}_{C}.
+\end{align*}
+
+Since \(\cos\) is \(2\pi\)-periodic,
+\[
+B = \sum_{n=m+1}^{\infty}
+4^{-n}\left[\cos(32^n\pi y) - \cos(32^n\pi x)\right]
+= 0.
+\]
+
+Next compute
+\[
+C = 4^{-m}\left[(-1)^{j+1} - (-1)^j\right]
+    = 4^{-m}\bigl[-2(-1)^j\bigr],
+\]
+so
+\[
+|C| = 2 \cdot 4^{-m}.
+\]
+
+\begin{align*}
+|A|
+&= \left|
+\sum_{n=1}^{m-1} 4^{-n}
+\bigl(
+\cos(32^n\pi y)-\cos(32^n\pi x)
+\bigr)
+\right| \\[4pt]
+&\le \sum_{n=1}^{m-1} 4^{-n} 
+\left|\cos(32^n\pi y)-\cos(32^n\pi x)\right| \\[4pt]
+&\le \sum_{n=1}^{m-1} 4^{-n} 
+\left| 32^n\pi y - 32^n\pi x \right| \\[4pt]
+&= \sum_{n=1}^{m-1} 4^{-n} \pi 32^n |y-x| \\[4pt]
+&= \pi |y-x| \sum_{n=1}^{m-1} 8^n \\[4pt]
+&= \pi 32^{-m} \sum_{n=1}^{m-1} 8^n \\[4pt]
+&< \pi 32^{-m} \cdot \frac{8^m}{7} \\[4pt]
+&= \frac{\pi}{7} \cdot \frac{8^m}{32^m}
+ = \frac{\pi}{7}\left(\frac{1}{4}\right)^m
+ = \frac{\pi}{7}\,4^{-m}.
+\end{align*}
+
+Hence
+
+\begin{align*}
+|f(y)-f(x)| 
+&= |A + C|\\
+&\ge |C| - |A|\\
+&\ge 2 \cdot 4^{-m} - \frac{\pi}{7}\,4^{-m}\\
+&\ge 4^{-m}
+\end{align*}
+
+\paragraph{Note.}
+Prove
+\[
+|\cos(x)-\cos(y)| \le |x-y| \qquad \forall x,y\in\mathbb{R}.
+\]
+
+By mean value theorem, since $\cos$ is continuous and differentiable on $\mathbb{R}$,
+\[
+\exists\, c \text{ such that } 
+\cos'(c) = -\sin(c)
+        = \frac{\cos(x)-\cos(y)}{x-y}.
+\]
+
+Therefore,
+\[
+|\sin(c)|\,|x-y|
+= |\cos(x)-\cos(y)|.
+\]
+
+Since $|\sin(c)|\le 1$, we get
+\[
+|x-y| \ge |\cos(x)-\cos(y)|.
+\]
+
+\end{proof}
+\begin{proof}[(c)]
+
+Let 
+\[
+a_m = \frac{j_m}{32^m}, \qquad 
+b_m = \frac{j_m+1}{32^m}
+\qquad (j_m \in \mathbb{N}).
+\]
+
+Suppose $\exists\, j_m$ such that $f'\!\left(\frac{j_m}{32^m}\right)$ exists.  
+Then
+\[
+f'\!\left(\frac{j_m}{32^m}\right)
+= \lim_{h\to 0} 
+\frac{f\!\left(\frac{j_m}{32^m}+h\right) - 
+      f\!\left(\frac{j_m}{32^m}\right)}{h}
+\quad \text{exists}.
+\]
+
+Take $h = 32^{-m}$.  
+Then
+\[
+\lim_{m\to\infty}
+\frac{f(b_m) - f(a_m)}{b_m - a_m}
+\quad \text{exists}.
+\]
+
+\medskip
+
+For all $m\ge 1$ and for all $x_0\in\mathbb{R}$,  
+by Ex.\ 5.4.3, we have  
+\[
+a_m \le x_0 \le b_m.
+\]
+
+By part (b),
+\[
+\left|\frac{f(b_m) - f(a_m)}{b_m - a_m}\right|
+\ge
+\frac{4^{-m}}{32^{-m}}
+= 8^m.
+\]
+
+Thus
+\[
+\lim_{m\to\infty}
+\frac{f(b_m) - f(a_m)}{b_m - a_m}
+\quad \text{does not exist}.
+\]
+
+Hence we obtain a contradiction.  
+Therefore, for all $x_0$,  
+\[
+f'(x_0) \text{ does not exist}.
+\]
+
+
+
+\end{proof}
+\begin{proof}[(d)]
+
+Corollary 3.7.3 requires that
+\[
+\sum \|f'_n\|_\infty < \infty.
+\]
+But here, the condition of the corollary does not apply.
+\end{proof}
+
 \begin{problem}[20pts]
+\vphantom{text}
     \begin{enumerate}
 
 \item[(a)]  Prove that \[
@@ -123,6 +455,87 @@ Show that the sum of the zeros of $P_m$ is given by
 \end{enumerate}
 \end{problem}
 
+\begin{proof}[(a)]
+    For fixed $\theta$, we can do induction on $n$.
+    \begin{itemize}
+        \item Base case $(n = 1)$: Trivial.
+        \item Induction step $(n = k)$: Suppose it is true.
+        \item Induction hypothesis $(n = k+1)$: 
+        \[
+        \begin{aligned}
+        (\cos\theta + i\sin\theta)^{n+1} &= (\cos\theta + i\sin\theta)^{n}(\cos\theta + i\sin\theta) \\
+        &= (\cos (n\theta) + i\sin(n\theta))(\cos\theta + i\sin\theta) \\
+        &= \cos (n\theta)\cos\theta + i\sin(n\theta)\cos\theta + i\cos (n\theta)\sin\theta - \sin(n\theta)\sin\theta\\
+        &= (\cos (n\theta)\cos\theta- \sin(n\theta)\sin\theta) +i(\sin(n\theta)\cos\theta + \cos (n\theta)\sin\theta) \\
+        &= \cos((n+1)\theta) + i\sin((n+1)\theta)
+        \end{aligned}
+        \]
+    \end{itemize}
+    And we can do same procedure for all $\theta \in \mathbb{R}$, and hence we proved.
+\end{proof}
+
+\begin{proof}[(b)]
+    By binomial theorem, we know that
+    \[
+    (\cos\theta + i\sin\theta)^n = \sum_{k=0}^{n} \binom{n}{k} (\cos\theta)^{n-k} (i^k)(\sin\theta)^k 
+    \]
+    And by \emph{DeMoivre’s theorem}, we know that
+    \[
+    (\cos\theta + i\sin\theta)^n = \cos(n\theta) + i\sin(n\theta)
+    \]
+    So we have
+    \[
+    \cos(n\theta) + i\sin(n\theta) = \sum_{k=0}^{n} \binom{n}{k} (\cos\theta)^{n-k} (i^k)(\sin\theta)^k 
+    \]
+    By equating imaginary parts, we have
+    \[
+    \begin{aligned}
+    \sin(n\theta) &= \binom{n}{1}(\cos\theta)^{n-1}\sin\theta - \binom{n}{3} (\cos\theta)^{n-3}(\sin\theta)^3 + \binom{n}{5} (\cos\theta)^{n-5}(\sin\theta)^5 - \cdots \\
+    &= (\sin\theta)^n \left( \binom{n}{1}(\cos\theta)^{n-1}(\sin\theta)^{-(n-1)} - \binom{n}{3} (\cos\theta)^{n-3}(\sin\theta)^{-(n-3)} + \cdots \right) \\
+    &= (\sin\theta)^n \left( \binom{n}{1}(\cot\theta)^{n-1} - \binom{n}{3} (\cot\theta)^{n-3} + \binom{n}{5} (\cot\theta)^{n-5} - \cdots \right)
+    \end{aligned}
+    \]
+    And we done.
+\end{proof}
+
+\begin{proof}[(c)]
+    From (b), we know that
+    \[
+    \sin((2m+1)\theta) = \sin^{2m+1} \theta \left( \binom{2m+1}{1} (\cot^{2}\theta)^m
+    - \binom{2m+1}{3} (\cot^{2}\theta)^{m-1}
+    + \cdots\right)
+    \]
+    And we let $x = \cot^{2}\theta$, we can get 
+    \[
+    \sin((2m+1)\theta) = \sin^{2m+1} \theta \left( \binom{2m+1}{1} x^m
+    - \binom{2m+1}{3} x^{m-1}
+    + \cdots\right)
+    \]
+    So it is obvious that
+    \[
+     \sin((2m+1)\theta) = \sin^{2m+1} \theta P_m(\cot^{2} \theta) = \sin^{2m+1}\theta P_m(x)
+    \]
+    Since $\sin \phi = 0$ if $\phi = k \pi, k \in \mathbb{Z}$, so if $\theta = \frac{k \pi}{2m+1}, k \in \mathbb{Z}$, $\sin (2m+1) \theta = 0$, and cotangent is strictly decreasing function in $(0, \pi)$ and it is periodic function with period $\pi$, so we can conclude that
+    \[
+    x_k = \cot^2\!\left(\frac{\pi k}{2m+1}\right),
+    \qquad k = 1,2,\dots,m.
+    \]
+    are $m$ distinct root of $P_m(x)$ since all of such $x_k$, $\sin^{2m+1} \theta \ne 0$ and force $P_m(x_k) = 0$.
+\end{proof}
+
+\begin{proof}[(d)]
+    By Vieta's formulas,
+    \[
+    x_1 + x_2 + \cdots + x_m = - \frac{a_{m-1}}{a_m},
+    \]
+    where $\{x_k\}$ are $m$ distinct roots of $P_m(x)$, $a_{m-1}$ is the coefficient of $x^{m-1}$ of $P_m(x)$, and $a_{m}$ is the coefficient of $x^{m}$ of $P_m(x)$. \\
+    And hence
+    \[
+    \sum_{k=1}^{m} \cot^2(\frac{\pi k}{2m+1}) = \sum_{k=1}^{m} x_k = -\frac{-\binom{2m+1}{3}}{\binom{2m+1}{1}} = \frac{(2m)(2m-1)}{3 \cdot 2} = \frac{m(2m-1)}{3}
+    \]
+    And we done.
+\end{proof}
+
 \begin{problem}[20pts]
     This exercise outlines a simple proof of the formula $\zeta(2)=\sum_{n=1}^{\infty}\frac{1}{n^2}=\pi^2/6$.
 Start with the inequality
@@ -133,7 +546,6 @@ take reciprocals, and square each member to obtain
 \[
 \cot^2 x < \frac{1}{x^2} < 1 + \cot^2 x.
 \]
-
 Now put $x = \dfrac{k\pi}{2m+1}$, where $k$ and $m$ are integers with $1 \le k \le m$,
 and sum on $k$ to obtain
 \[
@@ -141,15 +553,59 @@ and sum on $k$ to obtain
 < \frac{(2m+1)^2}{\pi^2} \sum_{k=1}^m \frac{1}{k^2}
 < m + \sum_{k=1}^m \cot^2\!\left( \frac{k\pi}{2m+1} \right).
 \]
-
 \medskip
-
 Use the formula in problem 4(d) to deduce the inequality
 \[
 \frac{m(2m-1)\pi^2}{3(2m+1)^2}
 < \sum_{k=1}^m \frac{1}{k^2}
 < \frac{2m(m+1)\pi^2}{3(2m+1)^2}.
 \]
-
 Now let $m\to\infty$ to obtain $\zeta(2) = \pi^2/6$.
 \end{problem}
+\begin{proof}
+\begin{claim}
+    \(\sin x < x < \tan x\) for \(0 < x < \frac{\pi}{2}\). 
+\end{claim}
+\begin{explanation}
+    If \(0 < x < \frac{\pi}{2}\), then 
+    \[
+        \sin x = \int _0^x \cos t \, \mathrm{d} t < \int _0^x 1 \, \mathrm{d} t = x  
+    \]
+    and 
+    \[
+        \tan (x) = \int _0^x \sec ^2(t) \, \mathrm{d} t = \int _0^x \frac{1}{\cos ^2(t)} \, \mathrm{d} t > \int_0^x 1 \, \mathrm{d} t = x,   
+    \]
+    so we have 
+    \[
+        \sin x < x < \tan x.
+    \]
+\end{explanation}
+Take reciprocals, and square each member, we have 
+\[
+    \cot ^2 x < \frac{1}{x^2} < 1 + \cot ^2x \text{ for all } 0 < x < \frac{\pi}{2}.
+\]
+Now put \(x = \frac{k \pi }{2m + 1}\), where \(k\) and \(m\) are integers with \(1 \le k \le m\), then we know for all such \(x\) we have \(0 < x < \frac{\pi}{2}\), so we can sum up all \(k\) to obtain 
+\[
+    \sum_{k=1}^m \cot ^2 \left( \frac{k \pi }{2m + 1} \right) < \frac{(2m + 1)^2}{\pi ^2} \sum_{k=1}^m \frac{1}{k^2} < m + \sum_{k=1}^m \cot ^2 \left( \frac{k \pi }{2m + 1} \right),     
+\]      
+and by 4(d) we know 
+\[
+    \sum_{k=1}^m \cot ^2 \left( \frac{\pi k}{2m + 1} \right) = \frac{m(2m - 1)}{3},  
+\]
+so apply this formula we have 
+\[
+    \frac{m(2m - 1)\pi ^2}{3(2m + 1)^2} < \sum_{k=1}^m \frac{1}{k^2} < \frac{2m(m+1) \pi ^2}{3(2m+1)^2}, 
+\]
+and since 
+\[
+    \lim_{m \to \infty} \frac{m(2m - 1)\pi ^2}{3(2m + 1)^2} = \lim_{m \to \infty} \frac{(4m - 1)\pi ^2}{12(2m + 1)} = \lim_{m \to \infty} \frac{4 \pi ^2}{24} = \frac{\pi ^2}{6}  
+\]
+and 
+\[
+    \lim_{m \to \infty} \frac{2m(m+1)\pi ^2}{3(2m + 1)^2} = \lim_{m \to \infty} \frac{(4m + 2)\pi ^2}{12(2m + 1)} = \lim_{m \to \infty} \frac{4 \pi ^2}{24} = \frac{\pi ^2}{6}   
+\]
+by L'Hôpital's rule, so by Squeeze theorem we know 
+\[
+    \zeta (2) = \lim_{m \to \infty} \sum_{k=1}^m \frac{1}{k^2} = \frac{\pi ^2}{6}. 
+\]
+\end{proof}
