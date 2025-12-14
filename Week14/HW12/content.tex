@@ -16,6 +16,14 @@ f(x)=0 \qquad \text{whenever } x\notin[a,b].
 \]
 \end{problem}
 
+\begin{proof}
+    Suppose it is not, then exists some $z \in \mathbb{R}$ such that $f(z) \ne 0$. And since $f$ is compactly supported, there exists some $a, b \in \mathbb{R}$ such that
+    \[
+    f(x)=0 \qquad \text{whenever } x\notin[a,b].
+    \]
+    We can find some large enough integer $n$ such that $z+n > b$, then $z+n \notin [a,b]$. By compactly supported property, $f(z+n) = 0$. However since $f$ is $\mathbb{Z}$-periodic, $0 \ne f(z) = f(z+n)$, and this lead to the contradiction, and hence $f$ is identically zero.
+\end{proof}
+
 \begin{problem}[\textbf{Exercise 5.5.1}]
     Let $f$ be a function in $C(\mathbf{R}/\mathbf{Z};\mathbf{C})$, and define the
 \emph{trigonometric Fourier coefficients} $a_n,b_n$ for $n=0,1,2,\dots$ by
@@ -35,6 +43,57 @@ converges to $f$ in the $L^2$-metric.
 convergent, then the above series actually converges \emph{uniformly} to $f$ (and not just in $L^2$).
 \end{enumerate}
 \end{problem}
+\begin{proof}[(a)]
+    Note that 
+    \begin{align*}
+        \sum_{n = -N}^{N} \hat{f} (n) e_n &= \sum_{n = -N}^N \langle f, e_n \rangle e_n = \sum_{n = -N}^N \left( \int _0^1 f(x) e^{-2 \pi i n x}\, \mathrm{d} x  \right) e^{2 \pi i n x} \\
+        &= \sum_{n = -N}^N \left( \int _0^1 f(x) \left( \cos (-2 \pi n x) + i \sin (-2 \pi n x) \right) \, \mathrm{d} x  \right) \left( \cos (2 \pi n x) + i \sin (2 \pi n x) \right)  \\
+        &= \sum_{n = -N}^N \left( \int _0^1 f(x) \left( \cos (2 \pi n x) - i \sin (2 \pi n x) \right) \, \mathrm{d} x  \right) \left( \cos (2 \pi n x) + i \sin (2 \pi n x) \right) \\
+        &= \sum_{n = -N}^N \left( \int _0^1 f(x) \cos (2 \pi n x) \, \mathrm{d}x  \right) \cos (2 \pi n x) + \left( \int _0^1 f(x) \sin (2 \pi n x) \, \mathrm{d} x  \right) \sin (2 \pi n x) \\
+        &+ i \left( \left( \int _0^1 f(x) \cos (2 \pi n x) \, \mathrm{d} x  \right) \sin (2 \pi n x) - \left( \int _0^1 f(x) \sin (2 \pi n x) \, \mathrm{d} x  \right) \cos (2 \pi n x)   \right) \\
+        &= \sum_{n = -N}^N \left( \frac{1}{2} a_n \cos (2 \pi n x) + \frac{1}{2} b_n \sin (2 \pi n x) \right) + i \left( \frac{1}{2} a_n \sin (2 \pi n x) - \frac{1}{2} b_n \cos (2\pi n x) \right).           
+    \end{align*}
+    Since 
+    \begin{align*}
+        a_n \cos (2 \pi n x) &= a_{-n} \cos (2 \pi (-n) x) \\
+        b_n \sin (2 \pi n x) &= b_{-n} \sin (2 \pi (-n) x) \\
+        a_n \sin (2 \pi n x) &= -a_{-n} \sin (2 \pi (-n) x) \\
+        b_n \cos (2 \pi n x) &= -b_{-n} \cos (2 \pi (-n) x),
+    \end{align*}
+    we know 
+    \begin{align*}
+        &\sum_{n = -N}^N \left( \frac{1}{2} a_n \cos (2 \pi n x) + \frac{1}{2} b_n \sin (2 \pi n x) \right) + i \left( \frac{1}{2} a_n \sin (2 \pi n x) - \frac{1}{2} b_n \cos (2\pi n x) \right) \\
+        &= \left( \frac{1}{2} a_0 \cos 0 + \frac{1}{2} b_0 \sin 0 \right) + 2 \sum_{n = 1}^N \left( \frac{1}{2} a_n \cos (2 \pi n x) + \frac{1}{2} b_n \sin (2 \pi n x) \right) + i \left( \frac{1}{2} a_0 \sin 0 - \frac{1}{2} b_0 \cos 0 \right) \\
+        &= \frac{1}{2} a_0 + \sum_{n=1}^N a_n \cos (2 \pi n x) + b_n \sin (2 \pi n x).    
+    \end{align*}
+    Thus, 
+    \[
+        \sum_{n = -N}^N \hat{f} (n) e_n = \frac{1}{2} a_0 + \sum_{n=1}^{\infty } \left( a_n \cos (2 \pi n x) + b_n \sin (2 \pi n x) \right),   
+    \]
+    and we have shown that 
+    \[
+        f \to \sum_{n = -N}^N \hat{f} (n) e_n \text{ in the } L^2\text{-metric}  
+    \]
+    in class, so we're done. 
+\end{proof}
+
+\begin{proof}[(b)]
+    Note that 
+    \begin{align*}
+        \sum_{n = -\infty }^{\infty } \left\vert \hat{f} (n) \right\vert &= \sum_{n = -\infty }^{\infty } \left\vert \langle f, e_n \rangle  \right\vert = \sum_{n = -\infty }^{\infty } \left\vert \int _0^1 f(x) e^{-2 \pi i n x} \, \mathrm{d} x  \right\vert \\
+        &= \sum_{n = -\infty }^{\infty } \left\vert \int _0^1 f(x) \left( \cos (-2\pi n x) + i \sin (-2 \pi n x) \right) \, \mathrm{d} x   \right\vert      \\
+        &= \sum_{n = -\infty }^{\infty } \left\vert \int _0^1 f(x) \cos (2 \pi n x) \, \mathrm{d} x - i \int _0^1 f(x) \sin (2 \pi n x) \, \mathrm{d}x   \right\vert \\
+        &= \sum_{n = -\infty }^{\infty } \left\vert \frac{1}{2} a_n - \frac{1}{2} i b_n \right\vert \le \sum_{n = -\infty }^{\infty} \frac{1}{2} \vert a_n \vert + \frac{1}{2} \vert b_n \vert = \sum_{n = 1}^{\infty} \left( \vert a_n \vert + \vert b_n \vert \right)  + \left( \frac{1}{2} \vert a_0 \vert + \frac{1}{2} \vert b_0 \vert   \right),    
+    \end{align*}
+    which converges since \(\sum_{n=1}^{\infty} \vert a_n \vert  \) and \(\sum_{n=1}^{\infty} \vert b_n \vert  \) converges absolutely and \(\left( \frac{1}{2} \vert a_0 \vert + \frac{1}{2} \vert b_0 \vert   \right)\) is a finite term. Now we know 
+    \[
+        \sum_{n=-\infty }^{\infty} \left\vert \hat{f} (n) \right\vert < \infty ,  
+    \] 
+    so in class we have shown that 
+    \[
+        f \to \sum_{n = -N}^N \hat{f} (n) e_n = \frac{1}{2} a_0 + \sum_{n=1}^{\infty } \left( a_n \cos (2 \pi n x) + b_n \sin (2 \pi n x) \right) \text{ uniformly.} 
+    \]
+\end{proof}
 
 \begin{problem}[\textbf{Exercise 5.5.2}]
     Let $f(x)$ be the function defined by $f(x)=(1-2x)^2$ when $x\in [0,1]$,
@@ -72,6 +131,57 @@ converges uniformly to $f$. (You may use the fact that
 (Hint: expand the cosines in terms of exponentials and use Plancherel’s theorem.)
 \end{enumerate}
 \end{problem}
+\begin{proof}[(a)]
+    Let \(F_N = \sum_{n = -N}^N \hat{f} (n) e_n \). If \(n \neq 0\), then 
+    \begin{align*}
+        \hat{f} (n) &= \int _0^1 f(x) e^{- 2 \pi in x} \, \mathrm{d} x  = \int _0^1 \left( 1 - 4x + 4x^2 \right) e^{-2\pi inx} \, \mathrm{d} x \\
+        &= \int _0^1 e^{-2 \pi in x} \, \mathrm{d} x - 4 \int _0^1 x e^{-2\pi in x} \,\mathrm{d} x + 4 \int _0^1 x^2 e^{-2 \pi inx} \, \mathrm{d} x \\
+        &= \left. \frac{1}{-2 \pi in} e^{-2 \pi i n x}  \right]_0^1 - 4 \left( -\frac{1}{2\pi i n} \right) + 4 \left( -\frac{1}{2 \pi i n} + \frac{2}{\left( 2 \pi n \right)^2 } \right) \\
+        &= \frac{e^{-2\pi in}}{-2 \pi i n}  - \frac{1}{-2 \pi i n} + \frac{8}{(2 \pi n)^2} = \frac{1}{-2 \pi i n} - \frac{1}{-2 \pi i n} + \frac{8}{(2 \pi n)^2} = \frac{2}{\pi ^2 n^2}.     
+    \end{align*}  
+    Besides, 
+    \[
+        \hat{f} (0) = \int _0^1 1 - 4x + 4x^2 \, \mathrm{d} x = \left. x - 2x^2 + \frac{4}{3}x^3 \right]_0^1 =  \frac{1}{3}. 
+    \]
+    Thus, 
+    \begin{align*}
+        F_N &= \hat{f} (0) e_0 + \sum_{n = -N}^{-1} \hat{f} (n) e_n + \sum_{n=1}^N \hat{f} (n) e_n \\
+        &= \frac{1}{3} + \sum_{n = -N}^{-1} \frac{2}{\pi ^2 n^2} \left( \cos (2 \pi n x) + i \sin (2 \pi n x) \right) + \sum_{n = 1}^{N} \frac{2}{\pi ^2 n^2} \left( \cos (2 \pi n x) + i \sin (2 \pi n x) \right) \\
+        &= \frac{1}{3} + 2 \sum_{n = 1}^N \frac{2}{\pi ^2 n^2} \cos (2 \pi n x) = \frac{1}{3} + \sum_{n=1}^N \frac{4}{\pi ^2 n^2} \cos (2 \pi n x).        
+    \end{align*}
+    Also, since 
+    \[
+        \sum_{n=-\infty }^{\infty} \left\vert \hat{f} (n) \right\vert = \lim_{N \to \infty} \frac{1}{3} + \sum_{n=-N}^N \left\vert \frac{2}{\pi ^2 n^2} \right\vert = \lim_{N \to \infty} \frac{1}{3} + \frac{4}{\pi ^2} \sum_{n=1}^N \frac{1}{n^2} < \infty        
+    \]
+    by \(p\)-series test, so we know 
+    \[
+        F_N = \frac{1}{3} + \sum_{n=1}^N \frac{4}{\pi ^2 n^2} \cos (2 \pi n x) \to f \text{ uniformly}. 
+    \] 
+\end{proof}
+\begin{proof}[(b)]
+    By (a), we know 
+    \[
+        \frac{1}{3} + \sum_{n=1}^{\infty} \frac{4}{\pi ^2 n^2} \cos (2 \pi n x) = (1 - 2x)^2 
+    \]
+    uniformly, so we can plug \(0\) into it and we have 
+    \[
+        \frac{1}{3} + \sum_{n=1}^{\infty} \frac{4}{\pi ^2 n^2} = 1 \implies \frac{2}{3} = \sum_{n=1}^{\infty} \frac{4}{\pi ^2 n^2} \implies \frac{\pi ^2}{6} = \sum_{n=1}^{\infty} \frac{1}{n^2}.   
+    \] 
+\end{proof}
+\begin{proof}[(c)]
+    By Plancherel's theorem, we know 
+    \[
+        \lVert f \rVert_2^2 = \sum_{n=-\infty }^{\infty} \left\vert \hat{f} (n) \right\vert^2.   
+    \]
+    Note that 
+    \[
+        \lVert f \rVert_2^2 = \int _0^1 \vert f(x) \vert^2 \, \mathrm{d} x = \int _0^1 (1 - 2x)^4 \, \mathrm{d} x = \frac{1}{5}.    
+    \]
+    Thus, 
+    \[
+        \frac{1}{5} = \sum_{n=-\infty }^{-1} \frac{4}{\pi ^4 n^4} + \sum_{n=1}^{\infty} \frac{4}{\pi ^4 n^4} + \frac{1}{9} \implies \frac{4}{45} = 2 \sum_{n=1}^{\infty} \frac{4}{\pi ^4 n^4} \implies \frac{\pi ^4}{90} = \sum_{n=1}^{\infty} \frac{1}{n^4}.    
+    \]
+\end{proof}
 
 \begin{problem}[\textbf{Exercise 5.5.3}]
     If $f\in C(\mathbf{R}/\mathbf{Z};\mathbf{C})$ and $P$ is a trigonometric
@@ -87,6 +197,97 @@ More generally, if $f,g\in C(\mathbf{R}/\mathbf{Z};\mathbf{C})$, show that
 \]
 \end{problem}
 
+\begin{proof}
+    Let 
+    \[
+        P(x) = \sum_{k=-N}^{N} c_k e_k(x) = \sum_{k=-N}^{N} c_k e^{2\pi i k x}
+    \]
+    Then
+    \[
+        \begin{aligned}
+            \widehat{f*P}(n) &= \int_0^1 (f * P)(x) \,e^{-2\pi i n x}\,dx \\
+            &= \int_0^1 (\int_0^1 f(x-y)P(y)\, dy ) \,e^{-2\pi i n x}\,dx \\
+            &= \int_0^1 (\int_0^1 f(x-y) \sum_{k=-N}^{N}c_k e^{2\pi i k y}\, dy ) \,e^{-2\pi i n x}\,dx \\
+        \end{aligned}
+    \]
+    Since $f, P$ and $e^{-2\pi i n x}$ are 3 continuous and bounded functions, so  
+    \[
+        F(x,y) = f(x-y)P(y)e^{-2\pi i n x}
+    \]
+    is also continuous in both variables $x,y$ on the compact rectangle $[0,1] \times [0,1]$. And since $F$ is continuous on a compact rectangle, it is bounded. Therefore
+    \[
+         \int_0^1 \int_0^1 \lvert F(x,y) \rvert\,dy\,dx < \infty,
+    \]
+    and hence we can apply Fubini's theorem to swap the order of the integration.
+    \[
+        \begin{aligned}
+            \widehat{f*P}(n) &= \int_0^1 (\int_0^1 f(x-y) \sum_{k=-N}^{N}c_k e^{2\pi i k y}\, dy ) \,e^{-2\pi i n x}\,dx \\
+            &= \sum_{k=-N}^{N}c_k \int_0^1 (\int_0^1 f(x-y)  \,e^{-2\pi i n x}\,dx) e^{2\pi i k y}\, dy \\
+        \end{aligned}
+    \]
+    Let $t = x-y$, $dt = dx$, and $x = t+y$.
+    \[
+        \begin{aligned}
+            \widehat{f*P}(n) &= \sum_{k=-N}^{N}c_k \int_0^1 (\int_0^1 f(x-y)  \,e^{-2\pi i n x}\,dx) e^{2\pi i k y}\, dy \\
+            &= \sum_{k=-N}^{N}c_k \int_0^1 (\int_0^1 f(t)  \,e^{-2\pi i n (t+y)}\,dt) e^{2\pi i k y}\, dy \\
+            &= \sum_{k=-N}^{N}c_k \int_0^1 (\int_0^1 f(t)  \,e^{-2\pi i n (t)}\,dt) e^{2\pi i (k-n) y}\, dy \\
+            &= \widehat{f}(n)\sum_{k=-N}^{N}c_k\, \int_0^1 e^{2\pi i (k-n) y}\, dy
+        \end{aligned}
+    \]
+    Since 
+    \[
+        \int_0^1 e^{2\pi i (k-n) y}\, dy = 
+        \begin{cases}
+        1, & k = n, \\
+        0, & k \ne n.
+        \end{cases}
+    \]
+    So 
+    \[ 
+        \begin{aligned}
+            \widehat{f*P}(n) = &= \widehat{f}(n)\sum_{k=-N}^{N}c_k\, \int_0^1 e^{2\pi i (k-n) y}\, dy \\
+            &= \widehat{f}(n) \cdot c_n
+        \end{aligned}
+    \]
+    And since 
+    \[
+        \widehat{P}(n) = \langle P, e_n \rangle = c_n,
+    \]
+    We can get
+    \[
+        \widehat{f*P}(n) = \widehat{f}(n) \cdot c_n = \widehat{f}(n) \cdot \widehat{P}(n).
+    \]
+    For general cases, by the Weierstrass approximation theorem, we can choose trigonometric polynomial $P_m$ with 
+    \[
+        \|P_m - g\|_\infty \to 0 \quad \text{uniformly.}
+    \]
+    Then 
+    \[
+        \begin{aligned}
+        \| f * P_m - f * g \|_\infty &= \sup_x \lvert \int_0^1 f(x-y)(P_m -g)(y) \,dy\rvert \\
+        &\le \|f\|_{\infty} (\int_0^1 (P_m -g)(y) \,dy) \\
+        &\le \|f\|_{\infty} \|P_m-g\|_{\infty} \to 0
+        \end{aligned}
+    \]
+    Thus $P_m \to g$ uniformly  implies $f * P_m \to f * g$ uniformly.
+    Since
+    \[
+        \begin{aligned}
+        \lvert \widehat{f * P_m}(n) - \widehat{f * g}(n) \rvert &= \lvert \int_0^1 (f*P_m - f*g)(x) e^{-2 \pi i n x} \, dx \rvert \\
+        &\le  \| f * P_m - f * g \|_\infty \to 0        \end{aligned}
+    \]
+    So for fixed $n$, $\widehat{f * P_m}(n) \to \widehat{f * g}(n)$. Since $P_m \to g$ uniformly, by similar argument above, $\widehat{P_m}(n) \to \widehat{g}(n)$ uniformly.\\
+    From the previous part, we know 
+    \[
+        \widehat{f*P_m}(n)  = \widehat f(n)\,\widehat P_m(n)
+    \]
+    Then we can take the limit on $m$,
+    \[
+        \widehat{f*g}(n) = \lim_{m \to \infty} \widehat{f*P_m}(n) = \lim_{m \to \infty} \widehat{f}(n) \widehat{P_m}(n) = \widehat{f}(n) \widehat{g}(n).
+    \]
+    And hence we proved.
+\end{proof}
+
 \begin{problem}[\textbf{Exercise 5.5.4}]
     Let $f\in C(\mathbf{R}/\mathbf{Z};\mathbf{C})$ be differentiable, and assume its derivative
 $f'$ is also continuous. Show that
@@ -98,3 +299,38 @@ and that the Fourier coefficients of $f'$ satisfy
 \widehat{f'}(n)=2\pi i n\,\widehat f(n)\qquad\text{for all }n\in\mathbf{Z}.
 \]
 \end{problem}
+
+\begin{proof}
+    For any $n \in \mathbb{Z}$,
+    \[
+        \begin{aligned}
+            \widehat{f'}(n) &= \int_0^1 f'(x) e^{-2 \pi i n x}\,dx \\
+            &= f(x) e^{-2 \pi i n x}\bigg|_0^1 - \int_0^1 f(x) (-2 \pi i n x)e^{-2 \pi i n}\,dx \\
+            &= f(1)-f(0) + (2 \pi i n)\int_0^1 f(x)e^{-2 \pi i n x}\,dx
+        \end{aligned}
+    \]
+    Since $f$ is 1-periodic, $f(0) = f(1)$, so 
+    \[
+        \widehat{f'}(n) = (2 \pi i n)\int_0^1 f(x)e^{-2 \pi i n x}\,dx = (2 \pi i n)\widehat{f}(n)
+    \]
+    so the Fourier coefficients of $f'$ satisfy
+    \[
+    \widehat{f'}(n)=2\pi i n\,\widehat f(n)\qquad\text{for all }n\in\mathbf{Z}.
+    \]
+    The Plancherel theorem tells us
+    \[
+        \sum_{n \in \mathbb{Z}} \lvert \widehat{f'}(n)\rvert^2 = \int_0^1 \lvert f'(x)\rvert^2 \,dx
+    \]
+    And since $f'$ is continuous on a compact interval $[0,1]$, it is bounded, and hence 
+    \[
+        \sum_{n \in \mathbb{Z}} \lvert \widehat{f'}(n)\rvert^2 = \int_0^1 \lvert f'(x)\rvert^2 \,dx < \infty
+    \]
+    And 
+    \[
+        \sum_{n \in \mathbb{Z}} \lvert \widehat{f'}(n)\rvert^2 =  \sum_{n \in \mathbb{Z}} 4 \pi^2 \lvert n \widehat{f}(n)\rvert^2 < \infty  
+    \]
+    divide $4\pi^2$ for both sides, we can conclude that
+    \[
+        \sum_{n \in \mathbb{Z}} \lvert n \widehat{f}(n)\rvert^2 < \infty
+    \]
+\end{proof}
