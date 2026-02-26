@@ -1,0 +1,387 @@
+\documentclass[addpoints]{exam}
+% leqno 將方程式編號放在左側
+
+%\printanswers
+
+\usepackage[top=2.5cm,bottom=2cm,left=2.5cm,right=2.5cm,headsep=10pt,a4paper]{geometry} % 引用頁面幾何套件，設定頁面邊界
+
+\usepackage{siunitx} % 角度
+% \input{NewCommands}
+
+\usepackage{amsmath,amssymb,amsthm} % 引用常見的數學符號與設定
+
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Definition}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{remark}{Remark}
+
+\usepackage{lastpage} % 取得最後頁碼
+
+
+
+
+\usepackage{graphicx} % 引用圖檔內嵌入套件
+\graphicspath{{Pictures/}} % 設定圖檔目錄
+\usepackage{xcolor} %引用顏色套件
+\usepackage{enumerate}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{mdwlist} % use suspend & resume to successive enumerate
+
+\usepackage{CJKutf8} % 設定中文
+
+\def \lflr{\left\lfloor} %自定義 floor function
+\def \rflr{\right\rfloor} %自定義
+
+% question separation
+\renewcommand{\questionshook}{%
+  \setlength{\itemsep}{0.5cm}%
+}
+
+\allowdisplaybreaks %equation allowed to next page
+
+\firstpageheader{\today}
+                {}
+                {}
+\footer{}{\sf Page \thepage~of~\pageref{LastPage}}{}
+
+\begin{document}
+
+\begin{CJK*}{UTF8}{gbsn}
+% Title
+\begin{center}
+    {\Large{\bf Introduction to Mathematical Analysis II\\
+    Homework 1  Due  March 6  (Friday), 2026\\
+    Please submit your group homework online in PDF format.\\
+You are expected to work collaboratively within your group. 
+Please do not obtain complete solutions directly from AI tools. 
+The purpose of this assignment is to develop your own mathematical reasoning and problem-solving skills. %  Homework X Brief Solution
+  }} \\ 
+    \large
+    %\text{Due date: 3/9/2023}
+\end{center}
+
+\noindent\rule{16.2cm}{0.4pt}
+
+
+\begin{questions}
+
+
+% ============ Question x ============
+\question  (20 pts)  
+
+ Define $f : \mathbf{R}^2 \to \mathbf{R}$ by
+$$
+f(x,y)=
+\begin{cases}
+\displaystyle
+\frac{x^2 y}{x^2+y^2}, & (x,y)\neq(0,0),\\[1em]
+0, & (x,y)=(0,0).
+\end{cases}
+$$
+
+\begin{itemize}
+\item[(a)] Show that for every fixed direction $v\in\mathbf{R}^2$, 
+the limit
+$$
+\lim_{t\to 0} \frac{f(tv)-f(0)}{t}
+$$
+exists.
+
+\item[(b)] Show that $f$ is \emph{not} differentiable at $(0,0)$
+in the sense of Definition 6.2.2.
+
+\item[(c)] Explain precisely which part of the definition of differentiability fails.
+\end{itemize}
+
+\begin{solution} 
+\begin{enumerate}
+\item[(a)] 
+
+
+
+\bigskip
+\item[(b)] 
+
+
+\bigskip
+\item[(c)] 
+
+\end{enumerate}
+
+ \end{solution}
+
+\question (15 pts) 
+Let $f:\mathbf{R}^n\to\mathbf{R}^m$ and suppose that for some linear map
+$L:\mathbf{R}^n\to\mathbf{R}^m$ one has
+$$
+f(x_0+h)=f(x_0)+L(h)+R(h),
+$$
+where the remainder satisfies
+$$
+\|R(h)\| \le C \|h\|^{1+\alpha}
+$$
+for some constants $C>0$ and $\alpha>0$.
+
+\begin{itemize}
+\item[(a)] Prove that $f$ is differentiable at $x_0$ with derivative $L$.
+
+\item[(b)] Show that if $\alpha=0$, the conclusion may fail
+by constructing a counterexample.
+\end{itemize}
+
+
+\begin{solution}
+
+\begin{enumerate}
+\item[(a)] 
+
+
+
+\bigskip
+\item[(b)] 
+
+
+
+
+\end{enumerate} 
+\end{solution}
+
+\question (15 pts) 	
+Let $E=\{(x,y)\in\mathbf{R}^2: y\ge 0\}$, and define
+$$
+f(x,y)=0 \quad \text{for all } (x,y)\in E.
+$$
+
+\begin{itemize}
+\item[(a)] Show that $f$ is differentiable at $(0,0)$
+in the sense of Definition 6.2.2.
+
+\item[(b)] Show that every linear map
+$L:\mathbf{R}^2\to\mathbf{R}$
+satisfying $L(x,0)=0$ for all $x$
+also satisfies the differentiability condition.
+
+\item[(c)] Conclude that the derivative at $(0,0)$
+is not uniquely determined.
+\end{itemize}
+
+
+\begin{solution} 
+ 
+ \end{solution}
+
+\question (15 pts) \textbf{Exercise 6.3.2.}
+Let $E \subset \mathbf{R}^n$, let $f : E \to \mathbf{R}^m$, let $x_0$ be an interior point of $E$, and let $1 \le j \le n$.
+
+Show that $\frac{\partial f}{\partial x_j}(x_0)$ exists if and only if
+$D_{e_j}f(x_0)$ and $D_{-e_j}f(x_0)$ exist and are negatives of each other.
+In this case,
+$$
+\frac{\partial f}{\partial x_j}(x_0)
+=
+D_{e_j}f(x_0).
+$$
+
+
+\begin{solution} 
+
+\end{solution}
+
+\question (15 pts)
+\textbf{Exercise 6.3.3.}
+Let $f : \mathbf{R}^2 \to \mathbf{R}$ be defined by
+$$
+f(x,y)
+=
+\frac{x^3}{x^2 + y^2}
+\quad \text{for } (x,y) \ne (0,0),
+\qquad
+f(0,0) = 0.
+$$
+
+Show that $f$ is not differentiable at $(0,0)$, even though it is
+directionally differentiable in every direction at $(0,0)$.
+Explain why this does not contradict Theorem 6.3.8.
+
+ 
+
+\begin{solution} 
+
+\end{solution}
+
+\question (20 pts) 
+Let $E\subset \mathbb{R}^n$, let $f:E\to \mathbb{R}^m$, and let $x_0$ be an interior point of $E$.
+
+Assume that there exists a linear map $A:\mathbb{R}^n\to \mathbb{R}^m$
+such that for every unit vector $v\in S^{n-1}$,
+\[
+\lim_{t\to 0^+}
+\frac{f(x_0+t v)-f(x_0)}{t}
+=
+A(v).
+\]
+
+Suppose moreover that the above convergence is \emph{uniform in $v$ on the unit sphere $S^{n-1}$}, meaning that
+
+\[
+\lim_{t\to 0^+}
+\sup_{v\in S^{n-1}}
+\left\|
+\frac{f(x_0+t v)-f(x_0)}{t}
+-
+A(v)
+\right\|
+=
+0.
+\]
+
+Equivalently, for every $\varepsilon>0$ there exists $\delta>0$
+such that for all $0<t<\delta$ and all $v\in S^{n-1}$,
+\[
+\left\|
+\frac{f(x_0+t v)-f(x_0)}{t}
+-
+A(v)
+\right\|
+<
+\varepsilon.
+\]
+
+Prove that $f$ is differentiable at $x_0$ and that $f'(x_0)=A$.
+
+\medskip
+\noindent\textbf{Hint.}
+For $h\neq 0$, write
+\[
+h=\|h\|\,v
+\quad \text{with } v=\frac{h}{\|h\|}\in S^{n-1}.
+\]
+Use linearity of $A$ to rewrite
+\[
+A(h)=\|h\|A(v),
+\]
+and compare
+\[
+\frac{f(x_0+h)-f(x_0)-A(h)}{\|h\|}
+\]
+with
+\[
+\frac{f(x_0+\|h\|v)-f(x_0)}{\|h\|}-A(v).
+\]
+Then apply the assumed uniform convergence.
+\begin{solution} 
+\end{solution}
+
+\end{questions}
+
+You can do the following problems to practice. You don't have to submit the following problems.
+
+\begin{questions}
+
+\question   (Exercise 6.3.4.)
+Let $f : \mathbf{R}^n \to \mathbf{R}^m$ be differentiable and suppose that
+$f'(x) = 0$ for all $x \in \mathbf{R}^n$.
+
+\begin{itemize}
+\item[(a)] Show that $f$ is constant on $\mathbf{R}^n$.
+\item[(b)] For a greater challenge, replace $\mathbf{R}^n$ by an open connected subset
+$\Omega \subset \mathbf{R}^n$ and prove the same result.
+\end{itemize}
+
+
+\begin{solution}
+
+\end{solution}
+\medskip
+
+\question  Define $f:\mathbf{R}^2\to \mathbf{R}$ by
+\[
+f(x_1,x_2):=|x_1|.
+\]
+\begin{itemize}
+\item[(a)] Show that for every $v=(v_1,v_2)\in \mathbf{R}^2$, the one-sided directional derivative
+\[
+D_v f(0,0)=\lim_{t\to 0^+}\frac{f(tv)-f(0,0)}{t}
+\]
+exists, and compute it explicitly.
+\item[(b)] Show that the map $v\mapsto D_v f(0,0)$ is \emph{not} linear.
+\item[(c)] Conclude that $f$ is not differentiable at $(0,0)$.
+\end{itemize}
+(\emph{Comment:} This illustrates precisely why Lemma 6.3.5 is only one-way: differentiability forces linear dependence on $v$, but existence of $D_v f(x_0)$ for all $v$ does not.)
+
+\begin{solution}
+
+\end{solution}
+
+\medskip
+
+\question  Define $f:\mathbf{R}^2\to \mathbf{R}$ by
+\[
+f(x,y)=
+\begin{cases}
+\dfrac{x^2y}{x^2+y^2}, & (x,y)\neq (0,0),\\[0.6em]
+0, & (x,y)=(0,0).
+\end{cases}
+\]
+
+\begin{itemize}
+\item[(a)] Show that the partial derivatives $\dfrac{\partial f}{\partial x}(0,0)$ and
+$\dfrac{\partial f}{\partial y}(0,0)$ both exist, and compute their values.
+
+\item[(b)] Show that $f$ is \emph{not} differentiable at $(0,0)$.
+(\emph{Hint:} Test the differentiability definition along a suitable curve such as $(x,y)=(t,t)$ or $(t,t^2)$ and compare the size of
+$f(x,y)-f(0,0)-L(x,y)$ for any candidate linear map $L$.)
+
+\item[(c)] Prove that at least one of the partial derivative functions
+$\dfrac{\partial f}{\partial x}$ or $\dfrac{\partial f}{\partial y}$
+fails to be continuous at $(0,0)$.
+(\emph{Hint:} Compute $\dfrac{\partial f}{\partial x}(0,y)$ for $y\neq 0$ by restricting to the line $y=\text{const}$, and examine the limit as $y\to 0$.)
+\end{itemize}
+
+\medskip
+\noindent\emph{This problem shows that the existence of partial derivatives at a point is not enough for differentiability; the continuity hypothesis in Theorem 6.3.8 is genuinely needed.}
+
+
+\begin{solution}
+
+\end{solution}
+
+\end{questions}
+
+\end{CJK*}
+\end{document}
+
+\question   
+
+\begin{solution}
+\end{solution}
+
+\question 
+
+
+
+\begin{solution}
+
+\end{solution}
+
+\question
+\begin{solution}
+
+\end{solution}
+
+
+
+
+
+%
+% \appendix
+% \section{}
+
+
+\question
+
+\begin{solution}
+
+\end{solution}
