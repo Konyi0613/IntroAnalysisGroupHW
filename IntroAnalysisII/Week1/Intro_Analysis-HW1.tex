@@ -15,6 +15,7 @@
 \newtheorem*{definition}{Definition}
 \newtheorem*{theorem}{Theorem}
 \newtheorem*{remark}{Remark}
+\newcommand{\R}{\mathbb{R}}
 
 \usepackage{lastpage} % 取得最後頁碼
 
@@ -148,25 +149,23 @@ by constructing a counterexample.
 \end{enumerate} 
 \end{solution}
 
-\question (15 pts) 	
-Let $E=\{(x,y)\in\mathbf{R}^2: y\ge 0\}$, and define
-$$
-f(x,y)=0 \quad \text{for all } (x,y)\in E.
-$$
+\question (15 pts) Let $D=\{(x,y)\in\mathbb{R}^2:\ x\ge 0\ \text{and}\ 0\le y\le x^3\}$ and $x_0=(0,0)$.
+Define $f:D\to\mathbb{R}$ by $f(x,y)=2x+\sqrt{y}$.
+
+We say that $f$ is \emph{differentiable at $x_0$ on $D$ with derivative $L$} if
+$L:\mathbb{R}^2\to\mathbb{R}$ is linear and
+\[
+\lim_{\substack{h\to 0\\ x_0+h\in D}}
+\frac{|f(x_0+h)-f(x_0)-L(h)|}{\|h\|}=0.
+\]
 
 \begin{itemize}
-\item[(a)] Show that $f$ is differentiable at $(0,0)$
-in the sense of Definition 6.2.2.
+\item[(a)] Explain briefly why $f$ could \emph{never} be differentiable at $(0,0)$ if the domain were the entire first quadrant $\mathbb{R}^2_{\ge 0}=\{(x,y):x\ge 0,\ y\ge 0\}$.
 
-\item[(b)] Show that every linear map
-$L:\mathbf{R}^2\to\mathbf{R}$
-satisfying $L(x,0)=0$ for all $x$
-also satisfies the differentiability condition.
+\item[(b)] Prove that $f$ \emph{is} differentiable at $(0,0)$ on the restricted domain $D$.
 
-\item[(c)] Conclude that the derivative at $(0,0)$
-is not uniquely determined.
+\item[(c)] Describe the set of all valid derivatives $L(x,y)$ for $f$ at $(0,0)$ on $D$.
 \end{itemize}
-
 
 \begin{solution} 
  
