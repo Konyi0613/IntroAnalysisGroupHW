@@ -1,0 +1,204 @@
+\documentclass[addpoints]{exam}
+% leqno 將方程式編號放在左側
+
+%\printanswers
+
+\usepackage[top=2.5cm,bottom=2cm,left=2.5cm,right=2.5cm,headsep=10pt,a4paper]{geometry} % 引用頁面幾何套件，設定頁面邊界
+
+\usepackage{siunitx} % 角度
+% \input{NewCommands}
+
+\usepackage{amsmath,amssymb,amsthm} % 引用常見的數學符號與設定
+
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Definition}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{remark}{Remark}
+\newcommand{\R}{\mathbb{R}}
+
+\usepackage{lastpage} % 取得最後頁碼
+
+
+
+
+\usepackage{graphicx} % 引用圖檔內嵌入套件
+\graphicspath{{Pictures/}} % 設定圖檔目錄
+\usepackage{xcolor} %引用顏色套件
+\usepackage{enumerate}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{mdwlist} % use suspend & resume to successive enumerate
+
+\usepackage{CJKutf8} % 設定中文
+
+\def \lflr{\left\lfloor} %自定義 floor function
+\def \rflr{\right\rfloor} %自定義
+
+% question separation
+\renewcommand{\questionshook}{%
+  \setlength{\itemsep}{0.5cm}%
+}
+
+\allowdisplaybreaks %equation allowed to next page
+
+\firstpageheader{\today}
+                {}
+                {}
+\footer{}{\sf Page \thepage~of~\pageref{LastPage}}{}
+
+\begin{document}
+
+\begin{CJK*}{UTF8}{gbsn}
+% Title
+\begin{center}
+    {\Large{\bf Introduction to Mathematical Analysis II\\
+    Homework 4  Due  March 27 (Friday), 2026\\
+    Please submit your group homework online in PDF format.\\
+You are expected to work collaboratively within your group. 
+Please do not obtain complete solutions directly from AI tools. 
+The purpose of this assignment is to develop your own mathematical reasoning and problem-solving skills. %  Homework X Brief Solution
+  }} \\ 
+    \large
+    %\text{Due date: 3/9/2023}
+\end{center}
+
+\noindent\rule{16.2cm}{0.4pt}
+
+
+\begin{questions}
+
+
+% ============ Question x ============
+\question  (25 pts)  
+Let \(n\ge 2\), and let
+\[
+f:\mathbf{R}^n\to \mathbf{R}
+\]
+be a smooth function. Define
+\[
+S:=\{x=(x_1,\dots,x_n)\in \mathbf{R}^n : f(x)=0\}.
+\]
+Assume that
+\[
+\nabla f(x)\neq 0
+\qquad\text{for every }x\in S.
+\]
+Then for every point \(p\in S\), there exists an index \(j\in\{1,\dots,n\}\), an open neighborhood
+\(W\subset \mathbf{R}^n\) of \(p\), an open set \(U\subset \mathbf{R}^{\,n-1}\), and a differentiable
+function
+\[
+g:U\to \mathbf{R}
+\]
+such that, after possibly reordering the coordinates, the set \(S\cap W\) can be written in the form
+\[
+S\cap W
+=
+\Bigl\{
+(x_1,\dots,x_{j-1},\, g(x_1,\dots,x_{j-1},x_{j+1},\dots,x_n),\, x_{j+1},\dots,x_n)
+:
+(x_1,\dots,x_{j-1},x_{j+1},\dots,x_n)\in U
+\Bigr\}.
+\]
+In other words, near every point of \(S\), the hypersurface \(S\) is locally the graph of a differentiable
+function of \(n-1\) variables.
+
+\begin{solution}
+\end{solution}
+
+\question (20 pts) 
+
+Let the notation and hypotheses be as in Theorem \textup{6.8.1}. Show that, after shrinking
+the open sets $U,V$ as necessary, that the function $g$ becomes continuously differentiable
+on all of $U$, and the equation
+\begin{equation*}%\label{eq:IFT-derivative-formula}
+\frac{\partial g}{\partial x_j}(x')
+=
+-\frac{\frac{\partial f}{\partial x_j}(x)}{\frac{\partial f}{\partial x_n}(x)}.
+\end{equation*}
+ holds at all points of $x\in U$.
+ Hint: If $\frac{\partial f}{\partial x_n}(y) \neq 0$ then these is an open set $V'$ containing $y$
+ such that $\frac{\partial f}{\partial x_n}(x) \neq 0$ for $x\in V'$.
+
+\begin{solution}
+
+\begin{enumerate}
+\item[(a)] 
+
+
+
+\bigskip
+\item[(b)] 
+
+
+
+
+\end{enumerate} 
+\end{solution}
+
+\question (30 pts) 
+Suppose that \(V\) is open in \(\mathbb{R}^{n+p}\), and that
+\[
+f=(f_1,\dots,f_n):V\to\mathbb{R}^n
+\]
+is \(C^1\) on \(V\). Suppose further that
+\[
+f(x_0,t_0)=0
+\]
+for some \((x_0,t_0)\in V\), where \(x_0\in\mathbb{R}^n\) and \(t_0\in\mathbb{R}^p\). If
+\[
+\frac{\partial(f_1,\dots,f_n)}{\partial(x_1,\dots,x_n)}(x_0,t_0)\neq 0,
+\] (this means that $\det( [\frac{\partial f_j}{\partial x_i} (x_0,t_0) ]\neq 0$)
+then there is an open set \(W\subset\mathbb{R}^p\) containing \(t_0\) and a unique continuously differentiable function
+\[
+g:W\to\mathbb{R}^n
+\]
+such that
+\[
+g(t_0)=x_0,
+\qquad\text{and}\qquad
+f(g(t),t)=0
+\quad\text{for all } t\in W.
+\]
+Hint: For each \((x,t)\in V\), define
+\[
+F(x,t)=\bigl(f_1(x,t),\dots,f_n(x,t),t_1,\dots,t_p\bigr).
+\]
+Then \( F:V\to\mathbb{R}^{n+p}\) and
+\[
+D F=
+\begin{bmatrix}
+\left[\dfrac{\partial f_i}{\partial x_j}\right]_{n\times n} & B\\[1ex]
+O_{p\times n} & I_{p\times p}
+\end{bmatrix}
+\], $det(D F (x_0,t_0))= \frac{\partial(f_1,\dots,f_n)}{\partial(x_1,\dots,x_n)}(x_0,t_0)\neq 0 \neq 0$ and $D F (x_0,t_0)$ is invertible. Then apply the inverse function.
+\begin{solution} 
+ 
+ \end{solution}
+
+\question (25 pts) Prove that there exist functions \(u(x,y)\), \(v(x,y)\), and \(w(x,y)\), and an
+\(r>0\) such that \(u,v,w\) are continuously differentiable and satisfy the
+equations
+\[
+u^5+xy^2-y+w=0,
+\]
+\[
+v^5+yu^2-x+w=0,
+\]
+\[
+w^4+y^5-x^4=1
+\]
+on \(B_r(1,1)\), and
+\[
+u(1,1)=1,\qquad v(1,1)=1,\qquad w(1,1)=-1.
+\] Hint: Show that $(u,v,w,x,y)= (1,1,-1,1,1)$ satisfies these three equations above and use result in problem 3. 
+\begin{solution} 
+
+\end{solution}
+
+
+
+\end{questions}
+\end{CJK*}
+\end{document}
+

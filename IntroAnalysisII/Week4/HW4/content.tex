@@ -1,0 +1,293 @@
+\begin{problem}
+
+Let \(n\ge 2\), and let
+\[
+f:\mathbf{R}^n\to \mathbf{R}
+\]
+be a smooth function. Define
+\[
+S:=\{x=(x_1,\dots,x_n)\in \mathbf{R}^n : f(x)=0\}.
+\]
+Assume that
+\[
+\nabla f(x)\neq 0
+\qquad\text{for every }x\in S.
+\]
+Then for every point \(p\in S\), there exists an index \(j\in\{1,\dots,n\}\), an open neighborhood
+\(W\subset \mathbf{R}^n\) of \(p\), an open set \(U\subset \mathbf{R}^{\,n-1}\), and a differentiable
+function
+\[
+g:U\to \mathbf{R}
+\]
+such that, after possibly reordering the coordinates, the set \(S\cap W\) can be written in the form
+\[
+S\cap W
+=
+\Bigl\{
+(x_1,\dots,x_{j-1},\, g(x_1,\dots,x_{j-1},x_{j+1},\dots,x_n),\, x_{j+1},\dots,x_n)
+:
+(x_1,\dots,x_{j-1},x_{j+1},\dots,x_n)\in U
+\Bigr\}.
+\]
+In other words, near every point of \(S\), the hypersurface \(S\) is locally the graph of a differentiable
+function of \(n-1\) variables.
+\end{problem}
+
+\begin{proof}
+    Since $f$ is smooth function, so $f$ is continuously differentiable at all $x \in \mathbb{R}^n$.
+
+    For fixed $p  = (p_1, p_2, \cdots, p_n) \in S$, since $\nabla f(p) \neq 0$, there exists some $1 \le j \le n$ such that $\frac{\partial f(p)}{\partial x_j} \ne 0$. Then by implicit function theorem, there exists $U \subseteq \mathbb{R}^{n-1}$ containing $(p_1,\cdots, p_{j-1}, p_{j+1}, \cdots, p_n)$, an open subset $W \subseteq \mathbb{R}^n$ containing $p$, and a function $g : U \to \mathbb{R}$ such that 
+    \[
+        g(p_1,\cdots, p_{j-1}, p_{j+1}, \cdots, p_n) = p_j
+    \]
+    and
+    \[
+    \begin{aligned}
+    \{x = (x_1, \cdots, x_n) \in W : f(x) = 0\}
+    = {} & \{(x_1,\cdots, x_{j-1},g(x_1,\cdots, x_{j-1},x_{j+1},\cdots,x_n), \\
+    & x_{j+1},\cdots,x_n) :
+    (x_1,\cdots, x_{j-1},x_{j+1},\cdots,x_n) \in U\},
+    \end{aligned}
+    \]
+    % \[
+    %     \{x = (x_1, \cdots, x_n) \in W : f(x) = 0\} = \{(x_1,\cdots, x_{j-1},g(x_1,\cdots, x_{j-1},x_{j+1},\cdots,x_n),x_{j+1},\cdots,x_n) : (x_1,\cdots, x_{j-1},x_{j+1},\cdots,x_n) \in U\}
+    % \]
+    and notice that the left hand side is exactly $S \cap W$, and hence we have proved.
+\end{proof}
+
+\begin{problem}
+
+Let the notation and hypotheses be as in Theorem \textup{6.8.1}. Show that, after shrinking
+the open sets $U,V$ as necessary, that the function $g$ becomes continuously differentiable
+on all of $U$, and the equation
+\begin{equation*}%\label{eq:IFT-derivative-formula}
+\frac{\partial g}{\partial x_j}(x')
+=
+-\frac{\frac{\partial f}{\partial x_j}(x)}{\frac{\partial f}{\partial x_n}(x)}.
+\end{equation*}
+ holds at all points of $x\in U$.
+ Hint: If $\frac{\partial f}{\partial x_n}(y) \neq 0$ then these is an open set $V'$ containing $y$
+ such that $\frac{\partial f}{\partial x_n}(x) \neq 0$ for $x\in V'$.
+ 
+\end{problem}
+
+\begin{proof}
+    Since $f$ is continuously differentiable, $\frac{\partial f}{\partial x_n}$ is also continuous. And we know that $\frac{\partial f(y)}{\partial x_n} \neq 0$. By continuity, there exists open set $O$ containing $y$ and $\frac{\partial f(z)}{\partial x_n} \neq 0$ for all $z \in O$. Then we define $V' = V \cap O$, and since $V, W$ are both open set so $V'$ is open set. And we define $U'$ as $\{x \in \mathbb{R}^{n-1}: (x,g(x)) \in V'\}$. 
+    
+    Then we show that $U'$ is open set. We define $h$ by
+    \[
+        h : \mathbb{R}^{n-1} \to \mathbb{R}^n, \quad h(x) = (x, g(x)).
+    \] Since the map $x \mapsto x$ is continuous and $g$ is continuous, $h$ is continuous. And since $V'$ is open set, $h^{-1}(V')$ is open set, and hence $U'$ is open set.
+
+    % Since for all point $x = (x_1, x_2,\cdots,x_{n-1}, g(x_1,x_2, \cdots, x_{n-1})) \in V'$,  $f(x) = 0$ and $\frac{\partial f(x)}{\partial x_n} \neq 0$, so by implicit function theorem, $g$ is differentiable at $(x_1, x_2,\cdots,x_{n-1})$, and hence $g$ is differentiable at all $(x_1, x_2,\cdots,x_{n-1}) \in U'$.
+
+    Then we show that $g$ is differentiable at all $x \in U'$. For fixed $x' \in U'$, the implicit function theorem gives us another function $\tilde{g} : W \to \mathbb{R}$ such that $\tilde{g}$ is differentiable at $x'$. Notice that 
+    \[
+        f(x'', g(x'')) = 0 \text{ and } f(x'', \tilde{g}(x'')) = 0 \quad \text{for all } x'' \in W \cap U',
+    \]
+    to show that $g = \tilde{g}$ in $W \cap U'$ , we need to prove that given $x''$ we only have one solution $t$ such that $f(x'',t) = 0$. Suppose that 
+    \[
+        \phi(t) = f(x',t),
+    \]
+    then 
+    \[
+        \phi'(t) = f_{x_n}(x',t),
+    \]
+    and since $(x', t) \in V'$, 
+    \[
+        \phi'(t) = f_{x_n}(x',t) \neq 0.
+    \]
+    And notice that $f$ is a $C^1$ function, so $\phi'(t) = f_{x_n}(x', t)$ is continuous function, so $\phi(t)$ is monotone function, and hence it has at most one $t$ such that $\phi(t) = 0$, and hence $g = \tilde{g}$ in $W \cap U'$.
+    
+    And since $\tilde{g}$ is differentiable at $x' \in W \cap U'$, so $g$ is also differentiable at $x_0$ and $g'(x_0) = \tilde{g}'(x_0)$, so
+    \[
+        \frac{\partial g}{\partial x_j}(x_0) = \frac{\partial \tilde{g'}}{\partial x_j}(x_0) = -\frac{\frac{\partial f}{\partial x_j}((x, \tilde{g}(x_0))}{\frac{\partial f}{\partial x_n}((x,\tilde{g}(x_0)))} = -\frac{\frac{\partial f}{\partial x_j}((x, g(x_0))}{\frac{\partial f}{\partial x_n}((x,g(x_0)))}
+    \]
+
+    And hence $g$ is differentiable at all $x \in U'$ and we can conclude that 
+    \[
+        \frac{\partial g}{\partial x_j}(x) = -\frac{\frac{\partial f}{\partial x_j}((x, g(x))}{\frac{\partial f}{\partial x_n}((x,g(x)))}
+    \]
+
+    
+
+    
+\end{proof}
+
+\begin{problem}
+
+Suppose that \(V\) is open in \(\mathbb{R}^{n+p}\), and that
+\[
+f=(f_1,\dots,f_n):V\to\mathbb{R}^n
+\]
+is \(C^1\) on \(V\). Suppose further that
+\[
+f(x_0,t_0)=0
+\]
+for some \((x_0,t_0)\in V\), where \(x_0\in\mathbb{R}^n\) and \(t_0\in\mathbb{R}^p\). If
+\[
+\frac{\partial(f_1,\dots,f_n)}{\partial(x_1,\dots,x_n)}(x_0,t_0)\neq 0,
+\] (this means that $\det( [\frac{\partial f_j}{\partial x_i} (x_0,t_0) ]\neq 0 )$
+then there is an open set \(W\subset\mathbb{R}^p\) containing \(t_0\) and a unique continuously differentiable function
+\[
+g:W\to\mathbb{R}^n
+\]
+such that
+\[
+g(t_0)=x_0,
+\qquad\text{and}\qquad
+f(g(t),t)=0
+\quad\text{for all } t\in W.
+\]
+Hint: For each \((x,t)\in V\), define
+\[
+F(x,t)=\bigl(f_1(x,t),\dots,f_n(x,t),t_1,\dots,t_p\bigr).
+\]
+Then \( F:V\to\mathbb{R}^{n+p}\) and
+\[
+D F=
+\begin{bmatrix}
+\left[\dfrac{\partial f_i}{\partial x_j}\right]_{n\times n} & B\\[1ex]
+O_{p\times n} & I_{p\times p}
+\end{bmatrix}
+\], $det(D F (x_0,t_0))= \frac{\partial(f_1,\dots,f_n)}{\partial(x_1,\dots,x_n)}(x_0,t_0)\neq 0 \neq 0$ and $D F (x_0,t_0)$ is invertible. Then apply the inverse function.
+
+\end{problem}
+
+\begin{proof}
+    For each \((x, t) \in V\), we define 
+    \[
+        F(x, t) = (f_1(x, t), f_2(x, t), \dots , f_n(x, t), t_1, \dots , t_n) = (f(x, t), t).
+    \] 
+    Thus, \(F(x_0, t_0) = (f(x_0, t_0), t_0) = (0, t_0)\). Now consider \(DF\), we have 
+    \[
+        DF = \begin{bmatrix}
+            \left[ \frac{\partial f_i}{\partial x_j}  \right]_{n \times n}  & B \\
+            O_{p \times n} & I_{p \times p}  \\
+        \end{bmatrix},
+    \]  
+    where \(O_{p \times n}\) is the zero matrix of size \(p \times n\). Hence,
+    \begin{align*}
+        \det (DF(x_0, t_0)) &= \det \left( \left[ \frac{\partial f_i}{\partial x_j} (x_0, t_0) \right]_{n \times n}   \right) \det (I_{p \times p}) = \det \left( \left[ \frac{\partial f_i}{\partial x_j} (x_0, t_0) \right]  \right) \\
+        &= \frac{\partial (f_1, \dots , f_n)}{\partial (x_1, \dots , x_n)}(x_0, t_0) \neq 0.
+    \end{align*} 
+    Hence, \(DF(x_0, t_0)\) is invertible. Now since \(f \in C^1\), we have \(F \in C^1\), and thus we can apply inverse function theorem to \(F\), and we know there exists an open neighborhood \(U\) of \((x_0, t_0)\) and an open neighborhood \(U^{\prime} \) of \((0, t_0)\) s.t. \(F: U \to U^{\prime} \) is a homeomorphism.
+    
+    Hence, for all \((y, t) \in U^{\prime} \) where \(y \in \mathbb{R} ^n\) and \(t \in \mathbb{R} ^p\), we can define 
+    \[
+        F^{-1}(y, t) = (h(y, t), t)
+    \]   
+    Since \((0, t_0) \in U^{\prime} \), we have \((h(0, t_0), t_0) \in U\), and thus we can compute
+    \[
+        F^{-1} (0, t_0) = (h(0, t_0), t_0) \implies (0, t_0) = F(h(0, t_0), t_0) = F(x_0, t_0).
+    \]
+    Now since \(F\) is injective on \(U\), so \(h(0, t_0) = x_0\). 
+    
+    If we let \(g(t) = h(0, t)\), then \(g(t_0) = x_0\). Now we let 
+    \[
+        W^{\prime} = \left\{ t \in \mathbb{R} ^p: (0, t) \in U^{\prime}  \right\}. 
+    \]      
+    Then if we restrict \(g\) to \(W^{\prime} \), for all \(t \in W^{\prime} \) we have 
+    \[
+        F^{-1} (0, t) = (h(0, t), t) = (g(t), t) \implies (0, t) = F(g(t), t) = (f(g(t), t), t).
+    \] 
+    This shows \(f(g(t), t) = 0\) for all \(t \in W^{\prime} \). Now we claim \(W^{\prime} \) is open. Consider 
+    \[
+        \varphi : \mathbb{R} ^p \to \mathbb{R} ^{n + p}, \quad \varphi (t) = (0, t),
+    \]    
+    then \(\varphi \) is continuous, and since \(U^{\prime} \) is open, so \(\varphi ^{-1} (U) = W^{\prime} \) is open. 
+    
+    Now since \(F^{-1} \in C^1\), we have \(h(y, t) \in C^1\), and thus \(g(t) = h(0, t) \in C^1\). Thus, we know \(g: W^{\prime} \to \mathbb{R} ^n\) is a continuously differentiable function such that 
+    \[
+        g(t_0) = x_0 \quad \text{ and } \quad f(g(t), t) = 0 \text{ for all } t \in W^{\prime}.  
+    \]    
+
+    Now we show the uniqueness. We claim that we can shrink \(W^{\prime}\) to near \(t_0\) so that such \(g\) is unique. If \(\widetilde{g}: W^{\prime}  \to \mathbb{R} ^n\) is continuously differentiable and 
+    \[
+        \widetilde{g} (t_0) = x_0 \quad \text{ and } \quad f(\widetilde{g} (t), t) = 0 \text{ for all } t \in W^{\prime} ,  
+    \]
+    then the map
+    \[
+        \phi : \mathbb{R} ^p \to \mathbb{R} ^{n + p}, \quad \phi (t) = (\widetilde{g} (t), t)
+    \]
+    is continuous. Thus, when \(t \to t_0\), we have 
+    \[
+        (\widetilde{g} (t), t) \to (\widetilde{g} (t_0), t_0) = (x_0, t_0) \in U.
+    \] 
+    Now suppose \(B((x_0, t_0), r) \subseteq U\) for some \(r > 0\), then \(W_1 = \phi ^{-1}(B((x_0, t_0), r))\) is open and for all \(t \in W_1\), \((\widetilde{g} (t), t) \in U\). Now we can pick \(W_2 = W^{\prime} \cap W_1\), which is also an open set, so that we can restrict \(g, \widetilde{g} \) on \(W_2\), and \((\widetilde{g} (t), t), (g(t), t) \in U\) for all \(t \in W_2\). Hence, for all \(t \in W_2\), 
+    \[
+        \begin{dcases}
+            F(g(t), t) = (f(g(t), t), t) = (0, t) \\
+            F(\widetilde{g} (t), t) = (f (\widetilde{g} (t), t), t) = (0, t).
+        \end{dcases}
+    \]
+    Now since \(F\) is injective on \(U\), we know \(g(t) = \widetilde{g} (t)\) for all \(t \in W_2\). Thus, we know on \(W_2\), such \(g\) is unique, which means we can pick \(W = W_2\).       
+\end{proof}
+
+\begin{problem}
+
+Prove that there exist functions \(u(x,y)\), \(v(x,y)\), and \(w(x,y)\), and an
+\(r>0\) such that \(u,v,w\) are continuously differentiable and satisfy the
+equations
+\[
+u^5+xy^2-y+w=0,
+\]
+\[
+v^5+yu^2-x+w=0,
+\]
+\[
+w^4+y^5-x^4=1
+\]
+on \(B_r(1,1)\), and
+\[
+u(1,1)=1,\qquad v(1,1)=1,\qquad w(1,1)=-1.
+\] Hint: Show that $(u,v,w,x,y)= (1,1,-1,1,1)$ satisfies these three equations above and use result in problem 3. 
+
+\end{problem}
+
+\begin{proof}
+    Let  $f = (f_1, f_2, f_3): \mathbb{R}^5 \to \mathbb{R}^3$ be a function defined by
+    \[
+    f_1(u, v, w, x, y) = u^5 + xy^2 - y + w,
+    \]
+    \[
+    f_2(u, v, w, x, y) = v^5 + yu^2 - x + w,
+    \]
+    \[
+    f_3(u, v, w, x, y) = w^4 + y^5 - x^4 - 1.
+    \]
+    Since $f_1$, $f_2$, and $f_3$ are polynomial functions, $f$ is of class $C^1$ on $\mathbb{R}^5$.\\    
+    We first check that $f=0$ at $(u, v, w, x, y) = (1, 1, -1, 1, 1)$:
+    \begin{itemize}
+        \item $f_1(1, 1, -1, 1, 1) = 1^5 + 1 \cdot 1^2 - 1 + (-1) = 0$
+        \item $f_2(1, 1, -1, 1, 1) = 1^5 + 1 \cdot 1^2 - 1 + (-1) = 0$
+        \item $f_3(1, 1, -1, 1, 1) = (-1)^4 + 1^5 - 1^4 - 1 = 0$
+    \end{itemize}
+    Hence, $f(1,1,-1,1,1)=0$.\\
+    We then show that the Jacobian determinant is not 0:
+    \[
+    \frac{\partial(f_1, f_2, f_3)}{\partial(u, v, w)} = \det \begin{pmatrix} \frac{\partial f_1}{\partial u} & \frac{\partial f_1}{\partial v} & \frac{\partial f_1}{\partial w} \\ \frac{\partial f_2}{\partial u} & \frac{\partial f_2}{\partial v} & \frac{\partial f_2}{\partial w} \\ \frac{\partial f_3}{\partial u} & \frac{\partial f_3}{\partial v} & \frac{\partial f_3}{\partial w} \end{pmatrix} = \det \begin{pmatrix} 5u^4 & 0 & 1 \\ 2yu & 5v^4 & 1 \\ 0 & 0 & 4w^3 \end{pmatrix},
+    \]
+    and thus
+    \[
+    \begin{aligned}
+    \frac{\partial(f_1, f_2, f_3)}{\partial(u, v, w)}(1,1,-1,1,1)
+    &= \det \begin{pmatrix} 5 & 0 & 1 \\ 2 & 5 & 1 \\ 0 & 0 & -4 \end{pmatrix} \\
+    &= 5 \cdot \det\begin{pmatrix} 5 & 1 \\ 0 & -4 \end{pmatrix} - 0 + 1 \cdot \det\begin{pmatrix} 2 & 5 \\ 0 & 0 \end{pmatrix} \\
+    &= -100 \neq 0.
+    \end{aligned}
+    \]
+    We apply the theorem in problem 3 with
+    \[
+    z=(u,v,w) \in \mathbb{R}^3, \qquad t=(x,y) \in \mathbb{R}^2,
+    \]
+    and choose
+    \[
+    z_0=(1,1,-1), \qquad t_0=(1,1).
+    \]
+    We get that there exists an open set $W\subset\mathbb{R}^2$ containing $t_0$ and a unique continuously differentiable function $g:W\to\mathbb{R}^3$ such that
+    \[
+    g(t_0)=z_0 \qquad \text{and} \qquad f(g(t), t)=0 \qquad \forall t \in W.
+    \]
+    Let $g(x,y) = (u(x,y), v(x,y), w(x,y))$. Since $W$ is open and $(1,1) \in W$, there exists $r>0$ such that $B_r(1,1) \subset W$. In conclusion, the continuously differentiable functions $u, v, w$ exist on $B_r(1,1)$ and satisfy the required equations.
+\end{proof}

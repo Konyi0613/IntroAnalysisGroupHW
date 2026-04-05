@@ -1,0 +1,297 @@
+\begin{problem}
+
+Let $A$ be a subset of $\mathbf{R}^n$, and let $B$ be a subset of $\mathbf{R}^m$.
+Note that the Cartesian product $\{(a,b): a\in A,\, b\in B\}$ is then a subset of
+$\mathbf{R}^{n+m}$. Show that
+$$
+m^*_{n+m}(A\times B)\le m^*_n(A)\,m^*_m(B).
+$$
+Here we adopt the convention that $c\times +\infty=+\infty\times c$ is equal to $+\infty$
+for any $0<c\le +\infty$ and equal to zero for $c=0$.
+(It is in fact true that $m^*_{n+m}(A\times B)=m^*_n(A)m^*_m(B)$, but this is
+substantially harder to prove.)
+
+\end{problem}
+
+\begin{proof}
+    For any \(\varepsilon > 0\), there exists countable collections of boxes \(\left\{ R_j \right\}_{j=1}^{\infty}, \left\{ S_j \right\}_{j=1}^{\infty}    \) s.t. 
+    \[
+        A \subseteq \bigcup_{j=1}^{\infty} R_j \text{ and } B \subseteq \bigcup_{j=1}^{\infty} S_j \text{ and } \begin{dcases}
+            \sum_{j=1}^{\infty} \mathrm{vol} (R_j) \le m_n^*(A) + \varepsilon \\
+            \sum_{j=1}^{\infty} \mathrm{vol} (S_j) \le m_m^*(B) + \varepsilon.    
+        \end{dcases}    
+    \]
+    Thus, \(\left\{ R_j \times S_j \right\}_{j=1}^{\infty} \) covers \(A \times B\), which gives 
+    \[
+        m_{n + m}^*(A \times B) \le \sum_{j=1}^{\infty } \mathrm{vol} (R_j) \mathrm{vol}(S_j) \le \left( \sum_{j=1}^{\infty} \mathrm{vol} (R_j)   \right) \left( \sum_{j=1}^{\infty} \mathrm{vol} (S_j)   \right) = \left( m_n^*(A) + \varepsilon \right) \cdot \left( m_m^*(B) + \varepsilon \right).       
+    \]  
+    Since this is true for all \(\varepsilon > 0\). Hence,
+    \[
+        m_{n + m}^* (A \times B) \le m_n^*(A) m_m^*(B).
+    \] 
+\end{proof}
+
+\begin{problem}
+
+
+\begin{itemize}
+\item[(a)] Show that if $A_1\subseteq A_2\subseteq A_3\subseteq\cdots$ is an increasing sequence
+of measurable sets (so $A_j\subseteq A_{j+1}$ for every positive integer $j$), then we have
+$$
+m\Bigl(\bigcup_{j=1}^\infty A_j\Bigr)=\lim_{j\to\infty} m(A_j).
+$$
+\item[(b)] Show that if $A_1\supseteq A_2\supseteq A_3\supseteq\cdots$ is a decreasing sequence
+of measurable sets (so $A_j\supseteq A_{j+1}$ for every positive integer $j$), and $m(A_1)<+\infty$,
+then we have
+$$
+m\Bigl(\bigcap_{j=1}^\infty A_j\Bigr)=\lim_{j\to\infty} m(A_j).
+$$
+\end{itemize}
+
+\end{problem}
+
+\begin{proof}[(a)]
+    Let $B_1=A_1$, and let $B_j = A_j \setminus A_{j-1}$ for $j \ge 2$. Then, the set $(B_j)_{j=1}^\infty$ consists of pairwise disjoint measurable sets, and we have
+    \[
+    \bigcup_{j=1}^\infty A_j = \bigcup_{j=1}^\infty B_j \quad \text{and $A_k = \bigcup_{j=1}^k B_j$ for any $k \ge 1$.}
+    \]
+    By the countable additive property, we get
+    \[
+    m(\bigcup_{j=1}^\infty A_j) = m(\bigcup_{j=1}^\infty B_j) = \sum_{j=1}^\infty m(B_j).
+    \]
+    In addition, by definition, we have
+    \[
+    \sum_{j=1}^\infty m(B_j) = \lim_{k \to \infty} \sum_{j=1}^k m(B_j).
+    \]
+    Lastly, we apply the finite additivity property:
+    \[
+    \sum_{j=1}^k m(B_j) = m(\bigcup_{j=1}^k B_j) = m(A_k).
+    \]
+    Hence, we can conclude that
+    \[
+    m(\bigcup_{j=1}^\infty A_j) = \lim_{k \to \infty} m(A_k).
+    \]    
+\end{proof}
+
+\begin{proof}[(b)]
+    Let $C_j = A_1 \setminus A_j$ for $j \ge 1$. By De Morgan's laws, we have
+    \[
+    \bigcup_{j=1}^\infty C_j = \bigcup_{j=1}^\infty (A_1 \setminus A_j) = A_1 \setminus (\bigcap_{j=1}^\infty A_j).
+    \]
+    Since the sequence $C_j$ is increasing, by (a), we get
+    \[
+    m(\bigcup_{j=1}^\infty C_j) = \lim_{j \to \infty} m(C_j).
+    \]
+    For any $j \ge 1$, $A_1=A_j \cup C_j$, and since $A_j$ and $C_j$ are disjoint, we have 
+    \[
+    m(A_1) = m(A_j) + m(C_j)
+    \]
+    by the finite additivity property. Since $m(A_1) < +\infty$, we can obtain
+    \[
+    m(C_j) = m(A_1) - m(A_j).
+    \]
+    Additionally,
+    \[
+    A_1 = (\bigcap_{j=1}^\infty A_j) \cup (\bigcup_{j=1}^\infty C_j),
+    \]
+    which gives
+    \[
+    m(\bigcup_{j=1}^\infty C_j) = m(A_1) - m(\bigcap_{j=1}^\infty A_j).
+    \]
+    Then, we get
+    \[
+    m(A_1) - m(\bigcap_{j=1}^\infty A_j) = \lim_{j \to \infty} m(C_j) = \lim_{j \to \infty} (m(A_1) - m(A_j)) = m(A_1) - \lim_{j \to \infty} m(A_j).
+    \]
+    Hence, we can conclude that
+    \[
+    m(\bigcap_{j=1}^\infty A_j) = \lim_{j \to \infty} m(A_j).
+    \]
+\end{proof}
+
+\begin{problem}
+
+Give examples showing that:
+\begin{enumerate}
+    \item a set can have boundary of outer measure $0$;
+    \item a set can have boundary of positive outer measure.
+\end{enumerate}
+
+\end{problem}
+
+\begin{proof}[1]
+    Suppose $(X, d)$ is metric space, and $X = \mathbb{R}$, $d (x,y) = \lvert x-y \rvert$, and suppose $S = \{0\}$, then $\partial S = \{0\}$, and since $S$ have finitely many elements, so $m^*(\partial S) = 0$.
+\end{proof}
+
+\begin{proof}[2]
+    Suppose $(X, d)$ is metric space, and $X = \mathbb{R}$, $d (x,y) = \lvert x-y \rvert$, and suppose $S = \mathbb{Q}$. By the density of rational number and irrational number,
+    \[
+        B(x,\varepsilon) \cap \mathbb{Q} \neq \varnothing \text{ and } B(x,\varepsilon) \cap \mathbb{R} \setminus\mathbb{Q} \neq \varnothing \quad \forall x \in \mathbb{R}, \varepsilon > 0,
+    \]
+    and hence $\partial S = \mathbb{R}$, however we know $m^*(\mathbb{R}) = \infty$ in the lecture, so $m^*(\partial S) = \infty > 0$.
+\end{proof}
+
+\begin{problem}
+
+Recall that a function $f: [a, b] \to \mathbf{R}$ is \textit{Lipschitz} if there exists $L \geq 0$ such that $|f(x) - f(y)| \leq L|x-y|$ for all $x, y \in [a, b]$. 
+Define the graph of $f$ as:
+\[
+\Gamma_f := \{(x, f(x)) : x \in [a, b]\} \subset \mathbf{R}^2.
+\]
+Prove that $m^*_2(\Gamma_f) = 0$. 
+\textit{Hint: Partition $[a, b]$ into $n$ sub-intervals and cover the corresponding pieces of the graph with rectangles. Consider the limit as $n \to \infty$.}
+
+\end{problem}
+
+\begin{proof}
+    Suppose that $(B_n)_{n=1}^{\infty}$ is the sequence of closed box cover, and define $B_n$ as
+    \[
+        B_n = \bigcup_{k=1}^n B_{n,k}
+    \],
+    where
+    \[
+        B_{n,k} = [a + \frac{b-a}{n} \cdot (k-1), a + \frac{b-a}{n} \cdot k] \times [f(a + \frac{b-a}{n} \cdot (k-1)) - \frac{L(b-a)}{n}, f(a + \frac{b-a}{n} \cdot (k-1)) + \frac{L(b-a)}{n}]
+    \]
+    Then, we show that for every $m \ge 1$, $B_m$ indeed cover $\Gamma_f$.
+    For fixed $m$, for any $x=(x_1, f(x_1)) \in \Gamma_f$, since $x_1 \in [a,b]$, there must exist some $1 \le m' \le m$ such that
+    \[
+        x_1 \in [(a + \frac{b-a}{m} \cdot (m'-1)), (a + \frac{b-a}{m} \cdot m')]
+    \]
+    And since $f$ is $L$-Lipchitz, so
+    \[
+        \lvert f(a + \frac{b-a}{m} \cdot (m'-1)) - f(x_1)\rvert \le L\lvert a + \frac{b-a}{m} \cdot (m'-1) - x_1\rvert \le L \cdot \frac{b-a}{m},
+    \]
+    and hence
+    \[
+        f(x_1) \in [(f(a + \frac{b-a}{m} \cdot (m'-1)) - L \cdot \frac{b-a}{m}), (f(a + \frac{b-a}{m} \cdot (m'-1)) + L \cdot \frac{b-a}{m})].
+    \]
+    So we can conclude that $x \in B_{m,m'}$, and hence for every $B_n$ is a collection of boxes covers $\Gamma_f$.
+
+    Then, we show that $m_2^*(\Gamma_f) = 0$. Notice that $\Gamma_f \subseteq B_n$ for every $n$, so 
+    \[
+        0 \le m_2^*(\Gamma_f) \le \sum_{k=1}^{n} \text{vol($B_{n,k}$)} \quad \text{for every $n \ge 1$}
+    \]
+    So it suffices to show that
+    \[
+        \sum_{k=1}^{n} \text{vol($B_{n,k}$)} = 0 \quad \text{as } n \to \infty 
+    \]
+    then by squeeze theorem we can conclude that $m_2^*(\Gamma_f) = 0$.
+    
+    We know that
+    \[
+        \text{vol}(B_{n,k}) = \frac{b-a}{n} \cdot \frac{2L(b-a)}{n} = 2L \frac{(b-a)^2}{n^2} \quad \text{which is independent from $k$},
+    \]
+    and hence
+    \[
+        \sum_{k=1}^{n} \text{vol($B_{n,k}$)} = n \cdot 2L \frac{(b-a)^2}{n^2} = \frac{2L(b-a)^2}{n}.
+    \]
+    So 
+    \[
+        \lim_{n \to \infty}\sum_{k=1}^{n} \text{vol($B_{n,k}$)} = 0,
+    \]
+    and hence we have proved.
+    
+\end{proof}
+
+\begin{problem}
+
+Let $A\subset \mathbf{R}$. Show that
+\[
+m_2^*(A\times\{0\})=0
+\]
+in $\mathbf{R}^2$.
+More generally, if $m_1^*(A)=0$, prove that
+\[
+m_2^*(A\times[0,1])=0.
+\]
+
+\medskip
+\noindent\textbf{Hint.}
+Start from interval coverings of $A$, then build rectangles in $\mathbf{R}^2$.
+    
+\end{problem}
+
+\begin{proof}
+    Let $A_n = A \cap [-n, n]$ for each positive integer $n$. Hence,
+    \[
+    A \times \{0\} = \bigcup_{n=1}^\infty (A_n \times \{0\}).
+    \]
+    For any $\epsilon > 0$,
+    \[
+    A_n \times \{0\} \subset (-n-\epsilon, n+\epsilon) \times (-\epsilon, \epsilon),
+    \]
+    where the area of covering rectangle is $(2n+2\epsilon)(2\epsilon)$. By definition, we have
+    \[
+    m_2^*(A_n \times \{0\}) \le (2n+2\epsilon)(2\epsilon).
+    \]
+    Since it holds for any $\epsilon > 0$, letting $\epsilon \to 0$ gives
+    \[
+    m_2^*(A_n \times \{0\}) = 0.
+    \]
+    By the countable sub-additivity property, we can conclude that
+    \[
+    m_2^*(A \times \{0\}) \le \sum_{n=1}^\infty m_2^*(A_n \times \{0\}) = \sum_{n=1}^\infty 0 = 0.
+    \]
+    To show the more general version, we let $\epsilon > 0$. Since $m_1^*(A)=0$, the definition of outer measure implies there exists a countable covering of $A$ by open intervals $(I_j)_{j=1}^\infty$ such that
+    \[
+    A \subseteq \bigcup_{j=1}^\infty I_j \quad \text{and} \quad \sum_{j=1}^\infty \text{vol}(I_j) \le \epsilon.
+    \]
+    Let $B_j=I_j \times (-\epsilon, 1+\epsilon)$. The interval $[0,1] \subset (-\epsilon, 1+\epsilon)$, so $A \times [0,1] \subset \bigcup_{j=1}^{\infty} B_j$. Since
+    \[
+    \text{vol}(B_j) = \text{vol}(I_j) \times (1 + 2\epsilon),
+    \]
+    we have
+    \[
+    \sum_{j=1}^\infty \text{vol}(B_j) = \sum_{j=1}^\infty \text{vol}(I_j)(1 + 2\epsilon) = (1 + 2\epsilon) \cdot \sum_{j=1}^\infty \text{vol}(I_j) \le (1 + 2\epsilon)\epsilon.
+    \]
+    By definition, we have
+    \[
+    m_2^*(A \times [0,1]) \le (1 + 2\epsilon)\epsilon.
+    \]
+    Since it holds for $\epsilon > 0$, letting $\epsilon \to 0$ gives
+    \[
+    m_2^*(A \times[0,1])=0.
+    \]
+\end{proof}
+
+\begin{problem}
+
+Let $\{P_j\}_{j=1}^\infty$ be a sequence of properties defined for points $x\in \mathbf{R}^n$. For each $j\in \mathbf{N}$, define the exceptional set
+\[
+E_j:=\{x\in \mathbf{R}^n : P_j(x)\text{ does not hold}\}.
+\]
+We say that $P_j$ holds \emph{outer-almost everywhere} if
+\[
+m^*(E_j)=0.
+\]
+
+Assume that each property $P_j$ holds outer-almost everywhere. Prove that the property
+\[
+P(x): \quad P_j(x)\text{ holds for every } j\in \mathbf{N}
+\]
+also holds outer-almost everywhere.
+
+Equivalently, show that the set
+\[
+E:=\{x\in \mathbf{R}^n : P_j(x)\text{ holds for every }j\in \mathbf{N}\}
+=\bigcap_{j=1}^\infty \{x\in \mathbf{R}^n : P_j(x)\text{ holds}\}
+\]
+has complement of outer measure zero; that is,
+\[
+m^*(\mathbf{R}^n\setminus E)=0.
+\]
+
+
+\end{problem}
+
+\begin{proof}
+    Note that 
+    \begin{align*}
+        E_P &\coloneqq \left\{ x \in \mathbb{R} ^n: P(x) \text{ does not hold}  \right\} = \left\{ x \in \mathbb{R} ^n: \exists j \in \mathbb{N} \text{ s.t. } P_j(x) \text{ does not hold}   \right\} \\
+        &= \left\{ x \in \mathbb{R} ^n: \exists j \in \mathbb{N} \text{ s.t. } x \in E_j  \right\} = \bigcup_{j = 1}^{\infty} E_j.    
+    \end{align*}
+    Hence,
+    \[
+        m^*(E_P) = m^* \left( \bigcup_{j=1}^{\infty} E_j  \right) \le \sum_{j=1}^{\infty} m^*(E_j) = \sum_{j = 1}^{\infty} 0 = 0.   
+    \]
+    Hence, \(m^*(E_P) = 0\), i.e. \(P\) holds outer-almost everywhere.  
+\end{proof}

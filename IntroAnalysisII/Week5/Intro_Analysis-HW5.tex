@@ -1,0 +1,197 @@
+\documentclass[addpoints]{exam}
+% leqno 將方程式編號放在左側
+
+%\printanswers
+
+\usepackage[top=2.5cm,bottom=2cm,left=2.5cm,right=2.5cm,headsep=10pt,a4paper]{geometry} % 引用頁面幾何套件，設定頁面邊界
+
+\usepackage{siunitx} % 角度
+% \input{NewCommands}
+
+\usepackage{amsmath,amssymb,amsthm} % 引用常見的數學符號與設定
+
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Definition}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{remark}{Remark}
+\newcommand{\R}{\mathbb{R}}
+
+\usepackage{lastpage} % 取得最後頁碼
+
+
+
+
+\usepackage{graphicx} % 引用圖檔內嵌入套件
+\graphicspath{{Pictures/}} % 設定圖檔目錄
+\usepackage{xcolor} %引用顏色套件
+\usepackage{enumerate}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{mdwlist} % use suspend & resume to successive enumerate
+
+\usepackage{CJKutf8} % 設定中文
+
+\def \lflr{\left\lfloor} %自定義 floor function
+\def \rflr{\right\rfloor} %自定義
+
+% question separation
+\renewcommand{\questionshook}{%
+  \setlength{\itemsep}{0.5cm}%
+}
+
+\allowdisplaybreaks %equation allowed to next page
+
+\firstpageheader{\today}
+                {}
+                {}
+\footer{}{\sf Page \thepage~of~\pageref{LastPage}}{}
+
+\begin{document}
+
+\begin{CJK*}{UTF8}{gbsn}
+% Title
+\begin{center}
+    {\Large{\bf Introduction to Mathematical Analysis II\\
+    Homework 5  Due  April 4 (Saturday), 2026\\
+    Please submit your group homework online in PDF format.\\
+You are expected to work collaboratively within your group. 
+Please do not obtain complete solutions directly from AI tools. 
+The purpose of this assignment is to develop your own mathematical reasoning and problem-solving skills. %  Homework X Brief Solution
+  }} \\ 
+    \large
+    %\text{Due date: 3/9/2023}
+\end{center}
+
+\noindent\rule{16.2cm}{0.4pt}
+
+
+\begin{questions}
+
+
+% ============ Question x ============
+\question  (20 pts)  (Exercises 7.2.2.)
+Let $A$ be a subset of $\mathbf{R}^n$, and let $B$ be a subset of $\mathbf{R}^m$.
+Note that the Cartesian product $\{(a,b): a\in A,\, b\in B\}$ is then a subset of
+$\mathbf{R}^{n+m}$. Show that
+$$
+m^*_{n+m}(A\times B)\le m^*_n(A)\,m^*_m(B).
+$$
+Here we adopt the convention that $c\times +\infty=+\infty\times c$ is equal to $+\infty$
+for any $0<c\le +\infty$ and equal to zero for $c=0$.
+(It is in fact true that $m^*_{n+m}(A\times B)=m^*_n(A)m^*_m(B)$, but this is
+substantially harder to prove.)
+
+\begin{solution}
+\end{solution}
+
+\question (15 pts) (Exercises 7.2.3.)
+
+
+\begin{itemize}
+\item[(a)] Show that if $A_1\subseteq A_2\subseteq A_3\subseteq\cdots$ is an increasing sequence
+of measurable sets (so $A_j\subseteq A_{j+1}$ for every positive integer $j$), then we have
+$$
+m\Bigl(\bigcup_{j=1}^\infty A_j\Bigr)=\lim_{j\to\infty} m(A_j).
+$$
+\item[(b)] Show that if $A_1\supseteq A_2\supseteq A_3\supseteq\cdots$ is a decreasing sequence
+of measurable sets (so $A_j\supseteq A_{j+1}$ for every positive integer $j$), and $m(A_1)<+\infty$,
+then we have
+$$
+m\Bigl(\bigcap_{j=1}^\infty A_j\Bigr)=\lim_{j\to\infty} m(A_j).
+$$
+\end{itemize}
+
+\begin{solution}
+
+\begin{enumerate}
+\item[(a)] 
+
+
+
+\bigskip
+\item[(b)] 
+
+
+
+
+\end{enumerate} 
+\end{solution}
+
+
+
+\question (15 pts)
+Give examples showing that:
+\begin{enumerate}
+    \item a set can have boundary of outer measure $0$;
+    \item a set can have boundary of positive outer measure.
+\end{enumerate}
+
+\begin{solution} 
+
+\end{solution}
+
+\question (20 pts) 
+Recall that a function $f: [a, b] \to \mathbf{R}$ is \textit{Lipschitz} if there exists $L \geq 0$ such that $|f(x) - f(y)| \leq L|x-y|$ for all $x, y \in [a, b]$. 
+Define the graph of $f$ as:
+\[
+\Gamma_f := \{(x, f(x)) : x \in [a, b]\} \subset \mathbf{R}^2.
+\]
+Prove that $m^*_2(\Gamma_f) = 0$. 
+\textit{Hint: Partition $[a, b]$ into $n$ sub-intervals and cover the corresponding pieces of the graph with rectangles. Consider the limit as $n \to \infty$.}
+
+\begin{solution} 
+ 
+ \end{solution}
+ 
+\question (15 pts) Let $A\subset \mathbf{R}$. Show that
+\[
+m_2^*(A\times\{0\})=0
+\]
+in $\mathbf{R}^2$.
+More generally, if $m_1^*(A)=0$, prove that
+\[
+m_2^*(A\times[0,1])=0.
+\]
+
+\medskip
+\noindent\textbf{Hint.}
+Start from interval coverings of $A$, then build rectangles in $\mathbf{R}^2$.
+\begin{solution} 
+
+\end{solution}
+
+\question (15 pts) Let $\{P_j\}_{j=1}^\infty$ be a sequence of properties defined for points $x\in \mathbf{R}^n$. For each $j\in \mathbf{N}$, define the exceptional set
+\[
+E_j:=\{x\in \mathbf{R}^n : P_j(x)\text{ does not hold}\}.
+\]
+We say that $P_j$ holds \emph{outer-almost everywhere} if
+\[
+m^*(E_j)=0.
+\]
+
+Assume that each property $P_j$ holds outer-almost everywhere. Prove that the property
+\[
+P(x): \quad P_j(x)\text{ holds for every } j\in \mathbf{N}
+\]
+also holds outer-almost everywhere.
+
+Equivalently, show that the set
+\[
+E:=\{x\in \mathbf{R}^n : P_j(x)\text{ holds for every }j\in \mathbf{N}\}
+=\bigcap_{j=1}^\infty \{x\in \mathbf{R}^n : P_j(x)\text{ holds}\}
+\]
+has complement of outer measure zero; that is,
+\[
+m^*(\mathbf{R}^n\setminus E)=0.
+\]
+
+
+\begin{solution} 
+
+\end{solution}
+
+\end{questions}
+\end{CJK*}
+\end{document}
+

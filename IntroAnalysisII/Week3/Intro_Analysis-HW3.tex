@@ -1,0 +1,367 @@
+\documentclass[addpoints]{exam}
+% leqno 將方程式編號放在左側
+
+%\printanswers
+
+\usepackage[top=2.5cm,bottom=2cm,left=2.5cm,right=2.5cm,headsep=10pt,a4paper]{geometry} % 引用頁面幾何套件，設定頁面邊界
+
+\usepackage{siunitx} % 角度
+% \input{NewCommands}
+
+\usepackage{amsmath,amssymb,amsthm} % 引用常見的數學符號與設定
+
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Definition}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{remark}{Remark}
+\newcommand{\R}{\mathbb{R}}
+
+\usepackage{lastpage} % 取得最後頁碼
+
+
+
+
+\usepackage{graphicx} % 引用圖檔內嵌入套件
+\graphicspath{{Pictures/}} % 設定圖檔目錄
+\usepackage{xcolor} %引用顏色套件
+\usepackage{enumerate}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{mdwlist} % use suspend & resume to successive enumerate
+
+\usepackage{CJKutf8} % 設定中文
+
+\def \lflr{\left\lfloor} %自定義 floor function
+\def \rflr{\right\rfloor} %自定義
+
+% question separation
+\renewcommand{\questionshook}{%
+  \setlength{\itemsep}{0.5cm}%
+}
+
+\allowdisplaybreaks %equation allowed to next page
+
+\firstpageheader{\today}
+                {}
+                {}
+\footer{}{\sf Page \thepage~of~\pageref{LastPage}}{}
+
+\begin{document}
+
+\begin{CJK*}{UTF8}{gbsn}
+% Title
+\begin{center}
+    {\Large{\bf Introduction to Mathematical Analysis II\\
+    Homework 3  Due  March 20  (Friday), 2026\\
+    Please submit your group homework online in PDF format.\\
+You are expected to work collaboratively within your group. 
+Please do not obtain complete solutions directly from AI tools. 
+The purpose of this assignment is to develop your own mathematical reasoning and problem-solving skills. %  Homework X Brief Solution
+  }} \\ 
+    \large
+    %\text{Due date: 3/9/2023}
+\end{center}
+
+\noindent\rule{16.2cm}{0.4pt}
+
+
+\begin{questions}
+
+
+% ============ Question x ============
+\question  (20 pts)  
+\textbf{Exercise 6.6.8.}
+Let $(X,d)$ be a complete metric space, and let $f:X\to X$ and $g:X\to X$ be two strict
+contractions on $X$ with contraction coefficients $c$ and $c'$, respectively.
+From Theorem 6.6.4 we know that $f$ has some fixed point $x_0$, and $g$ has some fixed point
+$y_0$. Suppose we know that there is an $\varepsilon>0$ such that
+$$
+d(f(x),g(x))\le \varepsilon
+\qquad \text{for all } x\in X
+$$
+(i.e.\ $f$ and $g$ are within $\varepsilon$ of each other in the uniform metric).
+Show that
+$$
+d(x_0,y_0)\le \frac{\varepsilon}{1-\min(c,c')}.
+$$
+Thus nearby contractions have nearby fixed points.
+
+\begin{solution} 
+\begin{enumerate}
+\item[(a)] 
+
+
+
+\bigskip
+\item[(b)] 
+
+
+\bigskip
+\item[(c)] 
+
+\end{enumerate}
+
+ \end{solution}
+
+\question (20 pts) 
+Let \(f:S\to S\) be a function from a metric space \((S,d)\) into itself such that
+\[
+d\bigl(f(x),f(y)\bigr)<d(x,y)
+\]
+whenever \(x\ne y\).
+
+\begin{itemize}
+\item[(a)] Prove that \(f\) has at most one fixed point, and give an example of such an \(f\) with no fixed point.
+\item[(b)] If \(S\) is compact, prove that \(f\) has exactly one fixed point. \emph{Hint.} Show that
+\[
+g(x)=d(x,f(x))
+\]
+attains its minimum on \(S\).
+\item[(c)] Give an example with \(S\) compact in which \(f\) is not a contraction.
+\end{itemize}
+
+
+\begin{solution}
+
+\begin{enumerate}
+\item[(a)] 
+
+
+
+\bigskip
+\item[(b)] 
+
+
+
+
+\end{enumerate} 
+\end{solution}
+
+\question (20 pts) Let \(f:S\to S\) be a function from a complete metric space \((S,d)\) into itself. Assume there is a real sequence \(\{\alpha_n\}\) which converges to \(0\) such that
+\[
+d\bigl(f^n(x),f^n(y)\bigr)\le \alpha_n d(x,y)
+\]
+for all \(n\ge 1\) and all \(x,y\) in \(S\), where \(f^n\) is the \(n\)th iterate of \(f\); that is,
+\[
+f^1(x)=f(x),\qquad f^{n+1}(x)=f(f^n(x)) \qquad \text{for } n\ge 1.
+\]
+Prove that \(f\) has a unique fixed point. \emph{Hint.} Apply the fixed-point theorem to \(f^m\) for a suitable \(m\).
+
+
+\begin{solution} 
+ 
+ \end{solution}
+
+\question (20 pts) \textbf{Exercise 6.7.3.}
+Let $f:\mathbf{R}^n\to\mathbf{R}^n$ be a continuously differentiable function such that
+$f'(x)$ is an invertible linear transformation for every $x\in\mathbf{R}^n$.
+Show that whenever $V$ is an open set in $\mathbf{R}^n$, the set $f(V)$ is also open.
+(\emph{Hint:} use the inverse function theorem.)
+
+
+\begin{solution} 
+
+\end{solution}
+
+\question (20 pts) Let \(f:U\subset \mathbf{R}^n\to \mathbf{R}^n\) satisfy the hypotheses of Theorem~6.7.2, and let
+$$
+A:=f'(x_0).
+$$
+Throughout this problem, for a linear map \(T:\mathbf{R}^n\to \mathbf{R}^n\), define the Frobenius norm by
+$$
+\|T\|:=\sqrt{\sum_{i,j=1}^n t_{ij}^2}.
+$$
+
+This problem develops a quantitative version of the local invertibility statement in the inverse function theorem.
+
+\begin{itemize}
+\item[(a)] Show that there exists \(r>0\) such that for all \(x\in B(x_0,r)\),
+$$
+\|f'(x)-A\|\le \frac{1}{2\|A^{-1}\|}.
+$$
+(\emph{Hint:} use continuity of \(f'\) at \(x_0\).)
+
+\item[(b)] Prove that for all \(x,y\in B(x_0,r)\),
+$$
+\|f(x)-f(y)-A(x-y)\|
+\le
+\frac{1}{2\|A^{-1}\|}\,\|x-y\|.
+$$
+(\emph{Hint:} consider the function \(g(z):=f(z)-Az\), and estimate \(g(x)-g(y)\) along the line segment joining \(x\) and \(y\).)
+
+\item[(c)] Deduce that for all \(x,y\in B(x_0,r)\),
+$$
+\frac{1}{2\|A^{-1}\|}\,\|x-y\|
+\;\le\;
+\|f(x)-f(y)\|
+\;\le\;
+\left(\|A\|+\frac{1}{2\|A^{-1}\|}\right)\|x-y\|.
+$$
+
+\item[(d)] Conclude that the restriction of \(f\) to \(B(x_0,r)\) is one-to-one, and hence that the local inverse
+$$
+f^{-1}:f(B(x_0,r))\to B(x_0,r)
+$$
+is Lipschitz, with
+$$
+\|f^{-1}(u)-f^{-1}(v)\|
+\le
+2\|A^{-1}\|\,\|u-v\|
+\qquad
+\text{for all }u,v\in f(B(x_0,r)).
+$$
+
+\item[(e)] Explain briefly how the estimate in part (d) strengthens the usual qualitative conclusion of the inverse function theorem.
+\end{itemize}
+\begin{solution} 
+
+\end{solution}
+
+
+\end{questions}
+
+You can do the following problems to practice. You don't have to submit the following problems.
+
+\begin{questions}
+
+\question   Let  \(K\subseteq \mathbf{R}^n \) be a compact subset. Consider a function \(f:K\to K\) satisfying
+\[
+\forall x,y\in K,\qquad \|f(x)-f(y)\|\ge \|x-y\|.
+\]
+
+Fix \(a_0,b_0\in K\), and define two iterative sequences as follows
+\[
+\forall n\ge 0,\qquad a_{n+1}=f(a_n)\qquad\text{and}\qquad b_{n+1}=f(b_n).
+\]
+
+\begin{itemize}
+\item[(1)] Show that for all \(\varepsilon>0\) and every integer \(p\ge 1\), there exists \(k\ge p\) such that
+\[
+\|a_k-a_0\|<\varepsilon
+\qquad\text{and}\qquad
+\|b_k-b_0\|<\varepsilon.
+\]
+
+\item[(2)] Deduce  that \(f(K)\) is dense in \(K\).
+
+\item[(3)] Consider
+\[
+u_n=\|a_n-b_n|\qquad\text{for }n\ge 0.
+\]
+Show that \((u_n)_{n\ge 0}\) is eventually constant.
+
+\item[(4)] Deduce that \(f\) is an isometry (i.e. $d(f(x),f(y))=d(x,y)$), so injective.
+
+\item[(5)] Show that \(f\) is surjective.
+\end{itemize}
+
+\begin{solution}
+
+\end{solution}
+
+\question Let $f:\mathbf{R}^2\to\mathbf{R}^2$ be defined by
+\[
+f(x,y):=
+\begin{cases}
+(x,\; y + x^2\sin(1/x^2)), & x\neq 0,\\
+(x,\; y), & x=0.
+\end{cases}
+\]
+\begin{itemize}
+\item[(a)] Show that $f$ is differentiable everywhere, and compute $Df(0,0)$.
+\item[(b)] Show that $Df(0,0)$ is invertible.
+\item[(c)] Show that $f$ is not one-to-one on \emph{any} neighborhood of $(0,0)$.
+(\emph{Hint:} for $x\neq 0$, the map translates vertical lines $x=\text{const}$ by an amount depending on $x$; produce two distinct points $(x,y_1)$ and $(x,y_2)$ that are mapped to the same image for $x$ arbitrarily small.)
+\item[(d)] Conclude that the hypothesis ``$f$ is continuously differentiable'' in Theorem~6.7.2 cannot be weakened to mere differentiability.
+\end{itemize}
+
+\question
+Define $f:\mathbf{R}^2\to\mathbf{R}^2$ by
+\[
+f(x,y):=\bigl(e^x\cos y,\; e^x\sin y\bigr).
+\]
+\begin{itemize}
+\item[(a)] Compute the Jacobian matrix $Df(x,y)$ and show that $Df(x_0,y_0)$ is invertible for every $(x_0,y_0)\in\mathbf{R}^2$.
+\item[(b)] Let $(u_0,v_0)=f(x_0,y_0)$.  Use Theorem~6.7.2 to conclude that $f$ is locally invertible near $(x_0,y_0)$.
+Describe explicitly an open neighborhood $V$ of $(u_0,v_0)$ on which a local inverse can be written using polar coordinates.
+\item[(c)] Compute $(f^{-1})'(u_0,v_0)$ by the formula
+\[
+(f^{-1})'(f(x_0,y_0))=(f'(x_0,y_0))^{-1},
+\]
+and verify your answer by differentiating your explicit inverse from part (b).
+\end{itemize}
+
+
+\end{questions}
+\end{CJK*}
+\end{document}
+
+\question   
+
+\begin{solution}
+
+\end{solution}
+
+\question 
+
+
+
+\begin{solution}
+
+\end{solution}
+
+\question
+\begin{solution}
+
+\end{solution}
+
+
+
+
+
+%
+% \appendix
+% \section{}
+
+
+\question
+
+\begin{exercise}[3.15]
+Let \((V,\|\cdot\|)\) be a normed vector space and \(K\subseteq V\) be a compact subset. Consider a function \(f:K\to K\) satisfying
+\[
+\forall x,y\in K,\qquad \|f(x)-f(y)\|\ge \|x-y\|.
+\]
+
+Fix \(a_0,b_0\in K\), and define two iterative sequences as follows
+\[
+\forall n\ge 0,\qquad a_{n+1}=f(a_n)\qquad\text{and}\qquad b_{n+1}=f(b_n).
+\]
+
+\begin{itemize}
+\item[(1)] Show that for all \(\varepsilon>0\) and every integer \(p\ge 1\), there exists \(k\ge p\) such that
+\[
+\|a_k-a_0\|<\varepsilon
+\qquad\text{and}\qquad
+\|b_k-b_0\|<\varepsilon.
+\]
+
+\item[(2)] Deduce from the previous question that \(f(K)\) is dense in \(K\).
+
+\item[(3)] Consider
+\[
+u_n=\|a_n-b_n|\qquad\text{for }n\ge 0.
+\]
+Show that \((u_n)_{n\ge 0}\) is eventually constant.
+
+\item[(4)] Deduce that \(f\) is an isometry, so injective.
+
+\item[(5)] Show that \(f\) is surjective.
+\end{itemize}
+\end{exercise}
+
+
+
+\begin{solution}
+
+\end{solution}

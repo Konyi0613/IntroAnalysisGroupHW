@@ -1,0 +1,418 @@
+\begin{problem}
+    \textbf{Exercise 6.6.8.}
+    Let $(X,d)$ be a complete metric space, and let $f:X\to X$ and $g:X\to X$ be two strict
+    contractions on $X$ with contraction coefficients $c$ and $c'$, respectively.
+    From Theorem 6.6.4 we know that $f$ has some fixed point $x_0$, and $g$ has some fixed point
+    $y_0$. Suppose we know that there is an $\varepsilon>0$ such that
+    $$
+    d(f(x),g(x))\le \varepsilon
+    \qquad \text{for all } x\in X
+    $$
+    (i.e.\ $f$ and $g$ are within $\varepsilon$ of each other in the uniform metric).
+    Show that
+    $$
+    d(x_0,y_0)\le \frac{\varepsilon}{1-\min(c,c')}.
+    $$
+    Thus nearby contractions have nearby fixed points.
+\end{problem}
+
+\begin{proof}
+    We want to show that
+    \[
+        d(x_0, y_0) \le \frac{\varepsilon}{1-c} \quad \text{and} \quad d(x_0, y_0) \le \frac{\varepsilon}{1-c'},
+    \]
+    then we can conclude that 
+    \[
+        d(x_0, y_0) \le \frac{\varepsilon}{1-\min{(c,c')}}.
+    \]
+    For $d(x_0, y_0) \le \frac{\varepsilon}{1-c}$ part:
+    \[
+        \begin{aligned}
+            d(x_0,y_0) &\le d(x_0, f(y_0)) + d(f(y_0), y_0) \\
+            &= d(f(x_0), f(y_0)) + d(f(y_0), g(y_0)) \\
+            &\le c\cdot d(x_0,y_0) + \varepsilon,
+        \end{aligned}
+    \]
+    So we can conclude that 
+    \[
+        d(x_0, y_0) \le \frac{\varepsilon}{1-c}.
+    \]
+    For $d(x_0, y_0) \le \frac{\varepsilon}{1-c'}$ part:
+    \[
+        \begin{aligned}
+            d(x_0,y_0) &\le d(x_0, g(x_0)) + d(g(x_0), y_0) \\
+            &= d(f(x_0), g(x_0)) + d(g(x_0), g(y_0)) \\
+            &\le \varepsilon + c'\cdot d(x_0,y_0),
+        \end{aligned}
+    \]
+    So we can conclude that 
+    \[
+        d(x_0, y_0) \le \frac{\varepsilon}{1-c'}.
+    \]
+    And by combining these two constraints we can get the final result that
+    \[
+        d(x_0, y_0) \le \frac{\varepsilon}{1-\min{(c,c')}}.
+    \]
+\end{proof}
+
+\begin{problem}
+    Let \(f:S\to S\) be a function from a metric space \((S,d)\) into itself such that
+    \[
+    d\bigl(f(x),f(y)\bigr)<d(x,y)
+    \]
+    whenever \(x\ne y\).
+    
+    \begin{itemize}
+    \item[(a)] Prove that \(f\) has at most one fixed point, and give an example of such an \(f\) with no fixed point.
+    \item[(b)] If \(S\) is compact, prove that \(f\) has exactly one fixed point. \emph{Hint.} Show that
+    \[
+    g(x)=d(x,f(x))
+    \]
+    attains its minimum on \(S\).
+    \item[(c)] Give an example with \(S\) compact in which \(f\) is not a strict contraction.
+    \end{itemize}
+\end{problem}
+
+\begin{proof}[(a)]
+    We prove by contradiction. Suppose there exist two distinct fixed points $x, y \in S$. We have:
+    \[
+    d(x, y) = d(f(x), f(y)) < d(x, y),
+    \]
+    which is a contradiction. Hence, $f$ has at most one fixed point.\\
+    To give an example, let $S=[1,\infty)$ equipped with $d(x,y)=|x-y|$. Define $f(x)=x+\frac{1}{x}$. For any $x \neq y \in S$, the Mean Value Theorem says that there exists a $c>1$ between $x$ and $y$ such that $|f(x)-f(y)|=|f'(c)| \cdot |x-y|$. Since $f'(c)=1-\frac{1}{c^2}$, when $c>1$, $0<f'(c)<1$. Hence, $|f(x)-f(y)|<|x-y|$. However, if we want to look for a fixed point where $f(x)=x$, we get $x+\frac{1}{x}=x$. This implies $\frac{1}{x}=0$, which has no real solution. Hence, it has no fixed point.
+\end{proof}
+
+\begin{proof}[(b)]
+    Let $g: S \to \mathbb{R}$ be a function where $g(x)=d(x,f(x))$. We first show that $g$ is continuous. For any $x,y \in S$, we have
+    \[
+    d(x, f(x)) \le d(x, y) + d(y, f(y)) + d(f(y), f(x)),
+    \]
+    implying
+    \[
+    d(x,f(x))-d(y,f(y)) \le d(x,y)+d(f(x),f(y))<2d(x,y).
+    \]
+    By symmetry, we have
+    \[
+    |g(x)-g(y)|<2d(x,y),
+    \]
+    and this shows that $g$ is uniformly continuous, and thus continuous.\\
+    Since $S$ is compact, the continuous function $g$ must attain its global minimum at some point $x_0 \in S$ by the Extreme Value Theorem. We claim that the minimum value $g(x_0)=0$. We prove this by contradiction. Suppose $g(x_0)>0$, meaning that $x_0 \neq f(x_0)$, and we have:
+    \[
+    g(f(x_0)) = d(f(x_0), f(f(x_0))) < d(x_0, f(x_0)) = g(x_0).
+    \]
+    This contradicts the fact that $x_0$ is the point where $g$ attains its global minimum. Hence, $x_0$ is a fixed point, and by (a), it is the unique fixed point.
+\end{proof}
+
+\begin{proof}[(c)]
+    Let $S=[0,1]$ equipped with $d(x,y)=|x-y|$. We define $f:S \to S$ by $f(x)=x-x^2$. For any $x,y \in S$, where $x \neq y$, the Mean Value Theorem tells us that 
+    \[
+    |f(x)-f(y)|=|f'(c)| \cdot |x-y|
+    \]
+    for some $c$ between $x$ and $y$. Since 
+    \[
+    f'(x)=1-2x \qquad \forall c \in (0,1),
+    \]
+    we have $|f'(c)|<1$, implying 
+    \[
+    |f(x)-f(y)|<|x-y|.
+    \]
+    We now suppose $f$ is strictly contraction, so there exists $0<c<1$ such that 
+    \[
+    |f(x)-f(y)| \le c \cdot |x-y| \qquad \forall x,y \in [0,1].
+    \]
+    Since $f(0)=0$, for $0 < x \le 1$, we have
+    \[
+    |\frac{f(x)-f(0)}{x-0}| \le c < 1.
+    \]
+    However, 
+    \[
+    \lim_{x \to 0} \frac{|f(x) - f(0)|}{|x-0|}=f'(0)=1.
+    \]
+    Hence, $|1| \le c < 1$, which contradicts the assumption, so it is not strict contraction.
+\end{proof}
+
+\begin{problem}
+    Let \(f:S\to S\) be a function from a complete metric space \((S,d)\) into itself. Assume there is a real sequence \(\{\alpha_n\}\) which converges to \(0\) such that
+    \[
+    d\bigl(f^n(x),f^n(y)\bigr)\le \alpha_n d(x,y)
+    \]
+    for all \(n\ge 1\) and all \(x,y\) in \(S\), where \(f^n\) is the \(n\)th iterate of \(f\); that is,
+    \[
+    f^1(x)=f(x),\qquad f^{n+1}(x)=f(f^n(x)) \qquad \text{for } n\ge 1.
+    \]
+    Prove that \(f\) has a unique fixed point. \emph{Hint.} Apply the fixed-point theorem to \(f^m\) for a suitable \(m\).
+\end{problem}
+
+\begin{proof}
+    \[
+        (\alpha_n) \to 0 \implies \exists N \text{ such that } \forall k \ge N, \alpha_k < \frac{1}{2}
+    \]
+    We choose $m = N + 1016$ in this problem.
+    
+    First, we show that $f$ has the fixed point.
+
+    Define $g : S \to S$ by $g = f^m$, since
+    \[
+        d(f^m(x), f^m(y)) = d(g(x), g(y)) \le \alpha_m d(x,y) < \frac{1}{2}d(x,y),
+    \]
+    so $g$ is a strict contraction mapping. And since that $(S, d)$ is a complete metric space, fixed-point theorem tell us exist unique $x^*$ such that $f^m(x^*) = g(x^*) = x^*$. And notice that
+    \[
+        g(f(x^*)) = f^{m+1}(x^*) = f(f^m(x^*)) = f(x^*),
+    \]
+    so $f(x^*)$ is also the fixed point of $g$, and hence $f(x^*) = x^*$, and this show that $x^*$ is the fixed point of $f$.
+    % Choose any $x_0 \in S$, we define the sequence that $x_1 = f(x_0), x_2 = f(x_1), \cdots$, For $n \ge m$, we have:
+    % \[
+    %     \begin{aligned}
+    %         d(x_{n+1}, x_n) \le d(f(x_n), f(x_{n-1})) &\le \alpha_n d(x_n, x_{n-1})  \le \cdots \le \big(\prod_{k=m}^{n} \alpha_k \big) d(x_m, x_{m-1}) \\
+    %         &\le (\frac{1}{2})^{n-m+1} d(x_m, x_{m-1}) 
+    %     \end{aligned}
+    % \]
+    % And notice that given $b > a > m$:
+    % \[
+    %     \begin{aligned}
+    %         d(x_a, x_b) \le \sum_{k=a}^{b-1} d(x_k, x_{k+1}) &\le \sum_{k=a}^{b-1} (\frac{1}{2})^{k-m+1} d(x_m, x_{m-1}) \\
+    %         &\le 2 \cdot (\frac{1}{2})^{a-m+1} d(x_m, x_{m-1}) \to 0 \text{ as } a \to \infty
+    %     \end{aligned}
+    % \]
+    % So $(x_n)$ is a Cauchy sequence in $S$.
+
+    % And since $S$ is complete, so $\lim_{n \to \infty} x_n$ exists and we denote its limit by $x^*$.
+
+    % Then we show that $f(x^*) = x^*$, by trianguler inequality:
+    % \[
+    %     \begin{aligned}
+    %         d(x^*, f(x^*)) &\le \lim_{n \to \infty} (d(x_*, f(x_n)) + d(f(x_n), f(x^*))) \\
+    %         &\le 0 + \alpha_1 \lim_{n \to \infty} d(x_n, x^*) \\
+    %         &\le 0 + \alpha_1 \cdot 0 = 0
+    %     \end{aligned}
+    % \]
+    So $f$ indeed has a fixed point.
+
+    Then we show that the fixed point of $f$ is unique. Suppose that $x, y$ are both fixed point of $f$. Since
+    \[
+        d(f^m(x), f^m(y)) \le \alpha_m d(x,y) \text{ and } d(f^m(x), f^m(y)) = d(x,y)
+    \]
+    We can get
+    \[
+        d(x,y) \le \alpha_md(x,y) \qquad \text{where } \alpha_m < \frac{1}{2},
+    \]
+    and this force $d(x, y) = 0$, so $x = y$.
+\end{proof}
+
+\begin{problem}
+    \textbf{Exercise 6.7.3.}
+    Let $f:\mathbf{R}^n\to\mathbf{R}^n$ be a continuously differentiable function such that
+    $f'(x)$ is an invertible linear transformation for every $x\in\mathbf{R}^n$.
+    Show that whenever $V$ is an open set in $\mathbf{R}^n$, the set $f(V)$ is also open.
+    (\emph{Hint:} use the inverse function theorem.)
+\end{problem}
+
+\begin{proof}
+Let \(y \in f(V)\). Then there exists \(x \in V\) such that
+\[
+f(x)=y.
+\]
+Since \(f \in C^1\) and \(f'(x)\) is invertible, by the Inverse Function Theorem, there exist open sets \(U,W \subset \mathbb{R}^n\) such that
+\[
+x \in U, \qquad y \in W,
+\]
+and the restricted map
+\[
+f|_U : U \to W
+\]
+is a bijection with continuous inverse.
+Since \(U\) and \(V\) are open in \(\mathbb{R}^n\), the set \(U \cap V\) is open in \(\mathbb{R}^n\), hence open in \(U\). Because \(f|_U : U \to W\) is a homeomorphism, the image
+\[
+f(U \cap V)
+\]
+is open in \(W\), and therefore open in \(\mathbb{R}^n\).
+Additionally, since \(x \in U \cap V\), we have
+\[
+y=f(x)\in f(U \cap V).
+\]
+Moreover, since \(U \cap V \subseteq V\), it follows that
+\[
+f(U \cap V)\subseteq f(V).
+\]
+Hence, we have found an open set \(f(U \cap V)\) such that
+\[
+y \in f(U \cap V)\subseteq f(V).
+\]
+So \(y\) is an interior point of \(f(V)\). Since \(y\) was arbitrary, every point of \(f(V)\) is an interior point. Therefore, \(f(V)\) is open.
+\end{proof}
+
+\begin{problem}
+    Let \(f:U\subset \mathbf{R}^n\to \mathbf{R}^n\) satisfy the hypotheses of Theorem~6.7.2, and let
+    $$
+    A:=f'(x_0).
+    $$
+    Throughout this problem, for a linear map \(T:\mathbf{R}^n\to \mathbf{R}^n\), define the Frobenius norm by
+    $$
+    \|T\|:=\sqrt{\sum_{i,j=1}^n t_{ij}^2}.
+    $$
+    
+    This problem develops a quantitative version of the local invertibility statement in the inverse function theorem.
+    
+    \begin{itemize}
+    \item[(a)] Show that there exists \(r>0\) such that for all \(x\in B(x_0,r)\),
+    $$
+    \|f'(x)-A\|\le \frac{1}{2\|A^{-1}\|}.
+    $$
+    (\emph{Hint:} use continuity of \(f'\) at \(x_0\).)
+    
+    \item[(b)] Prove that for all \(x,y\in B(x_0,r)\),
+    $$
+    \|f(x)-f(y)-A(x-y)\|
+    \le
+    \frac{1}{2\|A^{-1}\|}\,\|x-y\|.
+    $$
+    (\emph{Hint:} consider the function \(g(z):=f(z)-Az\), and estimate \(g(x)-g(y)\) along the line segment joining \(x\) and \(y\).)
+    
+    \item[(c)] Deduce that for all \(x,y\in B(x_0,r)\),
+    $$
+    \frac{1}{2\|A^{-1}\|}\,\|x-y\|
+    \;\le\;
+    \|f(x)-f(y)\|
+    \;\le\;
+    \left(\|A\|+\frac{1}{2\|A^{-1}\|}\right)\|x-y\|.
+    $$
+    
+    \item[(d)] Conclude that the restriction of \(f\) to \(B(x_0,r)\) is one-to-one, and hence that the local inverse
+    $$
+    f^{-1}:f(B(x_0,r))\to B(x_0,r)
+    $$
+    is Lipschitz, with
+    $$
+    \|f^{-1}(u)-f^{-1}(v)\|
+    \le
+    2\|A^{-1}\|\,\|u-v\|
+    \qquad
+    \text{for all }u,v\in f(B(x_0,r)).
+    $$
+    
+    \item[(e)] Explain briefly how the estimate in part (d) strengthens the usual qualitative conclusion of the inverse function theorem.
+    \end{itemize}
+\end{problem}
+\begin{proof}[(a)]
+    Consider \(g(x) \coloneqq f^{\prime} (x)\), then \(g\) is a linear map and thus differentiable at \(x_0\), so \(g\) is continuous at \(x_0\). Thus, pick \(\varepsilon = \frac{1}{2 \vert A^{-1} \vert }\), we know there exists \(\delta > 0\) s.t. \(\lVert x - x_0 \rVert < \delta  \) implies
+    \[
+        \lVert g(x) - g(x_0) \rVert = \lVert f^{\prime} (x) - f^{\prime} (x_0) \rVert = \lVert f^{\prime} (x) - A \rVert  \le \varepsilon = \frac{1}{2 \lVert A^{-1} \rVert}.
+    \]
+    Hence, we can pick \(r\) as \(\delta \).         
+\end{proof}
+
+\begin{proof}[(b)]
+    Let \(g(z) \coloneqq f(z) - Az\), then \(g\) is differentiable on \(U\) since \(f\) is continuously differentiable on \(U\) and \(A\) is a linear map. By (a), we know
+    \[
+        \lVert g^{\prime} (z) \rVert \le \frac{1}{2 \lVert A^{-1} \rVert } \text{ for } z \in B(x_0, r).  
+    \]     
+    Consider the line segment \(\gamma (t) = y + t(x - y), t \in [0, 1]\), then \(\gamma (t) \in B(x_0, r)\) for all \(t \in [0, 1]\) since
+    \[
+        \lVert \gamma (t) - x_0 \rVert = \lVert (1-t)y + tx - x_0 \rVert \le \lVert (1-t)y - (1-t)x_0 \rVert + \lVert tx - tx_0 \rVert < (1-t)r + tr = r.  
+    \]
+    Now let \(h(t) = g(\gamma (t))\), then \(h(1) = g(x)\) and \(h(0) = g(y)\). Note that 
+    \[
+        g(x) - g(y) = h(1) - h(0) = \int _0^1 h^{\prime} (t) \, \mathrm{d} t = \int _0^1 g^{\prime} (\gamma (t)) (x-y) \, \mathrm{d} t.  
+    \]  
+    Thus,
+    \begin{align*}
+        \lVert g(x) - g(y) \rVert &= \left\lVert \int _0^1 g^{\prime} (\gamma (t))(x-y) \, \mathrm{d} t  \right\rVert \le \int _0^1 \left\lVert g^{\prime} (\gamma (t))(x-y) \right\rVert \, \mathrm{d} t \le \int _0^1 \lVert g^{\prime} (\gamma (t)) \rVert \cdot \lVert (x-y) \rVert \, \mathrm{d} t.       
+    \end{align*}
+    Since we have 
+    \[
+        \lVert g^{\prime} (z) \rVert \le \frac{1}{2 \lVert A^{-1} \rVert } \text{ for } z \in B(x_0, r)  
+    \]
+    and \(\gamma (t) \in B(x_0, r)\) for all \(t \in [0, 1]\), so 
+    \[
+        \lVert g(x) - g(y) \rVert \le \int _0^1 \lVert g^{\prime} (\gamma (t)) \rVert \cdot \lVert (x-y) \rVert \, \mathrm{d} t \le \int _0^1 \frac{1}{2\lVert A^{-1} \rVert } \cdot \lVert x - y \rVert \, \mathrm{d} t = \frac{1}{2\lVert A^{-1} \rVert } \cdot \lVert x - y \rVert.    
+    \]
+    Now since 
+    \[
+        \lVert g(x) - g(y) \rVert = \lVert f(x) - f(y) - A(x-y) \rVert,  
+    \]  
+    we have
+    \[
+        \lVert f(x) - f(y) - A(x-y) \rVert \le \frac{1}{2\lVert A^{-1} \rVert } \lVert x - y \rVert.  
+    \]
+\end{proof}
+
+\begin{proof}[(c)]
+    We first show the upper bound. Similar as (b), we let \(\gamma (t) = x + t(x-y)\) for \(t \in [0, 1]\), then \(\gamma (t) \in B(x_0, r)\) for all \(t \in [0, 1]\) and if we let \(h(t) = f(\gamma (t))\), then \(h(1) = f(x)\) and \(h(0) = f(y)\), and we have 
+    \[
+        f(x) - f(y) = h(1) - h(0) = \int _0^1 h^{\prime} (t) \, \mathrm{d} t = \int _0^1 f^{\prime} (\gamma (t))(x-y) \, \mathrm{d} t.  
+    \]       
+    Hence, we have 
+    \begin{align*}
+        \lVert f(x) - f(y) \rVert &= \left\lVert \int _0^1 f^{\prime} (\gamma (t))(x-y) \, \mathrm{d} t \right\rVert \le \int _0^1 \left\lVert f^{\prime} (\gamma (t))(x-y) \right\rVert \, \mathrm{d} t \le \int _0^1 \lVert f^{\prime} (\gamma (t)) \rVert \cdot \lVert x-y \rVert \, \mathrm{d} t.       
+    \end{align*}
+    By (a), we know for all \(x \in B(x_0, r)\),
+    \[
+        \lVert f^{\prime} (x) - A \rVert \le \frac{1}{2 \lVert A^{-1} \rVert }, 
+    \] 
+    so 
+    \[
+        \lVert f^{\prime} (x) \rVert = \lVert f^{\prime} (x) - A + A \rVert \le \lVert f^{\prime} (x) - A \rVert + \lVert A \rVert \le \frac{1}{2\lVert A^{-1} \rVert } + \lVert A \rVert.     
+    \]
+    Thus,
+    \[
+        \lVert f(x) - f(y) \rVert \le \int _0^1 \lVert f^{\prime} (\gamma (t)) \rVert \cdot \lVert x - y \rVert \, \mathrm{d} t \le \int _0^1 \left( \frac{1}{2 \lVert A^{-1} \rVert } + \lVert A \rVert  \right)\lVert x-y \rVert = \left( \frac{1}{2 \lVert A^{-1} \rVert } + \lVert A \rVert  \right)\lVert x-y \rVert.      
+    \]
+    Now we show the lower bound. By (b),
+    \[
+        \lVert f(x) - f(y) - A(x-y) \rVert \le \frac{1}{2 \lVert A^{-1} \rVert } \lVert x - y \rVert.
+    \]
+    Hence, 
+    \begin{align*}
+        \lVert A(x - y) \rVert \le \lVert f(x) - f(y) - A(x-y) \rVert + \lVert f(x) - f(y) \rVert \le \frac{1}{2\lVert A^{-1} \rVert } \lVert x-y \rVert + \lVert f(x) - f(y) \rVert.     
+    \end{align*} 
+    Also, we have 
+    \[
+        \lVert x-y \rVert = \lVert A^{-1} A (x-y) \rVert \le \lVert A^{-1} \rVert \lVert A(x-y) \rVert,     
+    \]
+    so 
+    \[
+        \lVert A(x-y) \rVert \ge \frac{1}{\lVert A^{-1} \rVert } \lVert x-y \rVert.  
+    \]
+    Combine above equations, we have 
+    \[
+        \frac{1}{\lVert A^{-1} \rVert} \lVert x-y \rVert \le \lVert A(x-y) \rVert \le \frac{1}{2\lVert A^{-1} \rVert } \lVert x-y \rVert + \lVert f(x) - f(y) \rVert,    
+    \]
+    which gives 
+    \[
+        \frac{1}{2\lVert A^{-1} \rVert }\lVert x-y \rVert \le \lVert f(x) - f(y) \rVert.  
+    \]
+    Combine the upper bound and lower bound, we have 
+    \[
+        \frac{1}{2\|A^{-1}\|}\,\|x-y\|
+    \;\le\;
+    \|f(x)-f(y)\|
+    \;\le\;
+    \left(\|A\|+\frac{1}{2\|A^{-1}\|}\right)\|x-y\|.
+    \]
+\end{proof}
+
+\begin{proof}[(d)]
+    If \(f(a) = f(b)\) for \(a, b \in B(x_0, r)\), then by (c),
+    \[
+        \frac{1}{2\lVert A^{-1} \rVert } \lVert a-b \rVert \le 0 \le \left( \lVert A \rVert + \frac{1}{2 \lVert A^{-1} \rVert }  \right) \lVert a-b \rVert.   
+    \]  
+    This forces
+    \[
+        \frac{1}{2\lVert A^{-1} \rVert } \lVert a-b \rVert = 0, 
+    \]
+    which gives \(a = b\), so \(f\) is one-to-one on \(B(x_0, r)\). Now for \(u, v \in f(B(x_0, r))\), say \(u = f(x)\) and \(v = f(y)\) for some \(x, y \in B(x_0, r)\). Thus, by (c), we have 
+    \[
+        \frac{1}{2\lVert A^{-1} \rVert } \lVert f^{-1}(u) - f^{-1}(v) \rVert = \frac{1}{2 \lVert A^{-1} \rVert } \lVert x-y \rVert \le \lVert f(x) - f(y) \rVert = \lVert u - v \rVert.    
+    \]       
+    This gives 
+    \[
+        \lVert f^{-1}(u) - f^{-1}(v) \rVert \le 2\lVert A^{-1} \rVert \lVert u-v \rVert.
+    \]
+\end{proof}
+
+\begin{proof}[(e)]
+    The inverse function theorem just states that \(f\) would be invertible near \(x_0\) and \(f^{-1}\) is differentiable and thus continuous at \(f(x_0)\), but in this problem we have shown that for any \(\varepsilon > 0\), we can pick \(\delta = \frac{\varepsilon}{2 \lVert A^{-1} \rVert }\) so that \(\lVert u - v \rVert < \delta  \) gives \(\lVert f^{-1}(u) - f^{-1}(v) \rVert < \varepsilon \). Besides, the rate of change of \(f^{-1}\) near \(f(x_0)\) would be bounded, i.e. 
+    \[
+        \frac{\lVert f^{-1}(u) - f^{-1}(v) \rVert }{\lVert u - v \rVert } \le 2 \lVert A^{-1} \rVert. 
+    \]    
+\end{proof}
