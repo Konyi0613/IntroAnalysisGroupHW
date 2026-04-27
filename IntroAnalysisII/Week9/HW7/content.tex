@@ -1,0 +1,292 @@
+\begin{problem}
+    Let $f:\mathbf{R}^n\to\mathbf{R}$ be Lebesgue measurable, and let $g:\mathbf{R}^n\to\mathbf{R}$
+    be a function which agrees with $f$ outside of a set of measure zero, thus there exists a set
+    $A\subseteq\mathbf{R}^n$ of measure zero such that $f(x)=g(x)$ for all $x\in\mathbf{R}^n\setminus A$.
+    Show that $g$ is also Lebesgue measurable.
+    (\emph{Hint:} use Exercise~7.4.10.)
+\end{problem}
+
+\begin{problem}
+    Suppose that \(f:\mathbf{R}\to [0,\infty)\) is Lebesgue measurable and
+    \(g:[0,\infty)\to [0,\infty)\) is monotone. Prove that
+    \(g\circ f\) is Lebesgue measurable.
+\end{problem}
+
+\begin{proof}
+    From the claim in the proof of Lemma 7.5.5, we have
+    \[
+    (g \circ f)^{-1}((a, \infty)) = f^{-1}(g^{-1}((a, \infty))).
+    \]
+    Let
+    \[
+    I_a := g^{-1}((a, \infty)) = \{y \in [0, \infty) : g(y) > a\}.
+    \]
+    Since $g$ is monotone defined on $[0, \infty)$, $I_a$ can only be one of the following forms for some $c \ge 0$:
+    \[
+    \emptyset, \quad [0, \infty), \quad [0, c), \quad [0, c], \quad (c, \infty), \quad [c, \infty).
+    \]
+    We evaluate the measurability of $f^{-1}(I_a)$:
+    \begin{itemize}
+        \item If $I_a = (c, \infty)$: $f^{-1}(I_a)$ is measurable by definition.
+        \item If $I_a = [c, \infty)$: $f^{-1}(I_a)= \bigcap_{n=1}^{\infty} f^{-1}((c - 1/n, \infty))$. Since the countable intersection of measurable sets is measurable, $f^{-1}(I_a)$ is measurable.
+        \item If $I_a = [0, c) \text{ or } [0, c]$: Since 
+        \[
+        f^{-1}([0, c))=\mathbb{R} \setminus f^{-1}([c,\infty)) \quad \text{and} \quad f^{-1}([0, c])=\mathbb{R} \setminus f^{-1}((c,\infty)),
+        \]
+        $f^{-1}(I_a)$ is measurable.
+        \item If $I_a = \emptyset \text{ or } [0, \infty)$: $f^{-1}(I_a)$ are $\emptyset$ and $\mathbb{R}$ respectively, so both of them are measurable.
+    \end{itemize}
+    Since $f^{-1}(I_a)$ is measurable for all possible forms of $I_a$, $(g \circ f)^{-1}((a, \infty))$ is measurable for every $a \in \mathbb{R}$. Hence, by Lemma 7.5.8, $g \circ f$ is Lebesgue measurable.    
+\end{proof}
+
+\begin{problem}
+    A function \(f:\mathbf{R}\to \mathbf{R}\) is \emph{upper semicontinuous} if
+    \[
+    \lim_{k\to\infty} x_k=x
+    \quad\Longrightarrow\quad
+    \limsup_{k\to\infty} f(x_k)\le f(x).
+    \]
+    
+    
+    \begin{enumerate}
+        \item[(a)] Draw a graph of an upper semicontinuous function that is not continuous.
+        
+        \item[(b)] Show that upper semicontinuity is equivalent to the requirement that for every open ray \((-\infty,a)\), the preimage
+        \[
+        f^{-1}((-\infty,a))
+        \]
+        is an open set.
+         \item[(c)] Show that an upper semicontinuous function is measurable.
+        
+    \end{enumerate}
+\end{problem}
+
+\begin{proof}[(a)]
+    Suppose $f : \mathbb{R} \to \mathbb{R}$ is
+    \[
+    f(x)=
+    \begin{cases}
+    1,& x=0,\\
+    0,& x\neq 0.
+    \end{cases}
+    \]
+    \begin{center}
+    \begin{tikzpicture}[scale=1.2]
+        % axes
+        \draw[->] (-3,0) -- (3,0) node[right] {$x$};
+        \draw[->] (0,-0.5) -- (0,1.8) node[above] {$y$};
+    
+        % horizontal line y=0
+        \draw[thick] (-3,0) -- (3,0);
+    
+        % open circle at (0,0)
+        \draw[fill=white, thick] (0,0) circle (2pt);
+    
+        % filled dot at (0,1)
+        \fill (0,1) circle (2pt);
+    
+        % labels
+        \node[left] at (0,1) {$1$};
+        \node[below left] at (0,0) {$0$};
+    \end{tikzpicture}
+    \end{center}
+
+    $f$ is not continuous because
+    \[
+        0 =\lim_{x \to 0} f(x) \neq f(0) = 1.
+    \]
+
+    Because $f(x) \le 1 $ for all $x \in \mathbb{R}$, so if $x_k \to 0$, $\limsup_{k\to\infty} f(x_k)\le 1 = f(0)$ is true. 
+    
+    If $x_k \to a$ and $a \ne 0$, then by definition we can pick $N$ large enough such that $\vert x_n - a \vert \le \frac{a}{2}$ for all $n  \ge N$, and hence $f(x_n) = 0$ for all $n \ge N$. Then we can conclude that 
+    \[
+    \limsup_{k\to\infty} f(x_k)\le 0 = f(a).
+    \]
+
+    So we can conclude that $f$ is not continuous and it is semicontinuous.
+\end{proof}
+
+\begin{proof}[(b)]
+    \vphantom{text}
+    \begin{itemize}
+        \item [\((\implies )\)] Let $U_a = \{x \in \mathbb{R} : f(x) \in (-\infty, a)\}$ and we want to show that $U_a$ is open for every $a$.
+
+        For fixed $a$, suppose $U_a$ is not open, then there exist some point $y \in U_a$ such that $y$ is not the interior point of $U_a$. Then we can construct a sequence $(y_n)_{n=1}^{\infty}$ such that
+        \[
+            y_n \notin U_a \text{ and } \lvert y_n - y \rvert < \frac{1}{n}.
+        \]
+        It is obvious that $y_n \to y$, and since $f$ is semicontinous, 
+        \[
+            \limsup_{k\to\infty} f(y_k)\le f(y).
+        \]
+        However since $y \in U_a$, $f(y) < a$. And since $y_k \notin U_a$ for all $k$, 
+        \[
+            \limsup_{k\to\infty} f(y_k) \ge a.
+        \]
+        This lead to a contradiction, and hence $U_a$ is an open set.
+        \item [\((\impliedby )\)] Suppose $x_k \to x$, we want to show that 
+        \[
+            \limsup_{k\to\infty} f(x_k) \le f(x).
+        \]
+        It suffices to show that for every $\varepsilon > 0$,
+        \[
+            \limsup_{k\to\infty} f(x_k) \le f(x) + \varepsilon.
+        \]
+        For fixed $\varepsilon > 0$, let $a = f(x) + \varepsilon$. Since $f(x) < a$, $x \in f^{-1}((-\infty, a))$. And since $f^{-1}((-\infty, a))$ is an open set, $x$ is the interior point of $f^{-1}((-\infty, a))$. There exist some $\delta > 0$ such that
+        \[
+            \lvert y -x \rvert < \delta \implies y \in f^{-1}((-\infty, a)).
+        \]
+        And since $x_n \to x$, we may pick $N$ large enough such that for all $n \ge N$, $\lvert x_n - x \rvert < \delta$. Then $x_n \in f^{-1}((-\infty, a))$ for all $n \ge N$.
+
+        This show that 
+        \[
+            \limsup_{k\to\infty} f(x_k) < a = f(x) + \varepsilon,
+        \]
+        and hence we have proved.
+    \end{itemize}
+\end{proof}
+
+\begin{proof}[(c)]
+    It suffices to show $f^{-1}((-\infty, a))$ is measurable for all $a$. Because if we know this is true, then for any interval $(a,b)$, 
+    \[
+        \begin{aligned}
+            (a, b) &= (-\infty, b) \cap (\mathbb{R} \setminus (-\infty, a]) \\
+            &= (-\infty, b) \cap \bigcap_{n=1}^{\infty} (-\infty, a + \frac{1}{n}).
+        \end{aligned}
+    \]
+    Therefore, 
+    \[
+        f^{-1}((a,b)) = f^{-1}((-\infty, a)) \cap \bigcap_{n=1}^{\infty} f^{-1}((-\infty, a + \frac{1}{n})),
+    \]
+    where $f^{-1}((a,b))$ is the intersection of countably many measurable set, and hence it is measurable.
+
+    For any open set, it can be written as the union of countably many open intervals, by similar argument, we can conclude that the preimage of open set is measurable.
+
+    By previous subproblem, we know that for semicontinuous function $f$, $f^{-1}((-\infty, a))$ is an open set, and hence it is measurable by Borel property. And we are done.
+\end{proof}
+
+\begin{problem}
+    Let $\Omega$ be a measurable subset of $\mathbb{R}^n$, and let $f:\Omega\to[0,\infty]$ and $g:\Omega\to[0,\infty]$ be measurable functions.
+    Without using Theorem 8.2.9 or Lemma 8.2.10, prove that
+    $$
+    \int_\Omega (f+g)\ge \int_\Omega f + \int_\Omega g.
+    $$
+\end{problem}
+
+\begin{proof}
+    Let $\phi, \psi$ be nonnegative simple function such that
+    \[
+        0 \le \phi \le f, 0 \le \psi \le g.
+    \]
+    Then 
+    \[
+        0 \le \phi + \psi \le f + g.
+    \]
+    Also $\phi + \psi$ is a simple function, therefore by definition,
+    \[
+        \int_\Omega (f+g) \ge \int_\Omega (\phi + \psi),
+    \]
+    and since the integration of simple function is additive,
+    \[
+        \int_\Omega (f+g) \ge \int_\Omega \phi + \int_\Omega \psi.
+    \]
+    And hence
+    \[
+        \int_\Omega (f+g) \ge \sup_{\phi \le f, \psi \le g} (\int_\Omega \phi + \int_\Omega \psi) = \sup_{\phi \le f} \int_\Omega \phi + \sup_{\psi \le g} \int_\Omega \psi.
+    \]
+    By definition, this implies that
+    \[
+        \int_\Omega (f+g) \ge \int_\Omega f + \int_\Omega g.
+    \]
+    And we are done.
+\end{proof}
+
+\begin{problem}
+    Let \(\{s_n\}\) be an increasing sequence of nonnegative simple functions which converges pointwise on an interval \(I\) to a limit function \(f\). If \(I\) is unbounded and if \(f(x)\ge 1\) almost everywhere on \(I\), prove that the sequence
+    \[
+    \left\{\int_I s_n\right\}
+    \] diverges.
+\end{problem}
+
+\begin{proof}
+    Since each $s_n$ is measurable and the sequence converges pointwise to $f$, by Lemma 7.5.10, $f$ is also measurable. 
+    
+    Let $A=\{x \in I: f(x) \ge 1\}$. Since $f(x) \ge 1$ almost everywhere on $I$, we have 
+    \[
+    m(I \setminus A)=0.
+    \]
+    
+    This implies $m(A)=\infty$ since $I$ is unbounded. For each integer $n \ge 1$, define
+    \[
+    E_n := \{x \in A: s_n(x) > \frac{1}{2}\}.
+    \]
+    
+    Since $s_n$ is a simple function, it is measurable, which makes each $E_n$ a measurable set.
+    
+    Additionally, since $\{s_n\}$ is an increasing sequence, we have
+    \[
+    E_1 \subseteq E_2 \subseteq E_3 \subseteq \dots .
+    \]
+    
+    Choose any $x \in A$, we have 
+    \[
+    f(x) \ge 1 > \frac{1}{2}.
+    \]
+    
+    Since $\lim_{n \to \infty} s_n(x) = f(x)$, there exists N such that for every $n \ge N$,
+    \[
+    s_n(x) > \frac{1}{2}.
+    \]
+
+    Hence, every $x \in A$ belongs to $E_n$, and 
+    \[
+    A = \bigcup_{n=1}^{\infty} E_n.
+    \]
+
+    By the continuity of Lebesgue measure, we have 
+    \[
+    m(A) = \lim_{n \to \infty} m(E_n).
+    \]
+    
+    Since $m(A)= \infty$, we get 
+    \[
+    \lim_{n \to \infty} m(E_n) = \infty.
+    \]
+
+    Let $\chi_{E_n}$ denote the characteristic function of $E_n$.
+    
+    Since $s_n(x)>\frac{1}{2}$ on $E_n$ and $s_n \ge 0$, we have
+    \[
+    s_n \ge s_n \chi_{E_n} \ge \frac{1}{2} \chi_{E_n}.
+    \]
+    
+    By Prop 8.1.10(d), we get
+    \[
+    \int_I s_n \ge \int_I \frac{1}{2} \chi_{E_n}.
+    \]
+    
+    And by Lemma 8.1.9 and Prop 8.1.10(c), we get
+    \[
+    \int_I s_n \ge \int_I \frac{1}{2} \chi_{E_n} = \frac{1}{2} \int_I \chi_{E_n} = \frac{1}{2} m(E_n).
+    \]
+    
+    Taking $n \to \infty$ on both sides, we can conclude that $\lim_{n \to \infty} \int_I s_n = \infty$. Hence, $\{\int_I s_n\}$ diverges.    
+\end{proof}
+
+\begin{problem}
+    Let \(\{s_n\}_{n=1}^\infty\) be a sequence of measurable simple functions on \(\mathbf{R}\) such that
+    \[
+    s_n(x)\to f(x)\qquad \text{for every }x\in \mathbf{R}.
+    \]
+    \begin{enumerate}
+        \item[(a)] Prove that for every \(a\in \mathbf{R}\),
+        \[
+        f^{-1}\bigl((a,\infty)\bigr)
+        =
+        \bigcup_{n=1}^\infty \bigcap_{k=n}^\infty
+        s_k^{-1}\!\left(\left(a+\frac1n,\infty\right)\right).
+        \]
+        
+        \item[(b)] Deduce that \(f\) is measurable.
+    \end{enumerate}
+\end{problem}

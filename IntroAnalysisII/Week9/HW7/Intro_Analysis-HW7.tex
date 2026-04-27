@@ -1,0 +1,172 @@
+\documentclass[addpoints]{exam}
+% leqno 將方程式編號放在左側
+
+%\printanswers
+
+\usepackage[top=2.5cm,bottom=2cm,left=2.5cm,right=2.5cm,headsep=10pt,a4paper]{geometry} % 引用頁面幾何套件，設定頁面邊界
+
+\usepackage{siunitx} % 角度
+% \input{NewCommands}
+
+\usepackage{amsmath,amssymb,amsthm} % 引用常見的數學符號與設定
+
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Definition}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{remark}{Remark}
+\newcommand{\R}{\mathbb{R}}
+
+\usepackage{lastpage} % 取得最後頁碼
+
+
+
+
+\usepackage{graphicx} % 引用圖檔內嵌入套件
+\graphicspath{{Pictures/}} % 設定圖檔目錄
+\usepackage{xcolor} %引用顏色套件
+\usepackage{enumerate}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{mdwlist} % use suspend & resume to successive enumerate
+
+\usepackage{CJKutf8} % 設定中文
+
+\def \lflr{\left\lfloor} %自定義 floor function
+\def \rflr{\right\rfloor} %自定義
+
+% question separation
+\renewcommand{\questionshook}{%
+  \setlength{\itemsep}{0.5cm}%
+}
+
+\allowdisplaybreaks %equation allowed to next page
+
+\firstpageheader{\today}
+                {}
+                {}
+\footer{}{\sf Page \thepage~of~\pageref{LastPage}}{}
+
+\begin{document}
+
+\begin{CJK*}{UTF8}{gbsn}
+% Title
+\begin{center}
+    {\Large{\bf Introduction to Mathematical Analysis II\\
+    Homework 7  Due  May 1st (Friday), 2026\\
+    Please submit your group homework online in PDF format.\\
+You are expected to work collaboratively within your group. 
+Please do not obtain complete solutions directly from AI tools. 
+The purpose of this assignment is to develop your own mathematical reasoning and problem-solving skills. %  Homework X Brief Solution
+  }} \\ 
+    \large
+    %\text{Due date: 3/9/2023}
+\end{center}
+
+\noindent\rule{16.2cm}{0.4pt}
+
+
+\begin{questions}
+
+
+% ============ Question x ============
+\question  (15 pts)  (Exercises 7.5.5.)
+Let $f:\mathbf{R}^n\to\mathbf{R}$ be Lebesgue measurable, and let $g:\mathbf{R}^n\to\mathbf{R}$
+be a function which agrees with $f$ outside of a set of measure zero, thus there exists a set
+$A\subseteq\mathbf{R}^n$ of measure zero such that $f(x)=g(x)$ for all $x\in\mathbf{R}^n\setminus A$.
+Show that $g$ is also Lebesgue measurable.
+(\emph{Hint:} use Exercise~7.4.10.)
+
+\begin{solution}
+\end{solution}
+
+\question (15 pts) 
+Suppose that \(f:\mathbf{R}\to [0,\infty)\) is Lebesgue measurable and
+\(g:[0,\infty)\to [0,\infty)\) is monotone. Prove that
+\(g\circ f\) is Lebesgue measurable.
+
+
+
+\begin{solution}
+
+
+\end{solution}
+
+
+
+\question (20 pts) A function \(f:\mathbf{R}\to \mathbf{R}\) is \emph{upper semicontinuous} if
+\[
+\lim_{k\to\infty} x_k=x
+\quad\Longrightarrow\quad
+\limsup_{k\to\infty} f(x_k)\le f(x).
+\]
+
+
+\begin{enumerate}
+    \item[(a)] Draw a graph of an upper semicontinuous function that is not continuous.
+    
+    \item[(b)] Show that upper semicontinuity is equivalent to the requirement that for every open ray \((-\infty,a)\), the preimage
+    \[
+    f^{-1}((-\infty,a))
+    \]
+    is an open set.
+     \item[(c)] Show that an upper semicontinuous function is measurable.
+    
+\end{enumerate}
+
+
+\begin{solution} 
+
+\end{solution}
+
+\question (15 pts)  Let $\Omega$ be a measurable subset of $\mathbb{R}^n$, and let $f:\Omega\to[0,\infty]$ and $g:\Omega\to[0,\infty]$ be measurable functions.
+Without using Theorem 8.2.9 or Lemma 8.2.10, prove that
+$$
+\int_\Omega (f+g)\ge \int_\Omega f + \int_\Omega g.
+$$
+
+\begin{solution} 
+ 
+ \end{solution}
+ 
+ 
+\question (15) Let \(\{s_n\}\) be an increasing sequence of nonnegative simple functions which converges pointwise on an interval \(I\) to a limit function \(f\). If \(I\) is unbounded and if \(f(x)\ge 1\) almost everywhere on \(I\), prove that the sequence
+\[
+\left\{\int_I s_n\right\}
+\] diverges.
+
+\begin{solution} 
+ 
+ \end{solution}
+
+
+
+\question (20 pts)
+Let \(\{s_n\}_{n=1}^\infty\) be a sequence of measurable simple functions on \(\mathbf{R}\) such that
+\[
+s_n(x)\to f(x)\qquad \text{for every }x\in \mathbf{R}.
+\]
+\begin{enumerate}
+    \item[(a)] Prove that for every \(a\in \mathbf{R}\),
+    \[
+    f^{-1}\bigl((a,\infty)\bigr)
+    =
+    \bigcup_{n=1}^\infty \bigcap_{k=n}^\infty
+    s_k^{-1}\!\left(\left(a+\frac1n,\infty\right)\right).
+    \]
+    
+    \item[(b)] Deduce that \(f\) is measurable.
+\end{enumerate}
+
+
+   
+\begin{solution} 
+ 
+ \end{solution}
+
+
+
+\end{questions}
+\end{CJK*}
+\end{document}
+

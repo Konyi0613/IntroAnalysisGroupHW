@@ -1,16 +1,104 @@
 \begin{problem}[Exercises 7.4.1.]
     If $A$ is an open interval in $\mathbf{R}$, show that $m^*(A)=m^*(A\cap(0,\infty))+m^*(A\setminus(0,\infty))$.
 \end{problem}
+\begin{proof}
+Suppose \(A = (a_i, b_i)\) s.t. \(a_i \le b_i\), then 
+        \begin{itemize}
+            \item Case 1: \(0 < a_i \le b_i\), then \(A \cap (0, \infty ) = A\) and \(A \setminus (0, \infty ) = \varnothing\), so
+            \[
+                m^*(A) = m^*(A) + m^*(\emptyset) = m^*(A \cap (0, \infty)) + m^*(A \setminus (0, \infty)).
+            \]
+            \item Case 2: \(a_i \le 0 \le b_i\), then $A \cap (0, \infty) = (0, b_i)$ and $A \setminus (0, \infty) = (a_i, 0]$. Hence,
+            \[
+            m^*(A) = b_i - a_i = b_i + (-a_i) = m^*(A \cap (0, \infty)) + m^*(A \setminus (0, \infty)).
+            \]
+            \item Case 3: \(a_i \le b_i < 0\), then $m^*(A \cap (0, \infty)) = \emptyset$ and $A \setminus (0, \infty) = (a_i, b_i) = A$. Thus,
+            \[
+                m^*(A) = m^*(\emptyset) + m^*(A) = m^*(A \cap (0, \infty)) + m^*(A \setminus (0, \infty)).
+            \]
+        \end{itemize}
+\end{proof}
 
 \begin{problem}[Exercises 7.4.2.]
     If $A$ is an open box in $\mathbf{R}^n$, and $E$ is the half-plane
 $E:=\{(x_1,\ldots,x_n)\in \mathbf{R}^n: x_n>0\}$, show that
 $m^*(A)=m^*(A\cap E)+m^*(A\setminus E)$. (Hint: use Exercise 7.4.1.)
 \end{problem}
+\begin{proof}
+    Suppose \(A = \prod _{i=1}^n I_i \), where $I_i = (a_i, b_i)$ s.t. $a_i, b_i \in \mathbb{R}$. Note that 
+    \[
+        m^*(A) = \mathrm{vol}(A) =  \prod _{i=1}^n \mathrm{vol}(I_i) = \prod_{i=1}^n m_1^*(I_i). 
+    \]
+    Also,
+    \begin{align*}
+        A \cap E &= \left( \prod _{i=1}^{n-1} I_i \right) \times (I_n \cap (0, \infty)) \quad
+        A \setminus E = \left( \prod _{i=1}^{n-1} I_i \right) \times (I_n \setminus (0, \infty)).  
+    \end{align*}
+    Thus, \(A \cap E\) and \(A \setminus E\) are both open boxes. Note that 
+    \begin{align*}
+        m^*(A \cap E) &= \prod_{i=1}^{n-1} \mathrm{vol}(I_i) \times \mathrm{vol}(I_n \cap (0, \infty)) = \prod_{i=1}^{n-1} m_1^*(I_i) \times m_1^*(I_n \cap (0, \infty)) \\
+        m^*(A \setminus E) &= \prod_{i=1}^{n-1} \mathrm{vol}(I_i) \times \mathrm{vol}(I_n \setminus (0, \infty)) = \prod_{i=1}^{n-1} m_1^*(I_i) \times m_1^*(I_n \setminus (0, \infty))
+    \end{align*}
+    since $I_n \cap (0, \infty)$ and $I_n \setminus (0, \infty)$ are open boxes. By Exercise 7.4.1., we have 
+    \[
+        m_1^*(I_n) = m_1^*(I_n \cap (0, \infty )) + m_1^*(I_n \setminus (0, \infty)).
+    \]  
+    Thus,
+    \begin{align*}
+        m^*(A) &= \prod _{i=1}^n m_1^*(I_i) = \prod _{i=1}^{n-1} m_1^*(I_i) \times m_1^*(I_n) = \prod _{i=1}^{n-1} m_1^*(I_i) \times (m_1^*(I_n \cap (0, \infty )) + m_1^*(I_n \setminus (0, \infty ))) \\
+        &= \prod _{i=1}^{n-1} m_1^*(I_i) \times m_1^*(I_n \cap (0, \infty )) + \prod _{i=1}^{n-1} m_1^*(I_i) \times m_1^*(I_n \setminus (0, \infty )) \\
+        &= m^*(A \cap E) + m^*(A \setminus E).
+    \end{align*}
+\end{proof}
 
 \begin{problem}[Exercises 7.4.5.]
     Show that the set $E$ used in the proof of Propositions 7.3.1 and 7.3.3 is non-measurable.
 \end{problem}
+
+\begin{proof}
+    Let
+    \[
+    X:=\bigcup_{q\in \mathbb{Q}\cap[-1,1]} (q+E).
+    \]
+    From the proof of Prop 7.3.1, the sets $q+E$ are pairwise disjoint, and
+    \[
+    [0,1] \subseteq X \subseteq [-1,2].
+    \]
+    By monotonicity,
+    \[
+    1=m^*([0,1])\le m^*(X)\le m^*([-1,2])=3.
+    \]
+    This implies
+    \[
+    1\le m^*(X)\le 3.
+    \]
+    Suppose $E$ is measurable by contradiction. By translation invariance,
+    \[
+    m(q+E)=m(E) \quad \text{for every } q \in \mathbb{Q}\cap[-1,1].
+    \]  
+    Since $\mathbb{Q}\cap[-1,1]$ is countable and $q+E$ are pairwise disjoint, by countable additivity,
+    \[
+    m(X)=\sum_{q\in \mathbb{Q}\cap[-1,1]} m(q+E)
+    =\sum_{q\in \mathbb{Q}\cap[-1,1]} m(E).
+    \]
+    And since $\mathbb{Q}\cap[-1,1]$ is countably infinite, the sum has two possible values:
+    \[
+    m(X)=
+    \begin{cases}
+    0 & \text{if } m(E)=0\\
+    +\infty & \text{if } m(E)>0.
+    \end{cases}
+    \]
+    Additionally, since $X$ is a countable union of measurable sets, $X$ is measurable. Hence,
+    \[
+    m(X)=m^*(X).
+    \]
+    However, this contradicts the fact that
+    \[
+    1\le m^*(X)\le 3.
+    \]
+    In conclusion, $E$ is non-measurable.
+\end{proof}
 
 \begin{problem}[Exercises 7.4.9.]
     Let $A\subseteq \mathbf{R}^2$ be the set $A:=[0,1]^2\setminus \mathbf{Q}^2$; i.e., $A$ consists of all the points $(x,y)$
@@ -18,3 +106,15 @@ in $[0,1]^2$ such that $x$ and $y$ are not both rational. Show that $A$ is measu
 but that $A$ has no interior points. (Hint: it's easier to use the properties of outer measure and measure, including those
 in the exercises above, than to try to do this problem from first principles.)
 \end{problem}
+
+\begin{proof}
+    Since $[0, 1]^2$ is a closed box, so by the lemma of properties of measurable sets, $[0,1]^2$ is measurable. And since $[0,1]^2 \cap \mathbb{Q}^2 \subseteq \mathbb{Q}^2$ and $\mathbb{Q}^2$ have countable elements,  $[0,1]^2 \cap \mathbb{Q}^2$ have also countable elements, and hence $m^*([0,1]^2 \cap \mathbb{Q}^2) = 0$, and using the properties of measurable sets again, $[0,1]^2 \cap \mathbb{Q}^2$ is measurable.
+
+    Since $[0,1]^2 \cap \mathbb{Q}^2 \subseteq [0,1]^2$ and both of the set of measurable, by the corollary, $[0,1]^2 \setminus ([0,1]^2 \cap \mathbb{Q}^2) = [0,1]^2 \setminus \mathbb{Q}^2 = A$ is measurable. Furthermore, $m([0,1]^2) = m^*([0,1]^2) = 1$ and  $m^*([0,1]^2 \cap \mathbb{Q}^2) = 0$ implies that 
+    \[
+        m^*(A) = m(A) = m([0,1]^2) - m^*([0,1]^2 \cap \mathbb{Q}^2) = 1-0= 1
+    \]
+
+    Then we show that $A$ have no interior point, for fixed $(x,y) \in A$ and $\varepsilon >0$, by the density of rational number, there exists some rational $(x',y')$ satisfies $x-\frac{\varepsilon}{2} \le x' \le x+\frac{\varepsilon}{2}$ and $y-\frac{\varepsilon}{2} \le y' \le y+\frac{\varepsilon}{2}$. It is obviously that $(x', y') \notin A$ but $(x', y') \in B((x,y), \varepsilon)$, and hence $x$ is not the interior point, and hence $A$ have no interior point.
+
+\end{proof}
