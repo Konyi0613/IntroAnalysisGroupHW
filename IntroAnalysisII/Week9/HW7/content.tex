@@ -6,6 +6,27 @@
     (\emph{Hint:} use Exercise~7.4.10.)
 \end{problem}
 
+\begin{proof}
+    It suffices to show that for every $a \in \mathbb{R}$, $g^{-1}((a, \infty))$ is measurable. Now fix some \(a \in \mathbb{R}\), and since $f(x) = g(x)$ for all $x \in \mathbb{R}^n \setminus A$, we have 
+    \[
+        g^{-1}((a, \infty)) \setminus A = f^{-1}((a, \infty)) \setminus A.
+    \] 
+    This is because 
+    \begin{align*}
+        x \in g^{-1}((a, \infty)) \setminus A &\iff x \in \mathbb{R} ^n \setminus A, g(x) \in (a, \infty) \iff x \in \mathbb{R} ^n \setminus A, f(x) \in (a, \infty) \\
+        &\iff x \in f^{-1} ((a, \infty)) \setminus A. 
+    \end{align*}
+    By this, we have 
+    \begin{align*}
+        g^{-1}((a, \infty)) &= \left( g^{-1} ((a, \infty)) \setminus A \right) \cup \left( g^{-1}((a, \infty)) \cap A \right) = (f^{-1}((a, \infty )) \setminus A) \cup \left( g^{-1}((a, \infty)) \cap A \right) \\
+        &= (f^{-1}((a, \infty)) \cap (\mathbb{R} ^n \setminus A)) \cup \left( g^{-1}((a, \infty)) \cap A \right).   
+    \end{align*}
+    Since $f$ is measurable, $f^{-1}((a, \infty))$ is measurable for every $a \in \mathbb{R}$. And since \(m^*(A) = 0\), we know \(A\) is measurable, and thus \(\mathbb{R} ^n \setminus A\) is measurable. Also, \(g^{-1} ((a, \infty)) \cap A \subseteq A\), so 
+    \[
+        0 \le m^* \left( g^{-1} ((a, \infty)) \cap A \right) \le m^*(A) = 0, 
+    \]   
+    which means \(g^{-1} ((a, \infty)) \cap A\) is also measurable. (because it has measure zero) Therefore, $g^{-1}((a, \infty))$ is the union of two measurable sets, and hence it is measurable. Since $a$ is arbitrary, we can conclude that $g$ is measurable.
+\end{proof}
 \begin{problem}
     Suppose that \(f:\mathbf{R}\to [0,\infty)\) is Lebesgue measurable and
     \(g:[0,\infty)\to [0,\infty)\) is monotone. Prove that
@@ -98,7 +119,7 @@
 
     Because $f(x) \le 1 $ for all $x \in \mathbb{R}$, so if $x_k \to 0$, $\limsup_{k\to\infty} f(x_k)\le 1 = f(0)$ is true. 
     
-    If $x_k \to a$ and $a \ne 0$, then by definition we can pick $N$ large enough such that $\vert x_n - a \vert \le \frac{a}{2}$ for all $n  \ge N$, and hence $f(x_n) = 0$ for all $n \ge N$. Then we can conclude that 
+    If $x_k \to a$ and $a \ne 0$, then by definition we can pick $N$ large enough such that $\vert x_n - a \vert \le \lvert \frac{a}{2} \rvert$ for all $n  \ge N$, and hence $f(x_n) = 0$ for all $n \ge N$. Then we can conclude that 
     \[
     \limsup_{k\to\infty} f(x_k)\le 0 = f(a).
     \]
@@ -140,7 +161,7 @@
 
         This show that 
         \[
-            \limsup_{k\to\infty} f(x_k) < a = f(x) + \varepsilon,
+            \limsup_{k\to\infty} f(x_k) \le a = f(x) + \varepsilon,
         \]
         and hence we have proved.
     \end{itemize}
@@ -160,9 +181,9 @@
     \]
     where $f^{-1}((a,b))$ is the intersection of countably many measurable set, and hence it is measurable.
 
-    For any open set, it can be written as the union of countably many open intervals, by similar argument, we can conclude that the preimage of open set is measurable.
+    % For any open set, it can be written as the union of countably many open intervals, by similar argument, we can conclude that the preimage of open set is measurable.
 
-    By previous subproblem, we know that for semicontinuous function $f$, $f^{-1}((-\infty, a))$ is an open set, and hence it is measurable by Borel property. And we are done.
+    By previous subproblem, we know that for semicontinuous function $f$, $f^{-1}((-\infty, a))$ is an open set, and hence it is measurable by Borel property. We are done.
 \end{proof}
 
 \begin{problem}
@@ -238,7 +259,7 @@
     s_n(x) > \frac{1}{2}.
     \]
 
-    Hence, every $x \in A$ belongs to $E_n$, and 
+    Hence, every $x \in A$ belongs to $E_n$ for some $n \in \mathbb{N}$, and 
     \[
     A = \bigcup_{n=1}^{\infty} E_n.
     \]
@@ -290,3 +311,39 @@
         \item[(b)] Deduce that \(f\) is measurable.
     \end{enumerate}
 \end{problem}
+
+\begin{proof}
+    \hfill 
+    \begin{itemize}
+        \item [(a)] We have \(\lim_{N \to \infty} s_N(x) = f(x) \) for all \(x \in \mathbb{R}\). Now for any \(a \in \mathbb{R}\), we have 
+        \begin{align*}
+            x \in f^{-1}((a, \infty)) &\iff f(x) > a \iff \lim_{N \to \infty} s_N(x) > a \iff \lim_{N \to \infty} s_N(x) > a + \frac{1}{m} \text{ for some } m \in \mathbb{N}. 
+        \end{align*}
+        \begin{claim}
+            \(P\coloneqq \lim_{N \to \infty} s_N(x) > a + \frac{1}{m} \) for some \(m \in \mathbb{N}\) if and only if \(\exists n \in \mathbb{N}\) s.t. \(\forall k \ge n\), \(s_k(x) > a + \frac{1}{n}\).     
+        \end{claim}
+        \begin{explanation}
+            If \(P > a + \frac{1}{m}\) for some \(m \in \mathbb{N}\), then pick some \(0 < \varepsilon < \frac{1}{m}\), \(\exists N_1 \in \mathbb{N}\) s.t. \(N \ge N_1\) implies 
+            \[
+                \left\vert s_N(x) - P \right\vert < \varepsilon \implies s_N(x) > P - \varepsilon > a + \frac{1}{m} - \varepsilon > a + \frac{1}{n} \text{ for some } N_1 < n \in \mathbb{N}. 
+            \]    
+            Thus, for all \(k \ge n\), \(s_k(x) > a + \frac{1}{n}\).
+
+            Now if there is some \(n \in \mathbb{N}\) such that for all \(k \ge n\), \(s_k(x) > a + \frac{1}{n}\), then we must have \(\lim_{N \to \infty} s_N(x) > a + \frac{1}{n} \), and we're done.  
+        \end{explanation}
+        By this claim, we have
+        \begin{align*}
+            \lim_{N \to \infty} s_N(x) > a + \frac{1}{m} \text{ for some } m \in \mathbb{N} &\iff \exists n \in \mathbb{N} \text{ s.t. } \forall k \ge n, s_k(x) > a + \frac{1}{n} \\
+            &\iff x \in \bigcup_{n=1}^{\infty} \bigcap_{k=n}^{\infty} s_k^{-1} \left( \left( a + \frac{1}{n}, \infty  \right)  \right).       
+        \end{align*}
+        This shows 
+        \[
+            f^{-1} ((a, \infty)) = \bigcup_{n=1}^{\infty} \bigcap_{k=n}^{\infty} s_k^{-1} \left( \left( a + \frac{1}{n}, \infty  \right)  \right).
+        \]
+        \item [(b)] Since for each \(k \in \mathbb{N}\), \(s_k\) is measurable, so for each \(n \in \mathbb{N}\), \(s_k^{-1} \left( \left( a + \frac{1}{n}, \infty  \right)  \right) \) is measurable. Thus,
+        \[
+            f^{-1} ((a, \infty)) = \bigcup_{n=1}^{\infty} \bigcap_{k=n}^{\infty} s_k^{-1} \left( \left( a + \frac{1}{n}, \infty  \right)  \right)
+        \]
+        is measurable. This completes the proof.
+    \end{itemize}
+\end{proof}
