@@ -1,0 +1,247 @@
+\begin{problem}
+    Let $p>2$ and $c>0$.
+Using the Borel--Cantelli lemma, show that the set
+$$
+\Bigl\{x\in[0,1]:\ \bigl|x-\tfrac{a}{q}\bigr|\le \tfrac{c}{q^p}
+\text{ for infinitely many positive integers }a,q\Bigr\}
+$$
+has measure zero.
+(Hint: one only has to consider those integers $a$ in the range $0\le a\le q$ (why?).
+Use Corollary 11.6.5 to show that the sum $\sum_{q=1}^\infty \frac{c(q+1)}{q^p}$ is finite.)
+\end{problem}
+
+\begin{proof}
+    Let 
+    \[
+        E_{a, q} \coloneqq \left\{ x \in [0, 1]: \left\vert x - \frac{a}{q} \right\vert \le \frac{c}{q^p}  \right\},
+    \]
+    then for each positive integer \(a, q\), we know \(E_{a, q}\) is a one-dimensional closed box of vloume \(\frac{2c}{q^p}\), so \(m(E_{a, q}) = \frac{2c}{q^p}\). Also, each \(E_{a, q}\) is measurable since it is a closed set. Now define \(\Omega _q = \bigcup_{a=1}^{q} E_{a, q} \) for each positive integer \(q\), then we have
+    \[
+        m(\Omega _q) \le \sum_{a=1}^q m(E_{a, q}) = \sum_{a=1}^q \frac{2c}{q^p} = \frac{2cq}{q^p} \quad \forall q \in \mathbb{N}. 
+    \]    
+    Hence,
+    \[
+        \sum_{q=1}^{\infty} m(\Omega _q) \le \sum_{q=1}^{\infty} \frac{2cq}{q^p} = 2c \sum_{q=1}^{\infty} \frac{1}{q^{p-1}} < \infty    
+    \]
+    since \(p - 1 > 1\) and by p-series test this is true. Now by Borel-Cantelli lemma, we have
+    \[
+        m\left( \left\{ x \in \mathbb{R}: x \in \Omega _q \text{ for infinitely many } q \right\} \right) = 0. 
+    \]
+    Note that 
+    \begin{align*}
+        E &\coloneqq \left\{ x \in \mathbb{R}: x \in \Omega _q \text{ for infinitely many } q \right\} \\ &= \left\{ x \in \mathbb{R}: x \in \bigcup_{a=1}^{q} E_{a, q} \text{ for infinitely many } q   \right\} \\
+        &= \left\{ x \in \mathbb{R}: x \in E_{a, q} \text{ for infinitely many positive integer pairs } (a, q) \text{ s.t. } a \le q   \right\} \\ 
+        &= \left\{ x \in [0, 1]: \left\vert x - \frac{a}{q} \right\vert \le \frac{c}{q^p} \text{ for infinitely many positive integer pairs } (a, q) \text{ s.t. } a \le q    \right\},  
+    \end{align*} 
+    and let 
+    \[
+        F\coloneqq \Bigl\{x\in[0,1]:\ \bigl|x-\tfrac{a}{q}\bigr|\le \tfrac{c}{q^p}
+\text{ for infinitely many positive integers }a,q\Bigr\},
+    \]
+    then it is trivial that \(E \subseteq F\). Now we will show \(F \subseteq E\) to conclude \(E = F\). 
+    Suppose by contradiction, there exists some \(x_0\) such that \(x_0 \in F\) s.t. \(x_0 \notin E\), then by definition of \(F\), there exist infinitely many positive integer pairs \((a, q)\) s.t.  \(\left\vert x_0 - \frac{a}{q} \right\vert \le \frac{c}{q^p}\). Also, since \(x_0 \notin E\), there must exists infinitely many positive integer pairs \((a, q)\) with \(a > q\) s.t. \(\left\vert x_0 - \frac{a}{q} \right\vert \le \frac{c}{q^p}\). However, for each such \((a, q)\) pair with \(a > q\) s.t. \(\left\vert x_0 - \frac{a}{q} \right\vert \le \frac{c}{q^p} \), we have
+     \[
+        \frac{c}{q^p} \ge \left\vert x_0 - \frac{a}{q} \right\vert = \frac{a}{q} - x_0 \ge \frac{a}{q} - 1 \ge \frac{1}{q} 
+     \]      
+     since \(x_0 \in [0, 1]\) and \(a \ge q + 1\), and thus \(c \ge q^{p- 1}\). Now we claim that if \(x_0 \in F\), then \(\left\vert x_0 - \frac{a}{q} \right\vert \le \frac{c}{q^p} \) for infinitely many positive integers \(q\). If not, then for some \(q_0\), there exists infinitely many positive integers \(a\) s.t. \(\left\vert x_0 - \frac{a}{q_0} \right\vert \le \frac{c}{q_0^p} \). However, this is impossible since \(\frac{c}{q_0^p}\) is a fixed value and 
+     \[
+        \left\vert x_0 - \frac{a}{q_0} \right\vert \le \frac{c}{q_0^p} \implies x_0 \ge \frac{a}{q_0} - \frac{c}{q_0^p}, 
+     \]        
+     so if there are infinitely many positive integers \(a\) s.t. \(\left\vert x_0 - \frac{a}{q_0} \right\vert \le \frac{c}{q_0^p} \), then \(x_0\) must be greater than or equal to infinitely many positive numbers, which is impossible since \(x_0 \in [0, 1]\). Now we have proved our claim, and thus \(c \ge q^{p-1}\) for infinitely many positive integers \(q\), which is impossible since \(p - 1 > 1\) and thus \(q^{p-1}\) will diverge when \(q\) gets large. Hence, we have \(F \subseteq E\) and thus \(E = F\). Therefore, we conclude that the set \(F\) has \(m(F) = m(E) = 0\), and we're done.  
+\end{proof}
+
+\begin{problem}
+    Call a real number $x\in\mathbb{R}$ \emph{diophantine} if there exist real numbers $p,C>0$ such that
+$|x-\frac{a}{q}|>C/|q|^p$ for all nonzero integers $q$ and all integers $a$.
+Using Exercise 8.2.6, show that almost every real number is diophantine.
+(Hint: first work in the interval $[0,1]$.
+Show that one can take $p$ and $C$ to be rational and one can also take $p>2$.
+Then use the fact that the countable union of measure zero sets has measure zero.)
+\end{problem}
+
+\begin{problem}
+    For every positive integer $n$, let $f_n:\mathbb{R}\to[0,\infty)$ be a non-negative measurable function such that
+$$
+\int_{\mathbb{R}} f_n \le \frac{1}{4^n}.
+$$
+Show that for every $\varepsilon>0$, there exists a set $E$ of Lebesgue measure $m(E)\le \varepsilon$ such that $f_n(x)$ converges pointwise to zero for all $x\in\mathbb{R}\setminus E$.
+(Hint: first prove that $m(\{x\in\mathbb{R}:\ f_n(x)>\frac{1}{\varepsilon 2^n}\})\le \frac{\varepsilon}{2^n}$ for all $n=1,2,3,\dots$, and then consider the union of all the sets $\{x\in\mathbb{R}:\ f_n(x)>\frac{1}{\varepsilon 2^n}\}$.)
+\end{problem}
+
+\begin{proof}
+    Let \(E_n \coloneqq \left\{ x \in \mathbb{R} : f_n(x) > \frac{1}{\varepsilon 2^n} \right\} \), then we know 
+    \[
+        \frac{1}{\varepsilon 2^n} \chi _{E_n} \le f_n \quad \forall x \in \mathbb{R}.
+    \] 
+    Note that since for each positive integer \(n\), \(f_n\) is measurable, so \(E_n = f_n^{-1} \left( \frac{1}{\varepsilon 2^n}, \infty \right) \) is measurable and thus \(\chi _{E_n}\) is measurable, which gives \(\frac{1}{\varepsilon 2^n} \chi _{E_n}\) is measurable, and it is also non-negative. Thus, for each \(n \in \mathbb{N}\), we have 
+    \[
+        \frac{1}{\varepsilon 2^n} m(E_n) = \int _{\mathbb{R} } \frac{1}{\varepsilon 2^n} \chi _{E_n} \le \int_{\mathbb{R} } f_n \le \frac{1}{4^n} \implies m(E_n) \le \frac{\varepsilon}{2^n}.
+    \]  
+    Now define \(E \coloneqq \bigcup_{n=1}^{\infty} E_n \), then 
+    \[
+        \mathbb{R} \setminus E = \left\{ x \in \mathbb{R}: f_{n}(x) \le \frac{1}{\varepsilon 2^n} \quad \forall n \in \mathbb{N} \right\}. 
+    \] 
+    Hence, \(\lim_{n \to \infty} f_n(x) = 0\) for all \(x \in \mathbb{R} \setminus E\). Also, 
+    \[
+        m(E) = m \left( \bigcup_{n=1}^{\infty} E_n  \right) \le \sum_{n=1}^{\infty} \frac{\varepsilon}{2^n} = \varepsilon \frac{\frac{1}{2}}{1 - \frac{1}{2}} = \varepsilon,  
+    \]  
+    so we're done.
+\end{proof}
+
+\begin{problem}
+    For every positive integer $n$, let $f_n:[0,1]\to[0,\infty)$ be a non-negative measurable function such that $f_n$ converges pointwise to zero.
+Show that for every $\varepsilon>0$, there exists a set $E$ of Lebesgue measure $m(E)\le \varepsilon$ such that $f_n(x)$ converges \emph{uniformly} to zero for all $x\in[0,1]\setminus E$.
+(This is a special case of Egoroff's theorem.
+To prove it, first show that for any positive integer $m$, we can find an $N>0$ such that
+$m(\{x\in[0,1]:\ f_n(x)>1/m \text{ for all }n\ge N\})\le \varepsilon/2^m$.)
+Is the claim still true if $[0,1]$ is replaced by $\mathbb{R}$?
+\end{problem}
+
+\begin{problem}
+    Give an example of a bounded non-negative function $f:\mathbb{N}\times\mathbb{N}\to\mathbb{R}^+$ such that $\sum_{m=1}^\infty f(n,m)$ converges for every $n$, and such that $\lim_{n\to\infty} f(n,m)$ exists for every $m$, but such that
+$$
+\lim_{n\to\infty}\sum_{m=1}^\infty f(n,m) \ne \sum_{m=1}^\infty \lim_{n\to\infty} f(n,m).
+$$
+(Hint: modify the moving bump example.
+It is even possible to use a function $f$ which only takes the values $0$ and $1$.
+This shows that interchanging limits and infinite sums can be dangerous.)
+\end{problem}
+
+\begin{proof}
+    Define 
+    \[
+        f: \mathbb{N} \times \mathbb{N} \to \mathbb{R} ^+, \quad f(n, m) = \begin{dcases}
+            1, &\text{ if } m = n ;\\
+            0, &\text{ if } m \neq n.
+        \end{dcases},
+    \]
+    then for each \(n\),\(\sum_{m=1}^{\infty} f(n, m) = 1 \), and for each \(m\), \(\lim_{n \to \infty} f(n, m) = 0 \). Hence,
+    \[
+        \lim_{n \to \infty} \sum_{m=1}^{\infty} f(n, m) = 1 \text{ and } \sum_{m=1}^{\infty} \lim_{n \to \infty} f(n, m) = 0,     
+    \]    
+    which is not equal, so we're done.
+\end{proof}
+
+\begin{problem}
+    Let $f:\mathbb{R}\to\mathbb{R}$ and $g:\mathbb{R}\to\mathbb{R}$ be absolutely integrable, measurable functions such that$f(x)\le g(x)$ for all $x\in\mathbb{R}$, and that $\int_\mathbb{R} f = \int_\mathbb{R} g$.Show that $f(x)=g(x)$ for almost every $x\in\mathbb{R}$ (i.e., that $f(x)=g(x)$ for all $x\in\mathbb{R}$ exceptpossibly for a set of measure zero).
+
+\end{problem}
+
+\begin{problem}
+    For each $n=1,2,3,\dots$, let $f_n:\mathbb{R}\to\mathbb{R}$ be the function
+$f_n = \chi_{[n,n+1)} - \chi_{[n+1,n+2)}$; i.e., let $f_n(x)$ equal $+1$ when $x\in[n,n+1)$, equal $-1$ when
+$x\in[n+1,n+2)$, and $0$ everywhere else. Show that
+$$
+\int_\mathbb{R}\sum_{n=1}^\infty f_n \ne \sum_{n=1}^\infty \int_\mathbb{R} f_n.
+$$
+Explain why this does not contradict Corollary 8.2.11.
+
+\end{problem}
+
+\begin{problem}[Tannery's convergence theorem for Riemann integrals]
+    Prove Tannery's convergence theorem for Riemann integrals.
+
+Let \(\{f_n\}\) be a sequence of functions and let \(\{p_n\}\) be an increasing
+sequence of real numbers such that
+\[
+p_n \to +\infty \qquad \text{as } n\to\infty.
+\]
+Assume that:
+\begin{enumerate}
+\item[(a)] \(f_n \to f\) uniformly on \([a,b]\) for every \(b\ge a\).
+
+\item[(b)] \(f_n\) is Riemann integrable on \([a,b]\) for every \(b\ge a\).
+
+\item[(c)] 
+\[
+|f_n(x)|\le g(x)
+\]
+almost everywhere on \([a,+\infty)\), where \(g\) is nonnegative and improper
+Riemann integrable on \([a,+\infty)\).
+\end{enumerate}
+
+Then both \(f\) and \(|f|\) are improper Riemann integrable on \([a,+\infty)\),
+the sequence
+\[
+\left\{\int_a^{p_n} f_n(x)\,dx\right\}
+\]
+converges, and
+\[
+\int_a^{+\infty} f(x)\,dx
+=
+\lim_{n\to\infty}\int_a^{p_n} f_n(x)\,dx.
+\]
+
+\item[(d)] Use Tannery's theorem to prove that, if \(p>-1\), then
+\[
+\lim_{n\to\infty}\int_0^n \left(1-\frac{x}{n}\right)^n x^p\,dx
+=
+\int_0^\infty e^{-x}x^p\,dx .
+\]
+
+
+Hint:
+Use the relation between Riemann and Lebesgue integrals.  Namely, recall that
+if a function is Riemann integrable on a bounded interval, then it is Lebesgue
+integrable there, and the two integrals agree.
+
+For the main theorem, define
+\[
+F_n(x):=f_n(x)\chi_{[a,p_n]}(x), \qquad x\in [a,\infty).
+\]
+Since \(p_n\to\infty\), for each fixed \(x\ge a\), we eventually have
+\(x\le p_n\). Hence
+\[
+F_n(x)\to f(x)
+\qquad \text{a.e. on } [a,\infty).
+\]
+Moreover,
+\[
+|F_n(x)|
+=
+|f_n(x)|\chi_{[a,p_n]}(x)
+\le g(x)
+\qquad \text{a.e. on }[a,\infty).
+\]
+Since \(g\) is nonnegative and improper Riemann integrable on \([a,\infty)\),
+it is Lebesgue integrable on \([a,\infty)\). Therefore the Lebesgue dominated
+convergence theorem gives
+\[
+\lim_{n\to\infty}\int_a^\infty F_n(x)\,dx
+=
+\int_a^\infty f(x)\,dx.
+\]
+Finally, observe that
+\[
+\int_a^\infty F_n(x)\,dx
+=
+\int_a^{p_n} f_n(x)\,dx.
+\]
+
+For part \((d)\), apply the theorem with
+\[
+p_n=n,
+\qquad
+f_n(x)=\left(1-\frac{x}{n}\right)^n x^p
+\quad \text{on }[0,n].
+\]
+Use the pointwise limit
+\[
+\left(1-\frac{x}{n}\right)^n\to e^{-x}
+\]
+and find an integrable majorant for
+\[
+\left|\left(1-\frac{x}{n}\right)^n x^p\right|.
+\]
+A useful estimate is
+\[
+0\le \left(1-\frac{x}{n}\right)^n\le e^{-x},
+\qquad 0\le x\le n.
+\]
+Since
+\[
+e^{-x}x^p\in L^1([0,\infty))
+\qquad \text{for } p>-1,
+\]
+the dominated convergence theorem applies.
+\end{problem}
