@@ -15,9 +15,9 @@ Use Corollary 11.6.5 to show that the sum $\sum_{q=1}^\infty \frac{c(q+1)}{q^p}$
     \[
         E_{a, q} \coloneqq \left\{ x \in [0, 1]: \left\vert x - \frac{a}{q} \right\vert \le \frac{c}{q^p}  \right\},
     \]
-    then for each positive integer \(a, q\), we know \(E_{a, q}\) is a one-dimensional closed box of vloume \(\frac{2c}{q^p}\), so \(m(E_{a, q}) = \frac{2c}{q^p}\). Also, each \(E_{a, q}\) is measurable since it is a closed set. Now define \(\Omega _q = \bigcup_{a=1}^{q} E_{a, q} \) for each positive integer \(q\), then we have
+    then for each positive integer \(a, q\), we know \(m(E_{a, q}) \le \frac{2c}{q^p}\). Also, each \(E_{a, q}\) is measurable since it is a closed set. Now define \(\Omega _q = \bigcup_{a=1}^{q} E_{a, q} \) for each positive integer \(q\), then we have
     \[
-        m(\Omega _q) \le \sum_{a=1}^q m(E_{a, q}) = \sum_{a=1}^q \frac{2c}{q^p} = \frac{2cq}{q^p} \quad \forall q \in \mathbb{N}. 
+        m(\Omega _q) \le \sum_{a=1}^q m(E_{a, q}) \le \sum_{a=1}^q \frac{2c}{q^p} = \frac{2cq}{q^p} \quad \forall q \in \mathbb{N}. 
     \]    
     Hence,
     \[
@@ -59,6 +59,42 @@ Show that one can take $p$ and $C$ to be rational and one can also take $p>2$.
 Then use the fact that the countable union of measure zero sets has measure zero.)
 \end{problem}
 
+\begin{proof}
+   We first look at the interval $[0,1]$. Note that the set of rational numbers in $[0,1]$ is countable and thus has Lebesgue measure zero. Hence, we can focus on irrational numbers. Suppose an irrational number $x$ is not diophantine, then for any $p,C>0$, there exists an integer $a$ and a nonzero integer $q$ such that
+   \[
+   |x - \frac{a}{q}| \le \frac{C}{|q|^p}.
+   \]
+   Since $x$ is irrational, we have
+   \[
+   |x - \frac{a}{q}| > 0.
+   \]
+   If, for some fixed $p$ and $C$, there were only finitely many pairs $(a,q)$ satisfying this inequality, then since $x$ is irrational, all the quantities
+   \[
+   |q|^p|x-\frac{a}{q}|
+   \]
+   corresponding to these finitely many pairs would be strictly positive. We could then choose a smaller constant $C'>0$ such that
+   \[
+   |x-\frac{a}{q}|>\frac{C'}{|q|^p}
+   \]
+   for every integer $a$ and every nonzero integer $q$. This would make $x$ diophantine, contradicting the assumption. Hence, for every fixed $p,C>0$, the inequality
+   \[
+   |x-\frac{a}{q}|\leq \frac{C}{|q|^p}
+   \]
+   must hold for infinitely many pairs $(a,q)$.
+
+   We now restrict $p$ and $C$ to rational numbers where $p>2$. For any such $p>2$ and $C>0$, we define the set
+   \[
+   E_{p,C} := \left\{x \in [0,1] : |x - \frac{a}{q}| \le \frac{C}{|q|^p} \text{ for infinitely many } a, q\right\}.
+   \]
+   By the previous problem, we know that $m(E_{p,C}) = 0$ for any $p > 2$ and $C > 0$. Let the set of all irrational non-diophantine numbers in $[0,1]$ be $E_{\mathrm{nd}}$, and we have
+   \[
+   E_{\mathrm{nd}} \subseteq \bigcup_{p \in \mathbb{Q}_{>2}} \bigcup_{C \in \mathbb{Q}_{>0}} E_{p,C}.
+   \]
+   Since the rational numbers are countable, this is a countable union of sets, each having measure zero. Hence, the set of non-diophantine numbers in $[0,1]$ has measure zero.
+
+   To extend the results to all real numbers, we can apply the same logic to any interval $[N, N+1]$ for $N \in \mathbb{Z}$ because the diophantine property is invariant under integer translation (if $x=N+y$, then $|x-\frac{a}{q}| = |y-\frac{a-Nq}{q}|$, and $a-Nq$ is still an integer). Since $\mathbb{R} = \bigcup_{N \in \mathbb{Z}} [N, N+1]$ is a countable union of intervals where the non-diophantine subsets have measure zero, the entire set of non-diophantine numbers in $\mathbb{R}$ has Lebesgue measure zero. To conclude, almost every real number is diophantine.
+\end{proof}
+
 \begin{problem}
     For every positive integer $n$, let $f_n:\mathbb{R}\to[0,\infty)$ be a non-negative measurable function such that
 $$
@@ -97,6 +133,60 @@ $m(\{x\in[0,1]:\ f_n(x)>1/m \text{ for all }n\ge N\})\le \varepsilon/2^m$.)
 Is the claim still true if $[0,1]$ is replaced by $\mathbb{R}$?
 \end{problem}
 
+\begin{proof}
+   Fix an arbitrary $\epsilon > 0$. For any positive integer $m$, we define
+   \[
+   A_{n,m} = \{x \in [0,1] : f_k(x) > 1/m \text{ for some } k \ge n\}.
+   \]
+   Since $f_n(x)$ converges pointwise to zero for every $x \in [0,1]$, for each fixed $x$ and $m$, there exists $N=N(x,m)$ such that
+   \[
+   f_k(x) \le 1/m \quad \forall k \ge N.
+   \]
+   This implies that no point $x$ can belong to $A_{n,m}$ for all $n$, and
+   \[
+   \bigcap_{n=1}^\infty A_{n,m} = \emptyset.
+   \]
+   We know that
+   \[
+   A_{1,m} \supseteq A_{2,m} \supseteq \dots
+   \]
+   Additionally, since $A_{1,m} \subseteq [0,1]$, we get
+   \[
+   m(A_{1,m}) \le 1.
+   \]
+   This finite measure allows us to use the continuity of measure from above to conclude that
+   \[
+   \lim_{n \to \infty} m(A_{n,m}) = m\left(\bigcap_{n=1}^\infty A_{n,m}\right) = m(\emptyset) = 0.
+   \]
+   Hence, for each integer $m \geq 1$, we can find a sufficiently large integer $N_m > 0$ such that
+   \[
+   m(A_{N_m, m}) < \epsilon/2^m.
+   \]
+   We now define
+   \[
+   E := \bigcup_{m=1}^\infty A_{N_m, m}.
+   \]
+   By the countable subadditivity of Lebesgue measure, we get
+   \[
+   m(E) \le \sum_{m=1}^\infty m(A_{N_m, m}) < \sum_{m=1}^\infty \epsilon/2^m = \epsilon.
+   \]
+   Given any $\delta>0$, choose $m$ large enough so that $1/m<\delta$. If $x \in [0,1] \setminus E$, then $x \notin A_{N_m, m}$. This implies that for every $k \ge N_m$, we have
+   \[
+   f_k(x) \le 1/m < \delta.
+   \]
+   Since $N_m$ does not depend on $x$, this satisfies the definition of uniform convergence to zero on $[0,1] \setminus E$.
+
+   To verify the second part, we can observe a counterexample by defining a function
+   \[
+   f_n(x) := \chi_{[n, n+1)}(x).
+   \]
+   Then $f_n(x)$ converges pointwise to zero for every $x \in \mathbb{R}$. Since the intervals $[n,n+1)$ are pairwise disjoint, a set $E$ of finite measure can contain at most finitely many of them entirely. Therefore, for all sufficiently large $n$, there exists $x_n\in[n,n+1)\setminus E$. For this $x_n$, we have $f_n(x_n)=1$, and thus
+   \[
+   \sup_{x\in\mathbb R\setminus E} f_n(x)=1.
+   \]
+   Therefore, no set $E$ of finite measure can make $f_n$ converge uniformly to zero on $\mathbb R\setminus E$. In particular, the claim is false when $[0,1]$ is replaced by $\mathbb R$.
+\end{proof}
+
 \begin{problem}
     Give an example of a bounded non-negative function $f:\mathbb{N}\times\mathbb{N}\to\mathbb{R}^+$ such that $\sum_{m=1}^\infty f(n,m)$ converges for every $n$, and such that $\lim_{n\to\infty} f(n,m)$ exists for every $m$, but such that
 $$
@@ -127,6 +217,30 @@ This shows that interchanging limits and infinite sums can be dangerous.)
 
 \end{problem}
 
+\begin{proof}
+   We define the function $h$ by
+   \[
+   h(x) := g(x) - f(x).
+   \]
+   Since $f(x) \le g(x)$, we have $h(x) \ge 0$ for all $x \in \mathbb{R}$, so $h$ is a non-negative measurable function. Additionally, since both $f$ and $g$ are absolutely integrable, $h$ is also absolutely integrable. Using the additivity property for absolutely integrable functions and the identity $g = f + h$, we have
+   \[
+   \int_{\mathbb{R}} g = \int_{\mathbb{R}} (f + h) = \int_{\mathbb{R}} f + \int_{\mathbb{R}} h.
+   \]
+   We then have
+   \[
+   \int_{\mathbb{R}} h = \int_{\mathbb{R}} g - \int_{\mathbb{R}} f.
+   \]
+   Since $\int_{\mathbb{R}} f = \int_{\mathbb{R}} g$, we get
+   \[
+   \int_{\mathbb{R}} h = 0.
+   \]
+   For a non-negative measurable function, having integral zero implies that the function is zero almost everywhere. Hence, $h(x) = 0$ for almost every $x \in \mathbb{R}$. Since $h=g-f$, we have
+   \[
+   g(x) - f(x) = 0
+   \]
+   for almost every $x \in \mathbb{R}$. Hence, $f(x)=g(x)$ for almost every $x \in \mathbb{R}$.
+\end{proof}
+
 \begin{problem}
     For each $n=1,2,3,\dots$, let $f_n:\mathbb{R}\to\mathbb{R}$ be the function
 $f_n = \chi_{[n,n+1)} - \chi_{[n+1,n+2)}$; i.e., let $f_n(x)$ equal $+1$ when $x\in[n,n+1)$, equal $-1$ when
@@ -137,6 +251,34 @@ $$
 Explain why this does not contradict Corollary 8.2.11.
 
 \end{problem}
+
+\begin{proof}
+    Notice that 
+    \[
+        \begin{aligned}
+        \sum_{n=1}^{\infty} f_n &= \chi_{[1,2)} - \chi_{[2,3)} + \chi_{[2,3)} - \chi_{[3,4)} + \chi_{[3,4)} -\cdots \\
+        &= \chi_{[1,2)} - (\chi_{[2,3)} - \chi_{[2,3)}) - (\chi_{[3,4)} - \chi_{[3,4)}) -\cdots \\
+        &= \chi_{[1,2)}.
+        \end{aligned}
+    \]
+    Therefore,
+    \[
+        \int_\mathbb{R} \sum_{n=1}^\infty f_n = \int_\mathbb{R} \chi_{[1,2)} = 1.
+    \]
+    On the other hand, for fixed $k$, 
+    \[
+        \int_\mathbb{R} f_k = \int_\mathbb{R} \chi_{[k,k+1)} - \chi_{[k+1,k+2)} = \int_\mathbb{R} \chi_{[k,k+1)} - \int_\mathbb{R} \chi_{[k+1,k+2)} = 1-1 = 0.
+    \]
+    Therefore,
+    \[
+        \sum_{n=1}^\infty \int_\mathbb{R} f_n = \sum_{n=1}^\infty 0 = 0.
+    \]
+    And hence
+    \[
+        1 =\int_\mathbb{R}\sum_{n=1}^\infty f_n \ne \sum_{n=1}^\infty \int_\mathbb{R} f_n = 0.
+    \]
+    Since $f_1, f_2, \cdots$ are NOT non-negative functions, it doesn't satisfy the requirement of the corollary, and hence the result doesn't contradict to the corollary. 
+\end{proof}
 
 \begin{problem}[Tannery's convergence theorem for Riemann integrals]
     Prove Tannery's convergence theorem for Riemann integrals.
@@ -245,3 +387,169 @@ e^{-x}x^p\in L^1([0,\infty))
 \]
 the dominated convergence theorem applies.
 \end{problem}
+
+\begin{proof}[Proof of Tannery's convergence theorem]
+    We first prove that $f$ and $\vert f\vert$ are improper Riemann integrable on $[a, + \infty)$.
+    In other word, we want to show that 
+    \[
+        \lim_{b \to \infty} \int_a^{b} f(x) dx < \infty \text{ and } \lim_{b \to \infty} \int_a^{b} \lvert f(x) \rvert dx < \infty
+    \]
+    It suffices to show \[
+        \lim_{b \to \infty} \int_a^{b} \lvert f(x) \rvert dx < \infty
+    \]
+    Since 
+    \[
+        f_n \to f \text{ and } \lvert f_n(x) \rvert \le g(x)\ \text{ almost everywhere.}
+    \]
+    This implies
+    \[
+        \lvert f(x) \rvert \le g(x)\text{ almost everywhere.} 
+    \]
+    And since $g$ is non-negative and it is improper Riemann integrable on $[a,+ \infty)$,
+    \[
+        \int_{a}^{\infty} g(x) dx < \infty.
+    \]
+    And hence
+    \[
+        \int_{a}^{b} \lvert f(x)\rvert dx \le \int_{a}^{b} g(x) dx \le \int_{a}^{\infty} g(x) dx < \infty.
+    \]
+    So $\vert f\vert$ are improper Riemann integrable on $[a, +\infty)$, and so as $f$.
+
+    Then we show the convergence of the sequence.
+
+    Given $\varepsilon > 0$, since $f$ is improper Riemann integrable on $[a, +\infty)$, we can choose $b_0 > a$ large enough such that
+    \[
+        \big \lvert \int_b^{\infty} f(x) dx \big \rvert < \varepsilon \text{ and } \int_b^{\infty} g(x) dx < \varepsilon\text{ for all $b \ge b_0$}
+    \]
+    since
+    \[
+    \left\vert \int_b^{\infty} f(x) \, \mathrm{d}  x\right\vert \le \int_b^{\infty} \vert f(x) \vert \, \mathrm{d} x
+    \]
+    for all $b \in \mathbb{R}$ and $\vert f(x) \vert \ge 0$ for all $x \in \mathbb{R}$.
+    And since $f_n \to f$ uniformly on $[a, b_0]$. There exists some $N$ such that
+    \[
+        \big \lvert \int_{a}^{b_0} f_n(x) dx - \int_{a}^{b_0} f(x) dx\big \rvert \le \varepsilon \text{ for all $n \ge N$.}
+    \]
+    Then we may assume that $p_n > b_0$ for all such $n$, then 
+    \[
+        \begin{aligned}
+        \big \lvert \int_{a}^{p_n} f_n(x) dx - \int_{a}^{\infty} f(x) dx \big \rvert &\le   \big \lvert \int_{a}^{b_0} f_n(x) dx - \int_{a}^{b_0} f(x) dx \big \rvert + \big \lvert \int_{b_0}^{p_n} f_n(x) dx - \int_{b_0}^{\infty} f(x) dx \big \rvert \\
+        &\le \varepsilon + \int_{b_0}^{p_n} \lvert f_n(x) \rvert dx + \lvert\int_{b_0}^{\infty} f(x) dx \big \rvert \\
+        &\le \varepsilon + \int_{b_0}^{p_n} g(x) dx + \varepsilon \\
+        &\le \varepsilon + \int_{b_0}^{\infty} g(x) dx + \varepsilon \\
+        &\le 3\varepsilon.
+        \end{aligned}
+    \]
+    Hence, we have proved that
+    \[
+        \int_{a}^{p_n} f_n(x) dx \to \int_{a}^{\infty} f(x) dx.
+    \]
+    In other word,
+    \[
+        \lim_{n \to \infty} \int_{a}^{p_n} f_n(x) dx = \int_{a}^{\infty} f(x) dx.
+    \]
+\end{proof}
+
+\begin{proof}[(d)]
+    We picked $p_n = n $,define $f_n$ as
+    \[
+        f_n(x)=
+        \begin{cases}
+        (1- \frac{x}{n})^n x^p, & 0 \le x \le n,\\
+        0, & n < x.
+        \end{cases}
+    \]
+    For fixed $x \ge 0$, when $n$ large enough, we must have $x < n$, so
+    \[
+        f_n(x) = (1- \frac{x}{n})^n x^p.
+    \]
+    And since
+    \[
+        (1- \frac{x}{n})^n \to e^{-x} \quad \text{as $n \to \infty$}.
+    \]
+    We can get 
+    \[
+        f_n(x) \to e^{-x}x^p \quad \text{as $n \to \infty$ and $x\in (0, +\infty)$}.
+    \]
+    Let us define 
+    \[
+        f(x) = e^{-x}x^p.
+    \]
+    Then, we know that 
+    \[
+        f_n \to f \quad\text{almost everywhere on $[0, +\infty)$}
+    \]
+
+    Then, we want to find a dominated function $g$ to apply Lebesgue dominated convergence theorem.
+    \begin{claim}
+        $g(x) = e^{-x} x^p$ is a valid dominated function such that $\vert f_n(x)\vert \le g(x)$ for all $x \in [0, +\infty)$
+    \end{claim}
+    \begin{explanation}
+        Since $e^{-x} > 0$ and $x^p > 0$ for all $x > 0$, $g$ is nonnegative function.
+
+        Then, since we know that 
+        \[
+            0 \le (1-\frac{x}{n})^n \le e^{-x}, \quad 0 \le x \le n.
+        \]
+        For fixed $n$,
+        We have
+        \[
+            \lvert f_n(x) \rvert = \lvert (1-\frac{x}{n})^nx^p \rvert = (1-\frac{x}{n})^nx^p \le e^{-x}x^p, \quad 0 \le x \le n,
+        \]
+        and 
+        \[
+            \lvert f_n(x) \rvert = 0 \le e^{-x} x^p, \quad n < x.
+        \]
+        So $\lvert f_n(x) \rvert \le g(x)$ for all $n$.
+
+        Then we want to show that $g$ is improper Riemann integrable on $[0, \infty)$.
+
+        Since
+        \[
+            \int_0^\infty g(x)dx = \int_0^\infty e^{-x}x^pdx = \int_0^1 e^{-x}x^pdx + \int_1^\infty e^{-x}x^p dx.
+        \]
+        Since $e^{-x}x^p \le x^p$ when $x < 1$, so
+        \[
+            \int_0^1 e^{-x}x^pdx \le \int_0^1 x^pdx = \frac{1}{p+1} < \infty
+        \]
+        For the remaining part, we separate it to two case. 
+        \begin{itemize}
+            \item Case 1 ($-1 < p < 0$): Then $x^p \le 1$ for $x \ge 1$, so $e^{-x}x^p \le e^{-x}$, and hence
+            \[
+                \int_1^\infty e^{-x}x^pdx \le \int_1^\infty e^{-x}dx = \frac{1}{e} < \infty.
+            \]
+            \item Case 2 ($p \ge 0$): Since
+            \[
+                \frac{\log x}{x} \to 0 \quad \text{as } x \to \infty.
+            \]
+            So there exists some $M > 1$ such that 
+            \[
+                p \log x \le \frac{x}{2}, \quad x \ge M. 
+            \]
+            Then 
+            \[
+                x^p \le e^\frac{x}{2}, \quad x \ge M.
+            \]
+            So 
+            \[
+                \int_M^\infty e^{-x}x^pdx \le \int_M^\infty e^{-\frac{x}{2}} < \infty.
+            \]
+            And $e^{-x}x^p$ is continuous on compact interval $[1, M]$, so
+            \[
+                \int_1^M e^{-x}x^pdx < \infty.
+            \]
+            And hence
+            \[
+                \int_1^\infty e^{-x}x^pdx = \int_1^M e^{-x}x^pdx + \int_M^\infty e^{-x}x^pdx < \infty.
+            \]
+        \end{itemize}
+        So we can conclude that $g$ is improper Riemann integrable on $[0, \infty)$.
+    \end{explanation}
+
+    Since we have $p_n = n \to \infty$, $f_n(x) \to e^{-x}x^p$, $\vert f_n(x) \vert \le e^{-x}x^p$ and $e^{-x}x^p$ is improper integrable on $[0, \infty)$. We can apply Tannery's theorem to conclude that 
+    \[
+    \lim_{n\to\infty}\int_0^n \left(1-\frac{x}{n}\right)^n x^p\,dx
+    =
+    \int_0^\infty e^{-x}x^p\,dx.
+    \]
+\end{proof}

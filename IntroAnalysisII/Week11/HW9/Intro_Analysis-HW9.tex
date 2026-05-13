@@ -1,0 +1,253 @@
+\documentclass[addpoints]{exam}
+% leqno 將方程式編號放在左側
+
+%\printanswers
+
+\usepackage[top=2.5cm,bottom=2cm,left=2.5cm,right=2.5cm,headsep=10pt,a4paper]{geometry} % 引用頁面幾何套件，設定頁面邊界
+
+\usepackage{siunitx} % 角度
+% \input{NewCommands}
+
+\usepackage{amsmath,amssymb,amsthm} % 引用常見的數學符號與設定
+
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Definition}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{remark}{Remark}
+\newcommand{\R}{\mathbb{R}}
+
+\usepackage{lastpage} % 取得最後頁碼
+
+
+
+
+\usepackage{graphicx} % 引用圖檔內嵌入套件
+\graphicspath{{Pictures/}} % 設定圖檔目錄
+\usepackage{xcolor} %引用顏色套件
+\usepackage{enumerate}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{mdwlist} % use suspend & resume to successive enumerate
+
+\usepackage{CJKutf8} % 設定中文
+
+\def \lflr{\left\lfloor} %自定義 floor function
+\def \rflr{\right\rfloor} %自定義
+
+% question separation
+\renewcommand{\questionshook}{%
+  \setlength{\itemsep}{0.5cm}%
+}
+
+\allowdisplaybreaks %equation allowed to next page
+
+\firstpageheader{\today}
+                {}
+                {}
+\footer{}{\sf Page \thepage~of~\pageref{LastPage}}{}
+
+\begin{document}
+
+\begin{CJK*}{UTF8}{gbsn}
+% Title
+\begin{center}
+    {\Large{\bf Introduction to Mathematical Analysis II\\
+    Homework 9  Due  May 16  (Saturday), 2026\\
+    Please submit your group homework online in PDF format.\\
+You are expected to work collaboratively within your group. 
+Please do not obtain complete solutions directly from AI tools. 
+The purpose of this assignment is to develop your own mathematical reasoning and problem-solving skills. %  Homework X Brief Solution
+  }} \\ 
+    \large
+    %\text{Due date: 3/9/2023}
+\end{center}
+
+\noindent\rule{16.2cm}{0.4pt}
+
+
+\begin{questions}
+
+
+% ============ Question x ============
+\question  (20 pts) 
+
+
+
+Here is a trick question: ``Are there any functions for which the Riemann
+integral converges but the Lebesgue integral diverges?'' 
+Show, however, that the improper Riemann integral
+\[
+\int_0^1 f(x)\,dx
+\]
+of
+\[
+f(x)=
+\begin{cases}
+\dfrac{\pi}{x}\sin\dfrac{\pi}{x}, & \text{if } x\neq 0,\\[1.2ex]
+0, & \text{if } x=0,
+\end{cases}
+\]
+exists and is finite, while the Lebesgue integral is infinite.
+
+\medskip
+
+\noindent
+\textbf{Hint.}
+Integration by parts gives
+\[
+\int_a^1 \frac{\pi}{x}\sin\frac{\pi}{x}\,dx
+=
+\left. x\cos\frac{\pi}{x}\right|_a^1
+-
+\int_a^1 \cos\frac{\pi}{x}\,dx.
+\]
+Why does this converge to a limit as \(a\to 0^+\)?
+
+To check divergence of the Lebesgue integral, consider intervals
+\[
+\left[\frac{1}{k+1},\frac{1}{k}\right].
+\]
+On such an interval the sine of \(\pi/x\) is everywhere positive or everywhere
+negative. The cosine is \(+1\) at one endpoint and \(-1\) at the other. Now use
+the integration by parts formula again and the fact that the harmonic series
+diverges.
+
+
+\begin{solution}
+\end{solution}
+
+\question (20 pts) 
+Assume that \(f\) is measurable on \(\mathbb{R}^2\), and assume that at least
+one of the two iterated integrals
+\[
+\int_{\mathbb{R}}
+\left[
+\int_{\mathbb{R}} |f(x,y)|\,dx
+\right]dy
+\qquad\text{or}\qquad
+\int_{\mathbb{R}}
+\left[
+\int_{\mathbb{R}} |f(x,y)|\,dy
+\right]dx
+\]
+exists. Prove the following results:
+\begin{enumerate}
+    \item[\textup{a)}] \(f\in L(\mathbb{R}^2)\).
+
+    \item[\textup{b)}]
+    \[
+    \iint_{\mathbb{R}^2} f
+    =
+    \int_{\mathbb{R}}
+    \left[
+    \int_{\mathbb{R}} f(x,y)\,dx
+    \right]dy
+    =
+    \int_{\mathbb{R}}
+    \left[
+    \int_{\mathbb{R}} f(x,y)\,dy
+    \right]dx.
+    \]
+\end{enumerate}
+
+
+\begin{solution}
+
+
+\end{solution}
+
+
+
+\question (20 pts)
+Let
+\[
+f(x,y)=e^{-xy}\sin x\sin y
+\]
+if \(x\ge 0\), \(y\ge 0\), and let \(f(x,y)=0\) otherwise. Prove that both
+iterated integrals
+\[
+\int_{\mathbb R}
+\left[
+\int_{\mathbb R} f(x,y)\,dx
+\right]dy
+\qquad\text{and}\qquad
+\int_{\mathbb R}
+\left[
+\int_{\mathbb R} f(x,y)\,dy
+\right]dx
+\]
+exist and are equal, but that the double integral of \(f\) over \(\mathbb R^2\)
+does not exist. Also, explain why this does not contradict the result in previous exercise.
+\begin{solution} 
+
+\end{solution}
+
+\question ( 20 pts) 
+Suppose that \(\mathcal E\subset C^0([a,b], \R )$ (
+ the set of continuous functions $[a,b] \to \R$) is equicontinuous and bounded.
+\begin{enumerate}
+    \item[\textup{(a)}] Prove that
+    \[
+    \sup\{f(x):f\in\mathcal E\}
+    \]
+    is a continuous function of \(x\).
+
+    \item[\textup{(b)}] Show that \textup{(a)} fails without equicontinuity.
+
+    \item[\textup{(c)}] Show that this continuous-sup property does not imply
+    equicontinuity.
+
+    \item[\textup{(d)}] Assume that the continuous-sup property is true for each
+    subset \(\mathcal F\subset\mathcal E\). Is \(\mathcal E\) equicontinuous?
+    Give a proof or counterexample.
+\end{enumerate}
+
+
+\begin{solution} 
+ 
+ \end{solution}
+ 
+ 
+\question (10)
+Is the sequence of functions \(f_n:\mathbb R\to\mathbb R\) defined by
+\[
+f_n(x)
+=
+\cos(n+x)
++
+\log\left(
+1+\frac{1}{\sqrt{n+2}}\sin^2(n^n x)
+\right)
+\]
+equicontinuous? Prove or disprove.
+
+
+
+
+
+\begin{solution} 
+ 
+ \end{solution}
+
+
+
+\question (10 pts)
+If \(f:\mathbb R\to\mathbb R\) is continuous and the sequence
+\[
+f_n(x)=f(nx)
+\]
+is equicontinuous, what can be said about \(f\)?
+
+
+   
+\begin{solution} 
+ 
+ \end{solution}
+
+\
+
+\end{questions}
+\end{CJK*}
+\end{document}
+

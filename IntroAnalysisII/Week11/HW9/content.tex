@@ -1,0 +1,414 @@
+\begin{problem}
+    Here is a trick question: ``Are there any functions for which the Riemann
+    integral converges but the Lebesgue integral diverges?'' 
+    Show, however, that the improper Riemann integral
+    \[
+    \int_0^1 f(x)\,dx
+    \]
+    of
+    \[
+    f(x)=
+    \begin{cases}
+    \dfrac{\pi}{x}\sin\dfrac{\pi}{x}, & \text{if } x\neq 0,\\[1.2ex]
+    0, & \text{if } x=0,
+    \end{cases}
+    \]
+    exists and is finite, while the Lebesgue integral is infinite.
+    
+    \medskip
+    
+    \noindent
+    \textbf{Hint.}
+    Integration by parts gives
+    \[
+    \int_a^1 \frac{\pi}{x}\sin\frac{\pi}{x}\,dx
+    =
+    \left. x\cos\frac{\pi}{x}\right|_a^1
+    -
+    \int_a^1 \cos\frac{\pi}{x}\,dx.
+    \]
+    Why does this converge to a limit as \(a\to 0^+\)?
+    
+    To check divergence of the Lebesgue integral, consider intervals
+    \[
+    \left[\frac{1}{k+1},\frac{1}{k}\right].
+    \]
+    On such an interval the sine of \(\pi/x\) is everywhere positive or everywhere
+    negative. The cosine is \(+1\) at one endpoint and \(-1\) at the other. Now use
+    the integration by parts formula again and the fact that the harmonic series
+    diverges.
+\end{problem}
+
+\begin{proof}
+    Consider
+    \[
+    I(a) = \int_a^1 \frac{\pi}{x} \sin\left(\frac{\pi}{x}\right) dx.
+    \]
+    Let $u = x$, and $dv = \frac{\pi}{x^2}\sin(\frac{\pi}{x})dx$. Using integration by parts, we have
+    \[
+    \begin{aligned}
+    \int_a^1 \frac{\pi}{x} \sin\left(\frac{\pi}{x}\right) dx
+    &=
+    \left[ x \cos\left(\frac{\pi}{x}\right) \right]_a^1
+    -
+    \int_a^1 \cos\left(\frac{\pi}{x}\right) dx \\[6pt]
+    &=
+    \left(1 \cdot \cos(\pi) - a \cos\left(\frac{\pi}{a}\right)\right)
+    -
+    \int_a^1 \cos\left(\frac{\pi}{x}\right) dx \\[6pt]
+    &=
+    -1 - a \cos\left(\frac{\pi}{a}\right)
+    -
+    \int_a^1 \cos\left(\frac{\pi}{x}\right) dx .
+    \end{aligned}
+    \]
+    As $a \to 0^+$, since $\cos\left(\frac{\pi}{a}\right)$ is a bounded function, we get
+    \[
+    a \cos\left(\frac{\pi}{a}\right) \to 0.
+    \]
+    Additionally, the improper integral
+    \[
+    \int_0^1 \cos\left(\frac{\pi}{x}\right)dx
+    \]
+    converges. Indeed, if \(0<a<b<1\), then
+    \[
+    \left|\int_a^b \cos\left(\frac{\pi}{x}\right)dx\right|
+    \leq \int_a^b 1\,dx
+    = b-a.
+    \]
+    Hence, \(\int_a^1 \cos(\pi/x)\,dx\) is Cauchy as \(a\to 0^+\), and thus it converges to a finite limit. In conclusion, the improper Riemann integral $\lim_{a \to 0^+} I(a)$ exists and is finite.
+
+    To look at Lebesgue integral, consider the sequence of intervals
+    \[
+    I_k = [\frac{1}{k+1}, \frac{1}{k}].
+    \]
+    For any $x \in I_k$, we get $\frac{\pi}{x} \in [k\pi, (k+1)\pi]$. Hence, we have
+    \[
+    \int_{I_k} |f(x)| dx = \left| \int_{\frac{1}{k+1}}^{\frac{1}{k}} \frac{\pi}{x} \sin\left(\frac{\pi}{x}\right) dx \right|.
+    \]
+    Using integration by parts, we get
+    \[
+    \begin{aligned}
+    \int_{\frac{1}{k+1}}^{\frac{1}{k}} f(x)\,dx
+    &=
+    \left[ x \cos\left(\frac{\pi}{x}\right) \right]_{\frac{1}{k+1}}^{\frac{1}{k}}
+    -
+    \int_{\frac{1}{k+1}}^{\frac{1}{k}} \cos\left(\frac{\pi}{x}\right)\,dx \\[6pt]
+    &=
+    \left(
+    \frac{1}{k}\cos(k\pi)
+    -
+    \frac{1}{k+1}\cos((k+1)\pi)
+    \right)
+    -
+    \int_{\frac{1}{k+1}}^{\frac{1}{k}} \cos\left(\frac{\pi}{x}\right)\,dx \\[6pt]
+    &=
+    \left(
+    \frac{(-1)^k}{k}
+    -
+    \frac{(-1)^{k+1}}{k+1}
+    \right)
+    -
+    \int_{\frac{1}{k+1}}^{\frac{1}{k}} \cos\left(\frac{\pi}{x}\right)\,dx \\[6pt]
+    &=
+    (-1)^k
+    \left(
+    \frac{1}{k}
+    +
+    \frac{1}{k+1}
+    \right)
+    -
+    \int_{\frac{1}{k+1}}^{\frac{1}{k}} \cos\left(\frac{\pi}{x}\right)\,dx .
+    \end{aligned}
+    \]
+    By triangle inequality, we get
+    \[
+    \int_{I_k} |f(x)| dx \ge \left( \frac{1}{k} + \frac{1}{k+1} \right) - \int_{\frac{1}{k+1}}^{\frac{1}{k}} \left|\cos\left(\frac{\pi}{x}\right)\right| dx.
+    \]
+    Since $\left|\cos\left(\frac{\pi}{x}\right)\right| \le 1$, we have
+    \[
+    \int_{\frac{1}{k+1}}^{\frac{1}{k}} \left|\cos\left(\frac{\pi}{x}\right)\right| dx \le \frac{1}{k} - \frac{1}{k+1} = \frac{1}{k(k+1)}.
+    \]
+    This implies that
+    \[
+    \int_{I_k} |f(x)| dx \ge \frac{1}{k} + \frac{1}{k+1} - \frac{1}{k(k+1)} = \frac{2}{k+1}.
+    \]
+    Hence, we get
+    \[
+    \int_0^1 |f(x)| dx = \sum_{k=1}^\infty \int_{I_k} |f(x)| dx \ge \sum_{k=1}^\infty \frac{2}{k+1}.
+    \]
+    This is a harmonic series, which diverges. Hence, we can conclude that
+    \[
+    \int_0^1 |f(x)| dx = \infty,
+    \]
+    which implies that the Lebesgue integral is infinite.
+\end{proof}
+
+\begin{problem}
+    Assume that \(f\) is measurable on \(\mathbb{R}^2\), and assume that at least
+    one of the two iterated integrals
+    \[
+    \int_{\mathbb{R}}
+    \left[
+    \int_{\mathbb{R}} |f(x,y)|\,dx
+    \right]dy
+    \qquad\text{or}\qquad
+    \int_{\mathbb{R}}
+    \left[
+    \int_{\mathbb{R}} |f(x,y)|\,dy
+    \right]dx
+    \]
+    exists. Prove the following results:
+    \begin{enumerate}
+        \item[\textup{a)}] \(f\in L(\mathbb{R}^2)\).
+    
+        \item[\textup{b)}]
+        \[
+        \iint_{\mathbb{R}^2} f
+        =
+        \int_{\mathbb{R}}
+        \left[
+        \int_{\mathbb{R}} f(x,y)\,dx
+        \right]dy
+        =
+        \int_{\mathbb{R}}
+        \left[
+        \int_{\mathbb{R}} f(x,y)\,dy
+        \right]dx.
+        \]
+    \end{enumerate}
+\end{problem}
+
+\begin{problem}
+    Let
+    \[
+    f(x,y)=e^{-xy}\sin x\sin y
+    \]
+    if \(x\ge 0\), \(y\ge 0\), and let \(f(x,y)=0\) otherwise. Prove that both
+    iterated integrals
+    \[
+    \int_{\mathbb R}
+    \left[
+    \int_{\mathbb R} f(x,y)\,dx
+    \right]dy
+    \qquad\text{and}\qquad
+    \int_{\mathbb R}
+    \left[
+    \int_{\mathbb R} f(x,y)\,dy
+    \right]dx
+    \]
+    exist and are equal, but that the double integral of \(f\) over \(\mathbb R^2\)
+    does not exist. Also, explain why this does not contradict the result in previous exercise.
+\end{problem}
+
+\begin{problem}
+    Suppose that \(\mathcal E\subset C^0([a,b], \R )$ (
+     the set of continuous functions $[a,b] \to \R$) is equicontinuous and bounded.
+    \begin{enumerate}
+        \item[\textup{(a)}] Prove that
+        \[
+        \sup\{f(x):f\in\mathcal E\}
+        \]
+        is a continuous function of \(x\).
+    
+        \item[\textup{(b)}] Show that \textup{(a)} fails without equicontinuity.
+    
+        \item[\textup{(c)}] Show that this continuous-sup property does not imply
+        equicontinuity.
+    
+        \item[\textup{(d)}] Assume that the continuous-sup property is true for each
+        subset \(\mathcal F\subset\mathcal E\). Is \(\mathcal E\) equicontinuous?
+        Give a proof or counterexample.
+    \end{enumerate}
+\end{problem}
+
+\begin{proof}[(a)]
+    Suppose that 
+    \[
+        g = \sup\{f(x):f\in\mathcal E\}
+    \]
+    for convenience.
+
+    Given $\varepsilon > 0$, since $\mathcal E$ is equicontinuous, there exists $\delta > 0$ such that 
+    \[
+        \vert x - y\vert < \delta \implies \vert f(x) - f(y) \vert < \varepsilon \quad \text{for all } f \in \mathcal E. 
+    \]
+
+    And we claim that 
+    \[
+        \vert x - y \vert < \delta\implies \vert g(x) - g(y)\vert < \varepsilon 
+    \]
+
+    First, we show that $g(x) \le g(y) + \varepsilon$. 
+
+    Since $f(x) \le f(y) + \varepsilon$ and $f(y) \le \sup_{h \in \mathcal E} h(y) = g(y)$, we can get $f(x) \le g(y) + \varepsilon$. Since this inequality hold for all $f \in \mathcal E$, $\sup_{f\in \mathcal E} f(x) \le g(y) + \varepsilon$, and hence $g(x) \le g(y) + \varepsilon$.
+
+    By exchanging the role of $x, y$ we can deduce that $g(y) \le g(x) + \varepsilon$. By combining two inequality, we can conclude that $\vert g(x) - g(y) \vert \le \varepsilon$.
+\end{proof}
+
+\begin{proof}[(b)]
+    Suppose that $\mathcal E = \{f_n(x) = x^{1/n} : n \in \mathbb{N}\}$ on $[0,1]$. For fixed $n$, $f_n$ is continuous on $[0,1]$, and since $0 \le f_n(x) \le 1$ on $[0,1]$, $f_n$ is bounded. So $\mathcal E\subset C^0([a,b], \R )$.
+
+    However, 
+    \[
+        g(x)=
+        \begin{cases}
+        1, & 0 < x \le 1,\\
+        0, & x = 0,
+        \end{cases}
+    \]
+    so $g$ is not continuous on $[0,1]$.
+\end{proof}
+
+\begin{proof}[(c)]
+    Suppose that $\mathcal E = \{f_n(x) = x^{n} : n \in \mathbb{N}\}$ on $[0,1]$. For fixed $n$, $f_n$ is continuous on $[0,1]$, and since $0 \le f_n(x) \le 1$ on $[0,1]$, $f_n$ is bounded. So $\mathcal E\subset C^0([a,b], \R )$.
+
+    Notice that for all $n > m$, $f_n(x) \le f_m(x)$ for all $x \in [0,1]$. So $g(x) = x$, and clearly this is a continuous function.
+
+    However for fixed $\varepsilon > 0$, for all $\delta > 0$, we can pick $N = \lceil log_{(1-\delta)}(1-\varepsilon) \rceil + 1$, such that
+    \[
+        f_N(1) - f_N(1-\delta) = 1 - (1-\delta)^{N}  > 1 - (1-\delta) ^ {log_{(1-\delta)}(1-\varepsilon)} \ge \varepsilon.
+    \]
+    And hence $\mathcal E$ is not equicontinuous.
+
+\end{proof}
+
+\begin{proof}[(d)]
+    No, we disprove this by providing a counterexample.
+
+    Suppose that $\mathcal E = \{f_n(x) = x^{n} : n \in \mathbb{N}\}$ on $[0,1]$. For fixed $n$, $f_n$ is continuous on $[0,1]$, and since $0 \le f_n(x) \le 1$ on $[0,1]$, $f_n$ is bounded. So $\mathcal E\subset C^0([a,b], \R )$.
+
+    For fixed $\mathcal F \subseteq \mathcal E$ which $\mathcal F$ is non-empty, $\mathcal F = \{x^n : n \in A\}$ where $A \subseteq \mathbb{N}$. Let $q = \min A$.
+
+    Notice that for all $n > m \ge q$, $f_n(x) \le f_m(x)$ for all $x \in [0,1]$. So $g(x) = x^q$, and clearly this is a continuous function.
+
+    However we have proven in (c) that $\mathcal E$ is not equicontinuous.
+    
+
+\end{proof}
+
+\begin{problem}
+    Is the sequence of functions \(f_n:\mathbb R\to\mathbb R\) defined by
+    \[
+    f_n(x)
+    =
+    \cos(n+x)
+    +
+    \log\left(
+    1+\frac{1}{\sqrt{n+2}}\sin^2(n^n x)
+    \right)
+    \]
+    equicontinuous? Prove or disprove.
+\end{problem}
+
+\begin{proof}
+    We want to show that for all $x, y \in \mathbb{R}$, for all $\varepsilon > 0$, there exists $\delta > 0$ such that
+    \[
+        \lvert x - y\rvert < \delta \implies \lvert f_n(x) - f_n(y) \rvert \quad \text{for all } n \in \mathbb{N}.
+    \]
+    Let 
+    \[
+        h_n(x) = \log\left(
+        1+\frac{1}{\sqrt{n+2}}\sin^2(n^n x)
+        \right).
+    \]
+
+    \begin{claim}
+    For fixed $n$, $h_n$ is uniformly continuous over $\mathbb{R}$.
+    \end{claim}
+    \begin{explanation}
+    Suppose that 
+    \[
+        a_n = \frac{1}{\sqrt{n+2}}, \quad c_n = n^n.
+    \]
+    Then $h_n(x) = \log\left(1+a_n\sin^2(c_n x)\right)$.
+    Then 
+    \[
+        h'_n(x) = \frac{a_n 2 \sin(c_nx)\cos(c_nx)c_n}{1+a_n\sin^2(c_n x)}.
+    \]
+    Since $1+a_n\sin^2(c_n x) \ge 1$ and $\vert 2 \sin(c_nx)\cos(c_nx) \vert = \lvert \sin(2c_nx)\rvert \le 1$, 
+    \[
+        \vert h'_n(x) \vert  = \lvert \frac{a_n 2 \sin(c_nx)\cos(c_nx)c_n}{1+a_n\sin^2(c_n x)} \rvert  \le \frac{a_n \cdot 1 \cdot c_n}{1} = a_n c_n.
+    \]
+    Then by Mean Value Theorem,
+    \[
+        \lvert h_n(x) - h_n(y) \rvert \le a_n c_n \lvert x-y \rvert,
+    \]
+    so $h_n$ is Lipchitz continuous, and hence it is uniformly continuous.
+    \end{explanation}
+
+    
+    Notice that 
+    \[
+        \lvert f_n(x) - f_n(y) \rvert \le \lvert cos(n+x) - cos(n+y)\rvert + \lvert h_n(x) - h_n(y)\rvert
+    \]
+
+    For fixed $\varepsilon > 0$. Since $\cos(\cdot)$ is 1-Lipchitz continuous function, so $\cos(\cdot)$ is uniformly continuous function. And hence we can pick $\delta_{cos} = \frac{\varepsilon}{2}$ such that 
+    \[
+        \lvert x - y\rvert \le \delta_{cos} \implies \lvert \cos(x) - \cos(y) \rvert \le \frac{\varepsilon}{2}.
+    \]
+
+    And notice that 
+    \[
+        0 \le h_n(x) = \log\left(
+        1+\frac{1}{\sqrt{n+2}}\sin^2(n^n x)
+        \right) \le \log\left(
+        1+\frac{1}{\sqrt{n+2}}
+        \right), \quad \text{which is independent of  } x
+    \]
+    So
+    \[
+        h_n \to 0 \text{ uniformly.}
+    \]
+    And hence we can find some $N$ such that for all $n \ge N$, $\|h_n\| \le \frac{\varepsilon}{4}$
+    \[
+        \lvert h_n(x) - h_n(y) \rvert \le \lvert h_n(x) \rvert + \lvert h_y(x) \rvert \le 
+        \frac{\varepsilon}{2}.
+    \]
+
+    And from previous claim, since $h_i$ is uniformly continuous for all $i \in \mathbb{N}$, for each $i$, we can find $\delta_i$ such that
+    \[
+        \lvert x -y \rvert \le \delta_i \implies \lvert h_i(x) - h_i(y)\rvert \le \frac{\varepsilon}{2}
+    \]
+
+    Then, we take $\delta' = \min\{\delta, \delta_1, \delta_2,\cdots, \delta_N\}$ such that
+    
+    \[
+        \begin{aligned}
+            \lvert x-y \rvert \le \delta' \implies \lvert f_n(x) - f_n(y) \rvert &\le \lvert cos(n+x) - cos(n+y)\rvert + \lvert h_n(x) - h_n(y)\rvert \\
+            &\le \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon. \quad \text{for all } n\in \mathbb{N}. 
+        \end{aligned}
+    \]
+
+    And hence the sequence of functions $f_n$ is equicontinuous.
+    
+    
+\end{proof}
+
+\begin{problem}
+    If \(f:\mathbb R\to\mathbb R\) is continuous and the sequence
+    \[
+    f_n(x)=f(nx)
+    \]
+    is equicontinuous, what can be said about \(f\)?
+\end{problem}
+
+\begin{proof}
+    By the definition of equicontinuity, for every $\epsilon > 0$, there exists $\delta > 0$ such that for all $x, y \in \mathbb{R}$ with $|x - y| < \delta$, we have
+    \[
+    |f_n(x) - f_n(y)| < \epsilon \quad \forall n \in \mathbb{N}.
+    \]
+    Substituting $f_n(x)=f(nx)$, we also have
+    \[
+    |f(nx) - f(ny)| < \epsilon.
+    \]
+    We now choose two arbitrary points $u, v \in \mathbb{R}$, and we can find a sufficiently large $n$ such that $\frac{|u - v|}{n} < \delta$. Let $x = \frac{u}{n}$ and $y = \frac{v}{n}$, and we have $|x - y| = \frac{|u - v|}{n} < \delta$. By equicontinuity condition, we get
+    \[
+    \left| f\left(n \cdot \frac{u}{n}\right) - f\left(n \cdot \frac{v}{n}\right) \right| = |f(u) - f(v)| < \epsilon.
+    \]
+    Since $\epsilon > 0$ was chosen arbitrarily, this holds for any $\epsilon > 0$. Hence, we get
+    \[
+    |f(u) - f(v)| = 0 \implies f(u) = f(v).
+    \]
+    Since $u$ and $v$ were also chosen arbitrarily, we can conclude that $f$ is a constant function.
+\end{proof}
