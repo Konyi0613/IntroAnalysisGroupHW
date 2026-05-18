@@ -178,6 +178,104 @@
         \]
     \end{enumerate}
 \end{problem}
+\begin{proof}
+    \hfill
+    \begin{itemize}
+        \item [a)] Now we define \(g(x, y) \coloneqq \vert f(x, y) \vert \), then we can give a claim:
+        \[
+            \iint _{\mathbb{R} ^2} g(x, y) = \int _{\mathbb{R} } \left( \int _{\mathbb{R} } g(x, y) \, \mathrm{d} x  \right) \, \mathrm{d} y = \int _{\mathbb{R} } \left( \int _{\mathbb{R} } g(x, y) \, \mathrm{d} y  \right) \, \mathrm{d} x.    
+        \]
+        \textit{proof.} For each \(n \in \mathbb{N}\), we define \(C_n \coloneqq [-n, n]^2\), and define a sequence of function \(\left\{ g_n \right\}_{n=1}^{\infty}  \) by 
+        \[
+            g_n(x, y) = \begin{dcases}
+                \min \left\{ g(x, y), n \right\} , &\text{ if } (x, y) \in C_n ;\\
+                0, &\text{ if } (x, y) \notin C_n.
+            \end{dcases}
+        \]   
+        Then note that \(g_n \uparrow g\) on \(\mathbb{R} ^2\) and each \(g_n\) is measurable. Also, note that for each \(n \in \mathbb{N}\), \(g_n\) is absolutely integrable since \(C_n\) is bounded and
+        \[
+        g_n(x, y) \le n \chi_{C_n}(x, y) \implies \int_{\mathbb{R}
+        ^2} g_n \le \int_{\mathbb{R}^2} n \chi_{C_n}(x, y) = n m^*(C_n) = n^3 < \infty.
+        \]
+        By Fubini's theorem, for almost every \(x \in \mathbb{R}\), the map \(y \mapsto g_n(x, y)\) is absolutely integrable, so
+        \[
+            h_n(x) \coloneqq \int _{\mathbb{R} } g_n(x, y) \, \mathrm{d} y < \infty \quad \text{for almost every } x \in \mathbb{R}.  
+        \]        
+        Since \(g(x, \cdot)\) is non-negative and measurable, the integral 
+        \[
+            h(x) \coloneqq \int _{\mathbb{R} } g(x, y) \, \mathrm{d} y \text{ exists, possibly equal to } \infty.  
+        \] 
+        Since \(g_n \uparrow g\) and \(g_n\) is measurable for all \(n \in \mathbb{N}\), by monotone convergence theorem,
+        \[
+            \int _{\mathbb{R} } \sup _n g_n(x, y) \, \mathrm{d} y = \sup _n \int _{\mathbb{R} } g_n(x, y) \, \mathrm{d} y \quad \forall x \in \mathbb{R}.  
+        \]
+        Since 
+        \[
+            h(x) = \int _{\mathbb{R} } g(x, y) \, \mathrm{d} y = \int _{\mathbb{R} } \sup _n g_n(x, y) \, \mathrm{d} y \quad \text{and} \quad \int _{\mathbb{R} } g_n(x, y) \, \mathrm{d} y = h_n(x),   
+        \]
+        we have 
+        \[
+            h(x) = \sup _n h_n(x) \implies h_n \uparrow h \text{ since } \left\{ h_n(x) \right\} \text{ is increasing for all } x \in \mathbb{R}.
+        \]
+        Now we can apply monotone convergence theorem to \(\left\{ h_n \right\} \) since each \(h_n\) is absolutely integrable by doing Fubini's theorem on \(g_n\). Thus, we have 
+        \[
+            \sup _n \int _{\mathbb{R} } h_n(x) \, \mathrm{d} x = \int _{\mathbb{R} } \sup _n h_n(x) \, \mathrm{d} x = \int _{\mathbb{R} } h(x) \, \mathrm{d} x = \int _{\mathbb{R} } \left( \int _{\mathbb{R} } g(x, y) \, \mathrm{d} y  \right) \, \mathrm{d} x.     
+        \]  
+        Now since 
+        \[
+            \int _{\mathbb{R} } h_n(x) \, \mathrm{d} x = \int _{\mathbb{R} } \left( \int _{\mathbb{R} } g_n(x, y) \, \mathrm{d} y  \right) \, \mathrm{d} x \underset{\text{[Fubini]}}{=} \iint _{\mathbb{R} ^2} g_n(x, y),   
+        \]
+        we have 
+        \[
+            \sup _n \int _{\mathbb{R} } h_n(x) \, \mathrm{d} x = \sup _n \iint _{\mathbb{R} ^2} g_n(x, y) = \iint _{\mathbb{R} ^2} \sup _n g_n(x, y) = \iint _{\mathbb{R} ^2} g(x, y)  
+        \]
+        by monotone convergence theorem again. Thus, we have 
+        \[
+            \iint_{\mathbb{R} ^2} g(x, y) = \sup _n \int _{\mathbb{R} } h_n(x) \, \mathrm{d} x = \int _{\mathbb{R} } \left( \int _{\mathbb{R} } g(x, y) \, \mathrm{d} y  \right) \, \mathrm{d} x.   
+        \]
+        Now interchange the role of \(x, y\) and do similar proof, we  have 
+        \[
+            \iint_{\mathbb{R} ^2} g(x, y) = \int _{\mathbb{R} } \left( \int _{\mathbb{R} } g(x, y) \, \mathrm{d} x  \right) \, \mathrm{d} y.   
+        \] 
+        Hence, the claim is proved. 
+
+        Now since we know one of the two iterated integrals 
+        \[
+            \int_{\mathbb{R}}
+            \left[
+            \int_{\mathbb{R}} |f(x,y)|\,dx
+            \right]dy
+            \qquad\text{or}\qquad
+            \int_{\mathbb{R}}
+            \left[
+            \int_{\mathbb{R}} |f(x,y)|\,dy
+            \right]dx
+        \]
+        exists, and by the claim:
+        \[
+            \iint _{\mathbb{R} ^2} \vert f(x, y) \vert  = \int _{\mathbb{R} } \left( \int _{\mathbb{R} } \vert f(x, y) \vert  \, \mathrm{d} x  \right) \, \mathrm{d} y = \int _{\mathbb{R} } \left( \int _{\mathbb{R} } \vert f(x, y) \vert \, \mathrm{d} y  \right) \, \mathrm{d} x,   
+        \]
+        we can conclude that 
+        \[
+            \iint_{\mathbb{R} ^2} \vert f(x, y) \vert  
+        \]
+        exists, so \(f \in L(\mathbb{R} ^2)\). 
+        \item [b)] Now since we have shown \(f\) is absolutely integrable, we can use Fubini's theorem to deduce 
+        \[
+            \iint_{\mathbb{R}^2} f
+            =
+            \int_{\mathbb{R}}
+            \left[
+            \int_{\mathbb{R}} f(x,y)\,dx
+            \right]dy
+            =
+            \int_{\mathbb{R}}
+            \left[
+            \int_{\mathbb{R}} f(x,y)\,dy
+            \right]dx.
+        \]
+    \end{itemize}
+\end{proof}
 
 \begin{problem}
     Let
@@ -200,6 +298,90 @@
     exist and are equal, but that the double integral of \(f\) over \(\mathbb R^2\)
     does not exist. Also, explain why this does not contradict the result in previous exercise.
 \end{problem}
+\begin{proof}
+    We first show that both iterated integrals exist and are equal. First, 
+    \[
+        \int _{\mathbb{R} } \left[ \int _{\mathbb{R} } f(x, y) \, \mathrm{d} x  \right] \, \mathrm{d} y = \int _0^{\infty} \int _0^{\infty} e^{-xy} \sin x \sin y \, \mathrm{d} x \, \mathrm{d} y = \int _0^{\infty} \sin y \left( \int _0^{\infty} e^{-yx} \sin x \, \mathrm{d} x  \right) \, \mathrm{d} y.      
+    \]
+    Now fix \(y \ge 0\), define 
+    \[
+        I_y \coloneqq \int _0^{\infty} e^{-yx} \sin x \, \mathrm{d} x, 
+    \] 
+    then 
+    \begin{align*}
+        I_y &\coloneqq \int _0^{\infty} e^{-yx} \sin x \, \mathrm{d} x = \left[ e^{-yx} (-\cos x) \right]_0^{\infty } - \int _0^{\infty} (-y) e^{-yx} (-\cos x) \, \mathrm{d} x \\
+        &= (0 - (-1)) - y \int _0^{\infty} e^{-yx} \cos x \, \mathrm{d} x \\
+        &= 1 - y \left( \left[ e^{-yx} \sin x \right]_0^{\infty} - \int _0^{\infty} (-y) e^{-yx} \sin x \, \mathrm{d} x   \right) \\
+        &= 1 - y \left( (0 - 0) + y \int _0^{\infty} e^{-yx} \sin x \, \mathrm{d} x  \right) = 1 - y^2 I_y.     
+    \end{align*}
+    This gives
+    \[
+        I_y = \frac{1}{1 + y^2}.
+    \]
+    Hence, 
+    \[
+        \int _0^{\infty} \sin y \left( \int _0^{\infty} e^{-yx} \sin x \, \mathrm{d} x  \right) \, \mathrm{d} y = \int _0^{\infty} \frac{\sin y}{1 + y^2} \, \mathrm{d} y < \int _0^{\infty} \frac{1}{1 + y^2} \, \mathrm{d} y < \int _0^{\infty} \frac{1}{y^2} \, \mathrm{d} y < \infty.      
+    \]
+    Since \(f\) is symmetric w.r.t. \(x, y\), we can similarly show 
+    \[
+        \int _{\mathbb{R} } \left[ \int _{\mathbb{R} } f(x, y) \, \mathrm{d} y  \right] \, \mathrm{d} x = \int _0^{\infty} \frac{\sin x}{1 + x^2} \, \mathrm{d} x = \int _0^{\infty} \frac{\sin y}{1 + y^2} \, \mathrm{d} y = \int _{\mathbb{R} } \left[ \int _{\mathbb{R} } f(x, y) \, \mathrm{d} x  \right] \, \mathrm{d} y. 
+    \]  
+    Now we show the double integral of \(f\) over \(\mathbb{R} ^2\) actually exists, so the problem is wrong. 
+    
+    If we can show 
+    \[
+        \int _{\mathbb{R} } \left[ \int _{\mathbb{R} } \vert f(x, y) \vert  \, \mathrm{d} x  \right] \, \mathrm{d} y = \int _0^{\infty} \int _0^{\infty} \vert e^{-xy} \vert \vert \sin x \vert \vert \sin y \vert \, \mathrm{d} x \, \mathrm{d} y < \infty ,  
+    \]
+    by problem 2 we have 
+    \[
+        \iint_{\mathbb{R} ^2} f(x, y) = \int _{\mathbb{R} } \left[ \int _{\mathbb{R} } f(x, y) \, \mathrm{d} y  \right] \, \mathrm{d} x = \int _{\mathbb{R} } \left[ \int _{\mathbb{R} } f(x, y) \, \mathrm{d} x  \right] \, \mathrm{d} y,
+    \]
+    and we have shown 
+    \[
+        \int _{\mathbb{R} } \left[ \int _{\mathbb{R} } f(x, y) \, \mathrm{d} y  \right] \, \mathrm{d} x = \int _{\mathbb{R} } \left[ \int _{\mathbb{R} } f(x, y) \, \mathrm{d} x  \right] \, \mathrm{d} y < \infty,
+    \]
+    so this implies the double integral of \(f\) over \(\mathbb{R} ^2\) actually exists.
+    
+    Now since 
+    \begin{align*}
+        \int _0^{\infty} \int _0^{\infty} \vert e^{-xy} \vert \vert \sin x \vert \vert \sin y \vert \, \mathrm{d} x \, \mathrm{d} y
+    \end{align*}
+    can be separated into four parts on \([0, 1] \times [0, 1]\), \([0, 1] \times [1, \infty)\), \([1, \infty) \times [0, 1]\), and \([1, \infty) \times [1, \infty)\), and if we can show all the 4 parts are finite, then we can show
+    \[
+        \int _0^{\infty} \int _0^{\infty} \vert e^{-xy} \vert \vert \sin x \vert \vert \sin y \vert \, \mathrm{d} x \, \mathrm{d} y < \infty.
+    \] 
+    \begin{itemize}
+        \item Case 1: \([0, 1] \times [0, 1]\), since this region is bounded, so 
+        \[
+            \int _0^{1} \int _0^{1} \vert e^{-xy} \vert \vert \sin x \vert \vert \sin y \vert \, \mathrm{d} x \, \mathrm{d} y < \infty.
+        \]
+        \item Case 2: \([0, 1] \times [1, \infty)\), since for \(y \in [0, 1]\), we have \(\vert \sin y \vert \le y \), so we have 
+        \[
+            e^{-xy} \vert \sin x \vert \vert \sin y \vert \le y e^{-xy} \quad \text{ on } [0, 1] \times [1, \infty).   
+        \]
+        Hence,
+        \begin{align*}
+            \int _0^{1} \int _1^{\infty} \vert e^{-xy} \vert \vert \sin x \vert \vert \sin y \vert \, \mathrm{d} x \, \mathrm{d} y &\le \int _0^{1} \int _1^{\infty} y e^{-xy} \, \mathrm{d} x \, \mathrm{d} y = \int _0^1 \left[ - e^{-xy} \right]_1^{\infty} \, \mathrm{d} y \\
+            &= \int _0^1 \left[ 0 - (-e^{-y}) \right] \, \mathrm{d} y < \infty.    
+        \end{align*}
+        \item Case 3: \([1, \infty) \times [0, 1]\), similar as Case 2, just interchange the role of \(x, y\). 
+        \item Case 4: \([1, \infty) \times [1, \infty)\).  Note that for \((x, y) \in [1, \infty) \times [1, \infty)\), we have 
+        \[
+            (x - 1)(y - 1) \ge 0 \iff xy \ge x + y - 1 \ge \frac{x + y}{2}.
+        \]
+        Thus,
+        \[
+            e^{-xy} \vert \sin x \vert \vert \sin y \vert \le e^{- \frac{x+y}{2}}.  
+        \]
+        Now since 
+        \begin{align*}
+            \int _1^{\infty} \int _1^{\infty} \vert e^{-xy} \vert \vert \sin x \vert \vert \sin y \vert \, \mathrm{d} x \, \mathrm{d} y &\le \int _1^{\infty } \int _1^{\infty} e^{- \frac{x+y}{2}} \, \mathrm{d} x \, \mathrm{d} y = \int _1^{\infty} e^{-\frac{y}{2}} \left( \int _1^{\infty} e^{-\frac{x}{2}} \, \mathrm{d} x  \right) \, \mathrm{d} y \\
+            &= \int _1^{\infty} e^{-\frac{y}{2}} \left( \left[ -2 e^{-\frac{x}{2}} \right]_1^{\infty}  \right) \, \mathrm{d} y \\
+            &= \int _1^{\infty} e^{-\frac{y}{2}} \left( 0 - \left( -2e^{-\frac{1}{2}} \right)  \right) \, \mathrm{d} y = \left( 2 e^{\frac{1}{2}} \right)^2 < \infty.       
+        \end{align*}
+    \end{itemize}
+    Hence, we have shown that the integral of \(f\) on all 4 regions are finite, and we're done. 
+\end{proof}
 
 \begin{problem}
     Suppose that \(\mathcal E\subset C^0([a,b], \R )$ (
@@ -225,7 +407,7 @@
 \begin{proof}[(a)]
     Suppose that 
     \[
-        g = \sup\{f(x):f\in\mathcal E\}
+        g(x) = \sup\{f(x):f\in\mathcal E\}
     \]
     for convenience.
 
@@ -265,7 +447,7 @@
 
     Notice that for all $n > m$, $f_n(x) \le f_m(x)$ for all $x \in [0,1]$. So $g(x) = x$, and clearly this is a continuous function.
 
-    However for fixed $\varepsilon > 0$, for all $\delta > 0$, we can pick $N = \lceil log_{(1-\delta)}(1-\varepsilon) \rceil + 1$, such that
+    However for fixed $\varepsilon > 0$, for all $0 < \delta < 1$, we can pick $N = \lceil log_{(1-\delta)}(1-\varepsilon) \rceil + 1$, such that
     \[
         f_N(1) - f_N(1-\delta) = 1 - (1-\delta)^{N}  > 1 - (1-\delta) ^ {log_{(1-\delta)}(1-\varepsilon)} \ge \varepsilon.
     \]
@@ -360,7 +542,7 @@
     \[
         h_n \to 0 \text{ uniformly.}
     \]
-    And hence we can find some $N$ such that for all $n \ge N$, $\|h_n\| \le \frac{\varepsilon}{4}$
+    And hence we can find some $N$ such that for all $n \ge N$, $\|h_n\|_{\infty} \le \frac{\varepsilon}{4}$, and thus for all $x, y \in \mathbb{R}$ and $n \ge N$,
     \[
         \lvert h_n(x) - h_n(y) \rvert \le \lvert h_n(x) \rvert + \lvert h_y(x) \rvert \le 
         \frac{\varepsilon}{2}.
@@ -371,7 +553,7 @@
         \lvert x -y \rvert \le \delta_i \implies \lvert h_i(x) - h_i(y)\rvert \le \frac{\varepsilon}{2}
     \]
 
-    Then, we take $\delta' = \min\{\delta, \delta_1, \delta_2,\cdots, \delta_N\}$ such that
+    Then, we take $\delta' = \min\{\delta_1, \delta_2,\cdots, \delta_N, \delta_{cos}\}$ such that
     
     \[
         \begin{aligned}

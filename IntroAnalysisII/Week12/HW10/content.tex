@@ -1,0 +1,352 @@
+\begin{problem}
+    \vphantom{}
+    \begin{enumerate}
+    
+    \item Let \(R=[a,b]\times[c,d]\) be a rectangle in \(\mathbb{R}^2\). A function \(f\)
+    is said to have \emph{separated variables} if
+    \[
+    P(x,y)=\sum_{k=1}^{N} c_k f_k(x)g_k(y)
+    \]
+    for some scalars \(c_k\) and functions
+    \[
+    f_k\in C[a,b],
+    \qquad
+    g_k\in C[c,d].
+    \]
+    Prove that, given \(f\in C(R)\), there is a sequence of functions with
+    separated variables, \(P_n\), such that
+    \[
+    P_n\to f
+    \]
+    uniformly on \(R\) as \(n\to\infty\).
+    
+    \item Use the result  previous problem to prove that if \(f\in C([a,b]\times[c,d])\), then
+    \[
+    \int_a^b
+    \left(
+    \int_c^d f(x,y)\,dy
+    \right)dx
+    =
+    \int_c^d
+    \left(
+    \int_a^b f(x,y)\,dx
+    \right)dy.
+    \]
+    
+    \end{enumerate}
+
+\end{problem}
+
+\begin{problem}
+
+    Prove that if \(f\in C[a,b]\) and
+    \[
+    \int_a^b f(x)x^k\,dx=0
+    \]
+    for \(k=0,1,\ldots\), then
+    \[
+    f(x)=0
+    \]
+    for all \(x\in[a,b]\).
+    Hint: Recall that $f$ can be approximately uniformly by a sequence of polynomial function.
+        
+\end{problem}
+    
+\begin{problem}
+    
+    Let \((X,d)\) be a compact metric space and suppose
+    \(\mathcal{A}\subset C(X,\mathbb{R})\) is a real algebra. Suppose that for each
+    \(y\in X\), the closure \(\overline{\mathcal{A}}\) contains the function
+    \[
+    \varphi_y(x):=d(y,x).
+    \]
+    Then
+    \[
+    \overline{\mathcal{A}}=C(X,\mathbb{R}).
+    \]
+    
+\end{problem}
+
+\begin{problem}
+
+    \vphantom{}
+    \begin{enumerate}
+    \item[(a)] Show that an even function \(f:[-1,1]\to\mathbb{R}\) is a uniform
+    limit of polynomials with even powers only, that is, polynomials of the form
+    \[
+    a_0+a_1x^2+a_2x^4+\cdots+a_kx^{2k}.
+    \]
+    
+    \item[(b)] Show that an odd function \(f:[-1,1]\to\mathbb{R}\) is a uniform
+    limit of polynomials with odd powers only, that is, polynomials of the form
+    \[
+    b_1x+b_2x^3+b_3x^5+\cdots+b_kx^{2k-1}.
+    \]
+    \end{enumerate}
+        
+\end{problem}
+
+\begin{proof}[(a)]
+    By Weierstrass approximation theorem, there exists some $p_n = a_0 + a_1x + a_2x^2 + \cdots $ such that $\|p_n - f\|_\infty < \varepsilon$.
+    Then we construct the function $q_n$ as
+    \[
+        q_n(x) = \frac{p_n(x) + p_n(-x)}{2}.
+    \]
+
+    Since 
+    \[
+        q_n(x) = q_n(-x) = \frac{p_n(x) + p_n(x)}{2},
+    \]
+    so clearly that $q_n$ is even function, and since $q_n$ is polynomial function, we know that $q_n$ have even powers only.
+
+    And since for fixed $x$,
+    \[
+        \begin{aligned}
+            \lvert q_n(x) - f(x)\rvert &= \lvert \frac{p_n(x) +p_n(-x)}{2} - f(x) \rvert \\
+            &= \lvert \frac{p_n(x) +p_n(-x)}{2} - \frac{f(x) + f(-x)}{2} \rvert, \quad \text{since $f$ is even function}. \\
+            &\le \frac{1}{2}\lvert p_n(x)- f(x)\rvert + \frac{1}{2}\lvert p_n(-x)- f(-x)\rvert \\
+            &\le \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon.
+        \end{aligned}
+    \]
+    And hence $q_n \to f$ uniformly.
+\end{proof}
+
+\begin{proof}[(b)]
+    By Weierstrass approximation theorem, there exists some $p_n = a_0 + a_1x + a_2x^2 + \cdots $ such that $\|p_n - f\|_\infty < \varepsilon$.
+    Then we construct the function $q_n$ as
+    \[
+        q_n(x) = \frac{p_n(x) - p_n(-x)}{2}.
+    \]
+
+    Since 
+    \[
+        q_n(x) = \frac{p_n(x) - p_n(-x)}{2} = - \frac{p_n(-x) - p_n(-(-x))}{2} = -q_n(-x),
+    \]
+    , so clearly that $q_n$ is odd function, and since $q_n$ is polynomial function, we know that $q_n$ have odd powers only.
+
+    And since for fixed $x$,
+    \[
+        \begin{aligned}
+            \lvert q_n(x) - f(x)\rvert &= \lvert \frac{p_n(x) - p_n(-x)}{2} - f(x) \rvert \\
+            &= \lvert \frac{p_n(x) - p_n(-x)}{2} - \frac{f(x) - f(-x)}{2} \rvert, \quad \text{since $f$ is odd function}. \\
+            &\le \frac{1}{2}\lvert p_n(x)- f(x)\rvert + \frac{1}{2}\lvert p_n(-x)- f(-x)\rvert \\
+            &\le \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon.
+        \end{aligned}
+    \]
+    And hence $q_n \to f$ uniformly.
+\end{proof}
+    
+\begin{problem}
+    
+    Use \(f_n(x)=x^n\) on \([0,1]\) to show that
+    \[
+    B=\{f\in C[0,1]:\|f\|\le 1\}
+    \]
+    is not compact.
+    
+\end{problem}
+
+\begin{problem}
+
+    \vphantom{}
+    \begin{enumerate}
+    \item[(a)] Show that
+    \[
+    \mathcal{F}
+    =
+    \left\{
+    F(x)=\int_0^x f(t)\,dt:
+    f\in C[0,1],\ \|f\|_\infty\le 1
+    \right\}
+    \]
+    is a bounded and equicontinuous subset of \(C[0,1]\).
+    
+    \item[(b)] Why is \(\mathcal{F}\) not closed?
+    
+    \item[(c)] Show that the closure of \(\mathcal{F}\) is all functions \(f\) with
+    Lipschitz constant \(1\) such that \(f(0)=0\).
+    
+    \emph{Hint:} Construct \(F_n\in\mathcal{F}\) such that
+    \[
+    F_n(2^{-n}k)
+    =
+    \frac{n}{n+1}f(2^{-n}k)
+    \qquad
+    \text{for }0\le k\le 2^n.
+    \]
+    \end{enumerate}
+    
+\end{problem}
+
+\begin{proof}[(a)]
+    For fixed $F \in \mathcal F$,
+    We want to show $\vert F(x) \vert < \infty$ for $x \in [0,1]$,
+    \[
+        \lvert F(x)\rvert \le \int_{0}^x \lvert f_F(t) \rvert dt \le \int_{0}^x 1 dt = x \le 1,
+    \]
+    and hence $F$ is bounded.
+
+    Then we claim that for every $\varepsilon > 0$, we can take $\delta = \varepsilon$ such that
+    \[
+        \lvert x-y \rvert \le \delta \implies \lvert F(x) - F(y)\rvert \le \varepsilon, \quad \text{For every }F \in \mathcal F.
+    \]
+    For fixed $F \in \mathcal F$ and $\lvert x - y \rvert \le \delta$,
+    \[
+        \begin{aligned}
+        \lvert F(x) - F(y)\rvert &= \lvert \int_0^x f_F(t)dt - \int_0^y f_F(t)dt \rvert = \lvert \int_y^x f_F(t)dt \rvert \\ 
+        &\le \lvert \int_y^x \lvert f_F(t) \rvert dt \rvert \le \lvert \int_y^x 1 dt \rvert = \lvert x-y\rvert \le \delta = \varepsilon.
+        \end{aligned}
+    \]
+    And for all $F \in \mathcal F$ we can do same proof, so $\mathcal F$ is equicontinuous.
+\end{proof}
+
+\begin{proof}[(b)]
+    We show $\mathcal F$ is not closed by providing a function sequence that does not converge in $\mathcal F$.
+
+    Suppose $(F_n)_{n=1}^\infty$ is a function sequence that define by 
+    \[
+        F_n(x) = \sqrt{(x-\frac{1}{2})^2 + \frac{1}{n}} - \sqrt{\frac{1}{4} + \frac{1}{n}}, \quad x \in [0,1]. 
+    \]
+    By FCT, we know 
+    \[
+        F_n(x) = \int_0^x F_n'(t) dt. 
+    \]
+    So to show that $F_n \in \mathcal F$, we need to show that $F'_n(x)$ is $C[0,1]$ and $\| F'_n\|_\infty \le 1$
+    Since 
+    \[
+        \lvert F_n'(x) \rvert = \frac{\lvert x - \frac{1}{2} \lvert }{\sqrt{(x-\frac{1}{2})^2 + \frac{1}{n}}} = \frac{\sqrt{(x - \frac{1}{2})^2}}{\sqrt{(x-\frac{1}{2})^2 + \frac{1}{n}}} \le 1,
+    \]
+    And since $x - \frac{1}{2}$ is continuous function, $\sqrt{(x-\frac{1}{2})^2 + \frac{1}{n}}$ is also a continuous function and it is strictly greater than zero, $F'_n(x)$ is continuous function, and hence $F_n \in \mathcal F$.
+
+    However, we know that $F_n \to F$, where $F$ is
+    \[
+        F(x) = \sqrt{(x-\frac{1}{2})^2} - \sqrt{\frac{1}{4}} = \lvert x-\frac{1}{2} \rvert - \frac{1}{2}, \quad x \in [0,1]
+    \] 
+    But $F$ is not differentiable at $x = \frac{1}{2}$, so $F'$ does not exist, $F \notin \mathcal F$, and hence $\mathcal F$ is not close.
+\end{proof}
+
+\begin{proof}[(c)]
+    We prove $(\implies)$ direction, first.
+    
+    From $(a)$, we can find that for all $F \in \mathcal F$, $F$ is 1-Lipschitz, and for such $F$, $F(0) = 0$.
+
+    Suppose $G \in \overline{\mathcal F}$, then exists some $(F_n)_{n=1}^\infty \in \mathcal F$ such that $F_n \to G$ uniformly, so for fixed $\varepsilon > 0$, there exist some $N$ such that $\| G- F_N\| < \varepsilon$. Moreover, 
+    \[
+        \begin{aligned}
+            \lvert G(x) - G(y)\rvert &= \lvert (G(x) - F_N(x)) - (G(y)-F_N(y)) + (F_N(x) - F_N(y))\rvert \\
+            &\le \lvert (G(x) - F_N(x))\rvert + \lvert (G(y) - F_N(y))\rvert + \lvert (F_N(x) - F_N(y))\rvert \\
+            &\le 2\varepsilon + \lvert x - y\rvert, \quad \text{Since $F_N$ is 1-Lipschitz.}
+        \end{aligned}
+    \]
+    This show that $G$ is also 1-Lipschitz, and since $\lvert G(0) - F_N(0)\rvert \le \varepsilon$, $G(0) = 0$, so $\overline{\mathcal F} \subseteq \{f : f\text{ is 1-Lipchitz and $f(0) = 0$}\}$.
+
+    Then, we prove the $( \impliedby )$ side.
+
+    For each $F_n$ which $n \ge 3$, we define $F'_n$ in the following way: we separate $F'_n$ into $2^n$ sub-intervals. Let $x_k = \frac{k}{2^n}, k \in \mathbb{Z}$ and $0 \le k \le 2^n$. We define $F'(x)$ in $[x_k, x_{k+1}]$ depending on the value of $\delta_{n,k} = \frac{n}{n+1} f(x_{k+1}) - \frac{n}{n+1} f(x_{k})$, since $f$ is 1-Lipchitz, we know that $\vert \delta_{n,k}\vert \le \frac{n}{(2^n)n+1}$ 
+    \begin{itemize}
+        \item Case 1 ($-\frac{n}{(2^n)n+1} \le \delta_{n,k} \le -\frac{1}{2^n \cdot 2}$): define $F_n'(x)$ as
+        \[
+            F_n'(x) = 
+            \begin{cases}
+                \frac{-1}{\delta_{n, k} + \frac{1}{2^n}}(x - x_k), & x \in [x_k, x_k + \delta_{n, k} + \frac{1}{2^n}], \\
+                -1, & x \in [x_k + \delta_{n,k} + \frac{1}{2^n}, x_{k+1} - (\delta_{n,k} + \frac{1}{2^n})], \\
+                -1 + \frac{1}{\delta_{n, k} + \frac{1}{2^n}}(x - (x_{k+1} - (\delta_{n,k} + \frac{1}{2^n}))), & x \in [x_{k+1} - (\delta_{n,k} + \frac{1}{2^n}), x_{k+1}].
+            \end{cases}
+        \]
+        \item Case 2 ($-\frac{1}{2^n \cdot 2} \le \delta_{n,k} \le 0$): define $F_n'(x)$ as
+        \[
+            F_n'(x) = 
+            \begin{cases}
+                -2^{2n+2}(-\delta_{n,k})(x - x_k), & x \in [x_k, x_k + \frac{1}{2^{n+1}}], \\
+                -1 + 2^{2n+2}(-\delta_{n,k})(x - (x_k + \frac{1}{2^{n+1}})), & x \in [x_k + \frac{1}{2^{n+1}}, x_{k+1}].
+            \end{cases}
+        \]
+        \item Case 3 ($0 \le \delta_{n,k} \le \frac{1}{2^n \cdot 2}$): define $F_n'(x)$ as
+        \[
+            F_n'(x) = 
+            \begin{cases}
+                2^{2n+2}(\delta_{n,k})(x - x_k), & x \in [x_k, x_k + \frac{1}{2^{n+1}}], \\
+                1 - 2^{2n+2}(\delta_{n,k})(x - (x_k + \frac{1}{2^{n+1}})), & x \in [x_k + \frac{1}{2^{n+1}}, x_{k+1}].
+            \end{cases}
+        \]
+        \item Case 4 ($\frac{1}{2^n \cdot 2} \le \delta_{n,k} \le \frac{n}{(2^n)n+1}$): define $F_n'(x)$ as
+        \[
+            F_n'(x) = 
+            \begin{cases}
+                \frac{1}{-\delta_{n, k} + \frac{1}{2^n}}(x - x_k), & x \in [x_k, x_k - \delta_{n, k} + \frac{1}{2^n}], \\
+                1, & x \in [x_k - \delta_{n, k} + \frac{1}{2^n}, x_{k+1} - (-\delta_{n,k} + \frac{1}{2^n})], \\
+                1 - \frac{1}{-\delta_{n, k} + \frac{1}{2^n}}(x - (x_{k+1} - (\delta_{n,k} + \frac{1}{2^n}))), & x \in [x_{k+1} - (-\delta_{n,k} + \frac{1}{2^n}), x_{k+1}].
+            \end{cases}
+        \]
+    \end{itemize}
+
+    This looks like little bit scary, but using the construction, we can ensure that $F'(x)$ is a continuous function on $[0,1]$, and $\| F'_n\|_\infty \le 1$, and hence $F_n \in \mathcal F$. Moreover, under this construction, 
+    \[
+        \int_{x_k}^{x_{k+1}}F'_n(t)dt = \delta_{n,k}.
+    \]
+    And hence 
+    \[
+        \begin{aligned}
+            F_n(k \cdot 2^{-n}) &= \int_0^{k \cdot 2^{-n}} F'_n(t) dt = \sum_{i=0}^{k-1} \int_{i \cdot 2^{-n}}^{(i+1) \cdot 2^{-n}} F'_n(t) dt \\
+            &=\sum_{i=0}^{k-1} \delta_{n,i} = \frac{n}{n+1}f(k \cdot 2^{-n}) - \frac{n}{n+1}f(0) = \frac{n}{n+1}f(k \cdot 2^{-n}),
+        \end{aligned}
+    \]
+    This show that 
+    \[
+        F_n(k \cdot 2^{-n}) = \frac{n}{n+1}f(k \cdot 2^{-n}), \text{for all } k\in \mathbb{Z}, 0 \le k \le 2^n.
+    \]
+    Then we show that $F_n \to f$ uniformly. For fixed $\varepsilon > 0$ and $x$, we can take $N = \max\{3, \lceil \log_{2}{\frac{2}{\varepsilon}} \rceil\}$, let $t = \frac{\lfloor x \cdot 2^N \rfloor }{2^N}$, for all $n \ge N$,
+    \[
+        \begin{aligned}
+            \lvert F_n(x) - f(x)\rvert &\le \lvert F_n(x) - F_n(t) \rvert + \lvert F_n(t) - f(t)\rvert + \lvert f(t) - f(x)\rvert \\
+            &\le \lvert x-t \rvert + \lvert F_n(t) - f(t)\rvert + \lvert x-t\rvert ,\quad {\text{since $F, f$ are 1-Lipchitz}}. \\
+            &\le 2\lvert x-t \rvert + 0, \quad \text{since $t = k \cdot 2^n$ for some integer $k$} \\
+            &\le 2 \frac{1}{2^N} \le 2 \cdot \frac{1}{\frac{2}{\varepsilon}} \le \varepsilon.
+        \end{aligned}
+    \]
+    And hence $F_n \to f$ when $n$ is large enough, and since $F_n \in \mathcal F$ for all $n \ge 3$, $f \in \overline{\mathcal F}$.
+    
+\end{proof}
+
+\begin{problem}
+
+    \vphantom{}
+    \begin{enumerate}
+    \item[(a)] Let \(\mathcal{F}\) be a subset of \(C[0,1]\) that is closed,
+    bounded, and equicontinuous. Prove that there is a function
+    \(g\in\mathcal{F}\) such that
+    \[
+    \int_0^1 g(x)\,dx
+    \ge
+    \int_0^1 f(x)\,dx
+    \qquad
+    \text{for all } f\in\mathcal{F}.
+    \]
+    
+    \item[(b)] Construct a closed bounded subset \(\mathcal{F}\) of \(C[0,1]\)
+    for which the conclusion of the previous problem is false.
+    \end{enumerate}
+    
+\end{problem}
+
+\begin{problem}
+
+    Let \((X,d)\) be a compact metric space, \(C>0\), \(0<\alpha\le 1\), and
+    suppose \(f_n:X\to \mathbb{C}\) are functions such that
+    \[
+    |f_n(x)-f_n(y)|\le C d(x,y)^\alpha
+    \]
+    for all \(x,y\in X\) and \(n\in\mathbb{N}\). Suppose also that there is a point
+    \(p\in X\) such that
+    \[
+    f_n(p)=0
+    \]
+    for all \(n\). Show that there exists a uniformly convergent subsequence
+    converging to an \(f:X\to\mathbb{C}\) that also satisfies
+    \[
+    f(p)=0
+    \qquad\text{and}\qquad
+    |f(x)-f(y)|\le C d(x,y)^\alpha .
+    \]
+    
+\end{problem}

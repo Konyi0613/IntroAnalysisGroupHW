@@ -1,0 +1,273 @@
+\documentclass[addpoints]{exam}
+% leqno 將方程式編號放在左側
+
+%\printanswers
+
+\usepackage[top=2.5cm,bottom=2cm,left=2.5cm,right=2.5cm,headsep=10pt,a4paper]{geometry} % 引用頁面幾何套件，設定頁面邊界
+
+\usepackage{siunitx} % 角度
+% \input{NewCommands}
+
+\usepackage{amsmath,amssymb,amsthm} % 引用常見的數學符號與設定
+
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Definition}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{remark}{Remark}
+\newcommand{\R}{\mathbb{R}}
+
+\usepackage{lastpage} % 取得最後頁碼
+
+
+
+
+\usepackage{graphicx} % 引用圖檔內嵌入套件
+\graphicspath{{Pictures/}} % 設定圖檔目錄
+\usepackage{xcolor} %引用顏色套件
+\usepackage{enumerate}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{mdwlist} % use suspend & resume to successive enumerate
+
+\usepackage{CJKutf8} % 設定中文
+
+\def \lflr{\left\lfloor} %自定義 floor function
+\def \rflr{\right\rfloor} %自定義
+
+% question separation
+\renewcommand{\questionshook}{%
+  \setlength{\itemsep}{0.5cm}%
+}
+
+\allowdisplaybreaks %equation allowed to next page
+
+\firstpageheader{\today}
+                {}
+                {}
+\footer{}{\sf Page \thepage~of~\pageref{LastPage}}{}
+
+\begin{document}
+
+\begin{CJK*}{UTF8}{gbsn}
+% Title
+\begin{center}
+    {\Large{\bf Introduction to Mathematical Analysis II\\
+    Homework 10  Due  May 23  (Saturday), 2026\\
+    Please submit your group homework online in PDF format.\\
+You are expected to work collaboratively within your group. 
+Please do not obtain complete solutions directly from AI tools. 
+The purpose of this assignment is to develop your own mathematical reasoning and problem-solving skills. %  Homework X Brief Solution
+  }} \\ 
+    \large
+    %\text{Due date: 3/9/2023}
+\end{center}
+
+\noindent\rule{16.2cm}{0.4pt}
+
+
+\begin{questions}
+
+
+% ============ Question x ============
+\question  (10 pts) 
+
+\begin{enumerate}
+
+\item Let \(R=[a,b]\times[c,d]\) be a rectangle in \(\mathbb{R}^2\). A function \(f\)
+is said to have \emph{separated variables} if
+\[
+P(x,y)=\sum_{k=1}^{N} c_k f_k(x)g_k(y)
+\]
+for some scalars \(c_k\) and functions
+\[
+f_k\in C[a,b],
+\qquad
+g_k\in C[c,d].
+\]
+Prove that, given \(f\in C(R)\), there is a sequence of functions with
+separated variables, \(P_n\), such that
+\[
+P_n\to f
+\]
+uniformly on \(R\) as \(n\to\infty\).
+
+\item Use the result  previous problem to prove that if \(f\in C([a,b]\times[c,d])\), then
+\[
+\int_a^b
+\left(
+\int_c^d f(x,y)\,dy
+\right)dx
+=
+\int_c^d
+\left(
+\int_a^b f(x,y)\,dx
+\right)dy.
+\]
+
+\end{enumerate}
+\begin{solution}
+\end{solution}
+
+\question (10 pts) 
+Prove that if \(f\in C[a,b]\) and
+\[
+\int_a^b f(x)x^k\,dx=0
+\]
+for \(k=0,1,\ldots\), then
+\[
+f(x)=0
+\]
+for all \(x\in[a,b]\).
+Hint: Recall that $f$ can be approximately uniformly by a sequence of polynomial function.
+
+
+\begin{solution}
+
+
+\end{solution}
+
+
+\question (15 pts)
+Let \((X,d)\) be a compact metric space and suppose
+\(\mathcal{A}\subset C(X,\mathbb{R})\) is a real algebra. Suppose that for each
+\(y\in X\), the closure \(\overline{\mathcal{A}}\) contains the function
+\[
+\varphi_y(x):=d(y,x).
+\]
+Then
+\[
+\overline{\mathcal{A}}=C(X,\mathbb{R}).
+\]
+
+\begin{solution}
+
+
+\end{solution}
+
+\question (15 pts)
+
+\begin{enumerate}
+\item[(a)] Show that an even function \(f:[-1,1]\to\mathbb{R}\) is a uniform
+limit of polynomials with even powers only, that is, polynomials of the form
+\[
+a_0+a_1x^2+a_2x^4+\cdots+a_kx^{2k}.
+\]
+
+\item[(b)] Show that an odd function \(f:[-1,1]\to\mathbb{R}\) is a uniform
+limit of polynomials with odd powers only, that is, polynomials of the form
+\[
+b_1x+b_2x^3+b_3x^5+\cdots+b_kx^{2k-1}.
+\]
+\end{enumerate}
+
+\begin{solution}
+
+
+\end{solution}
+
+
+
+\question (10 pts)
+Use \(f_n(x)=x^n\) on \([0,1]\) to show that
+\[
+B=\{f\in C[0,1]:\|f\|\le 1\}
+\]
+is not compact.
+
+
+\begin{solution} 
+\end{solution}
+
+\question ( 15 pts) 
+\begin{enumerate}
+\item[(a)] Show that
+\[
+\mathcal{F}
+=
+\left\{
+F(x)=\int_0^x f(t)\,dt:
+f\in C[0,1],\ \|f\|_\infty\le 1
+\right\}
+\]
+is a bounded and equicontinuous subset of \(C[0,1]\).
+
+\item[(b)] Why is \(\mathcal{F}\) not closed?
+
+\item[(c)] Show that the closure of \(\mathcal{F}\) is all functions \(f\) with
+Lipschitz constant \(1\) such that \(f(0)=0\).
+
+\emph{Hint:} Construct \(F_n\in\mathcal{F}\) such that
+\[
+F_n(2^{-n}k)
+=
+\frac{n}{n+1}f(2^{-n}k)
+\qquad
+\text{for }0\le k\le 2^n.
+\]
+\end{enumerate}
+
+
+
+
+\begin{solution} 
+ 
+ \end{solution}
+ 
+ 
+\question (15 pts)
+\begin{enumerate}
+\item[(a)] Let \(\mathcal{F}\) be a subset of \(C[0,1]\) that is closed,
+bounded, and equicontinuous. Prove that there is a function
+\(g\in\mathcal{F}\) such that
+\[
+\int_0^1 g(x)\,dx
+\ge
+\int_0^1 f(x)\,dx
+\qquad
+\text{for all } f\in\mathcal{F}.
+\]
+
+\item[(b)] Construct a closed bounded subset \(\mathcal{F}\) of \(C[0,1]\)
+for which the conclusion of the previous problem is false.
+\end{enumerate}
+
+
+
+
+\begin{solution} 
+ 
+ \end{solution}
+
+
+
+\question (10 pts)
+
+Let \((X,d)\) be a compact metric space, \(C>0\), \(0<\alpha\le 1\), and
+suppose \(f_n:X\to \mathbb{C}\) are functions such that
+\[
+|f_n(x)-f_n(y)|\le C d(x,y)^\alpha
+\]
+for all \(x,y\in X\) and \(n\in\mathbb{N}\). Suppose also that there is a point
+\(p\in X\) such that
+\[
+f_n(p)=0
+\]
+for all \(n\). Show that there exists a uniformly convergent subsequence
+converging to an \(f:X\to\mathbb{C}\) that also satisfies
+\[
+f(p)=0
+\qquad\text{and}\qquad
+|f(x)-f(y)|\le C d(x,y)^\alpha .
+\]
+   
+\begin{solution} 
+ 
+ \end{solution}
+
+\
+
+\end{questions}
+\end{CJK*}
+\end{document}
+
