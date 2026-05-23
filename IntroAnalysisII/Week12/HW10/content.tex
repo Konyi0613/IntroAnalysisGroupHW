@@ -37,6 +37,86 @@
 
 \end{problem}
 
+\begin{proof}[1]
+
+    We define
+    \[
+    A = \left\{ \sum_{k=1}^N c_k f_k(x) g_k(y) \mathrel{\Bigg|} N \in \mathbb{N}, c_k \in \mathbb{R}, f_k \in C[a,b], g_k \in C[c,d] \right\}.
+    \]
+    Let $T(x,y) = \sum_{i=1}^N t_i h_i(x) p_i(y)$ and $Q(x,y) = \sum_{j=1}^M d_j u_j(x) v_j(y)$, and let $\lambda \in \mathbb{R}$.
+    \begin{itemize}
+        \item $T(x,y) + Q(x,y) = \sum_{i=1}^N t_i h_i(x) p_i(y) + \sum_{j=1}^M d_j u_j(x) v_j(y)$. Since this is a finite sum, we have $T + Q \in A$.
+        \item $\lambda T(x,y) = \sum_{i=1}^N (\lambda t_i) h_i(x) p_i(y)$. Since $\lambda t_i \in \mathbb{R}$, we have $\lambda T \in A$. Additionally, since each $f_k(x)g_k(y)$ is continuous on $R$, every finite linear combination of such functions is continuous. Hence $A \subset C(R)$.
+        \item $\begin{aligned}[t]
+        T(x,y)Q(x,y)
+        &= \left( \sum_{i=1}^N t_i h_i(x) p_i(y) \right)
+           \left( \sum_{j=1}^M d_j u_j(x) v_j(y) \right) \\
+        &= \sum_{i=1}^N \sum_{j=1}^M (t_i d_j)
+           \big(h_i(x)u_j(x)\big)
+           \big(p_i(y)v_j(y)\big).
+        \end{aligned}$
+        
+        Since $C[a,b]$ and $C[c,d]$ are algebras, the products $h_i(x)u_j(x) \in C[a,b]$ and $p_i(y)v_j(y) \in C[c,d]$. Since $TQ$ is a finite sum, we have $TQ \in A$.
+    \end{itemize}
+    Hence, A is an algebra.
+
+    We then check the remaining conditions for the Stone-Weierstrass Theorem. By taking $N=1, t_1=1, h_1(x)=1, p_1(y)=1$, the constant function 1 belongs to $A$, so it does not vanish at any point. In addition, for any two distinct points $(x_1, y_1)$ and $(x_2, y_2)$ in $R$, if $x_1 \neq x_2$, $T_x(x,y) = x \cdot 1 = x$ is in $A$ and separates them; if $y_1 \neq y_2$, $T_y(x,y) = 1 \cdot y = y$ is in $A$ and separates them. Since $R$ is compact, by the Stone-Weierstrass Theorem, $A$ is dense in $C(R)$. Hence, for any $f \in C(R)$, there is a sequence of functions with separated variables $P_n \in A$ such that $P_n \to f$ uniformly on $R$.
+    
+\end{proof}
+
+\begin{proof}[2]
+
+    Let $P(x,y) = \sum_{k=1}^N c_k f_k(x) g_k(y)$, where $c_k \in \mathbb{R}$, $f_k \in C[a,b]$, and $g_k \in C[c,d]$. By the linearity of the Riemann integral, we get
+    \[
+    \begin{aligned}
+    \int_a^b \left( \int_c^d P(x,y) \, dy \right) dx
+    &= \int_a^b \left( \int_c^d \sum_{k=1}^N c_k f_k(x) g_k(y) \, dy \right) dx \\
+    &= \int_a^b \left( \sum_{k=1}^N c_k f_k(x) \int_c^d g_k(y) \, dy \right) dx \\
+    &= \sum_{k=1}^N c_k
+       \left( \int_a^b f_k(x) \, dx \right)
+       \left( \int_c^d g_k(y) \, dy \right).
+    \end{aligned}
+    \]
+
+    Similarly, we get
+    \[
+    \int_c^d \left( \int_a^b P(x,y) \, dx \right) dy = \sum_{k=1}^N c_k \left( \int_a^b f_k(x) \, dx \right) \left( \int_c^d g_k(y) \, dy \right)
+    \]
+    Hence, we get
+    \[
+    \int_a^b (\int_c^d P(x,y) dy) dx = \int_c^d (\int_a^b P(x,y) dx) dy
+    \]
+    holds for all $P \in A$.
+
+    We now extend this identity to any $f \in C(R)$. By the result of (1), there exists a sequence of functions $P_n \in A$ such that $P_n \to f$ uniformly on $R$ as $n \to \infty$. This implies that for any $\epsilon > 0$, there exists an integer $M \in \mathbb{N}$ such that for all $n \ge M$ and all $(x,y) \in R$, we have 
+    \[
+    |P_n(x,y) - f(x,y)| < \frac{\epsilon}{(b-a)(d-c)}.
+    \]
+    For any fixed $x \in [a,b]$ and any $n \ge M$, we observe that:
+    \[
+    \begin{aligned}
+    \left| \int_c^d P_n(x,y) \, dy - \int_c^d f(x,y) \, dy \right|
+    &\le \int_c^d |P_n(x,y) - f(x,y)| \, dy \\
+    &< \int_c^d \frac{\epsilon}{(b-a)(d-c)} \, dy \\
+    &= \frac{\epsilon}{b-a}.
+    \end{aligned}
+    \]
+    This shows that $F_n(x) = \int_c^d P_n(x,y) \, dy$ converges uniformly to $F(x) = \int_c^d f(x,y) \, dy$ on $[a,b]$. We then obtain
+    \[
+    \lim_{n\to\infty} \int_a^b \left( \int_c^d P_n(x,y) \, dy \right) dx = \int_a^b \lim_{n\to\infty} \left( \int_c^d P_n(x,y) \, dy \right) dx = \int_a^b \left( \int_c^d f(x,y) \, dy \right) dx.
+    \]
+    By an identical argument, $G_n(y) = \int_a^b P_n(x,y) \, dx$ converges uniformly to $G(y) = \int_a^b f(x,y) \, dx$ on $[c,d]$, so we have
+    \[
+    \lim_{n\to\infty} \int_c^d \left( \int_a^b P_n(x,y) \, dx \right) dy = \int_c^d \lim_{n\to\infty} \left( \int_a^b P_n(x,y) \, dx \right) dy = \int_c^d \left( \int_a^b f(x,y) \, dx \right) dy.
+    \]
+    To conclude, we get
+    \[
+    \int_a^b (\int_c^d f(x,y) dy) dx = \int_c^d (\int_a^b f(x,y) dx) dy.
+    \]
+    
+\end{proof}
+
+
 \begin{problem}
 
     Prove that if \(f\in C[a,b]\) and
@@ -51,6 +131,42 @@
     Hint: Recall that $f$ can be approximately uniformly by a sequence of polynomial function.
         
 \end{problem}
+\begin{proof}
+    Note that for any polynomial \(g(x)\), suppose 
+    \[
+        g(x) = a_m x^m + \dots + a_1 x + a_0, 
+    \] 
+    then 
+    \[
+        \int _a^b f(x) g(x) \, \mathrm{d} x = \sum_{k=0}^m a_k \int _a^b f(x) x^k \, \mathrm{d} x = 0.   
+    \]
+    Noe by Weierstrass approximation theorem, there is a sequence of polynomials \(\left\{ p_n \right\}_{n=1}^{\infty} \) converges uniformly to \(f\) on \([a, b]\). 
+
+    Hence, \(\forall \varepsilon > 0\), \(\exists N > 0\) s.t. \(n \ge N\) implies 
+    \[
+        \sup _{x \in [a, b]} \vert f(x) - p_n(x) \vert < \varepsilon. 
+    \]   
+
+    Now we can pick some \(s \ge N\), and 
+    \begin{align*}
+        \left\vert \int _a^b f(x)^2 \, \mathrm{d} x  \right\vert &= \left\vert \int _a^b f(x) \left( f(x) - p_s(x) \right) \, \mathrm{d} x + \int _a^b f(x) p_s(x) \, \mathrm{d} x    \right\vert \\
+        &= \left\vert \int _a^b f(x) \left( f(x) - p_s(x) \right) \, \mathrm{d} x \right\vert + \left\vert \int _a^b f(x) p_s(x) \, \mathrm{d} x \right\vert \\
+        &= \left\vert \int _a^b f(x) (f(x) - p_s(x)) \, \mathrm{d} x \right\vert \le \int _a^b \left\vert f(x) \right\vert \vert f(x) - p_s(x) \vert  \, \mathrm{d} x.  
+    \end{align*} 
+    Now since \([a, b]\) is compact, and \(f\) is continuous, \(f([a, b])\) is compact and thus bounded. Hence, \(\exists M > 0\) s.t.
+    \[
+        \sup _{x \in [a, b]} \vert f(x) \vert \le M.
+    \]   
+    Hence,
+    \[
+        \int _a^b \left\vert f(x) \right\vert \vert f(x) - p_s(x) \vert  \, \mathrm{d} x \le \int _a^b M \cdot \varepsilon = (b - a) M \varepsilon.
+    \]
+    Since \(\varepsilon > 0\) can be arbitrary, we have 
+    \[
+        \left\vert \int _a^b f(x)^2 \, \mathrm{d} x  \right\vert = 0 \implies \int _a^b f(x)^2 \, \mathrm{d} x = 0. 
+    \] 
+    Since \(f(x)^2 \ge 0\) on \([a, b]\) and its Riemann integral on \([a, b]\) is \(0\), we must have \(f(x)^2 = 0\) on \([a, b]\), i.e. \(f(x) = 0\) on \([a, b]\).      
+\end{proof}
     
 \begin{problem}
     
@@ -66,6 +182,29 @@
     \]
     
 \end{problem}
+
+\begin{proof}
+
+    By Lemma 11.2.2, the uniform closure of an algebra is an algebra, so $\overline{\mathcal A}$ is a real algebra. We first show that $\overline{\mathcal{A}}$ does not vanish at any point. If $X$ consists of a single point, then under the usual convention that a real algebra contains the constant functions, the conclusion is immediate. Hence, we may assume that $X$ contains at least two points. For any given $x \in X$, there exists $y \in X$ such that $y \neq x$. The function $\varphi_y \in \overline{\mathcal{A}}$ satisfies 
+    \[
+    \varphi_y(x) = d(y,x) > 0
+    \]
+    Hence, this implies that $\overline{\mathcal{A}}$ does not vanish at any point.
+
+    Next, we show that $\overline{\mathcal{A}}$ separates points in $X$. Consider any two distinct points $x_1 ,x_2 \in X$. Let $y = x_1$, and the function $\varphi_{x_1}$ is in $\overline{\mathcal{A}}$ by hypothesis. Evaluating this function at the two points gives us 
+    \[
+    \varphi_{x_1}(x_1) = d(x_1, x_1) = 0
+    \]
+    and 
+    \[
+    \varphi_{x_1}(x_2) = d(x_1, x_2) > 0.
+    \]
+    Since $\varphi_{x_1}(x_1) \neq \varphi_{x_1}(x_2)$, $\overline{\mathcal A}$ separates $x_1$ and $x_2$. Since $\overline{\mathcal{A}}$ is an algebra that separates points and does not vanish at any point on the compact metric space $X$, by the Stone-Weierstrass Theorem, $\overline{\mathcal{A}}$ is dense in $C(X, \mathbb{R})$ with respect to the uniform norm.  Since $\overline{\mathcal{A}}$ is closed under the uniform norm, it contains all its limit points, giving us that 
+    \[
+    \overline{\mathcal{A}} = C(X, \mathbb{R}).
+    \]
+    
+\end{proof}
 
 \begin{problem}
 
@@ -87,7 +226,7 @@
 \end{problem}
 
 \begin{proof}[(a)]
-    By Weierstrass approximation theorem, there exists some $p_n = a_0 + a_1x + a_2x^2 + \cdots $ such that $\|p_n - f\|_\infty < \varepsilon$.
+    For any $\varepsilon > 0$, by Weierstrass Approximation theorem, there exists some $p_n = a_0 + a_1x + a_2x^2 + \cdots $ such that $\|p_n - f\|_\infty < \varepsilon$.
     Then we construct the function $q_n$ as
     \[
         q_n(x) = \frac{p_n(x) + p_n(-x)}{2}.
@@ -95,7 +234,7 @@
 
     Since 
     \[
-        q_n(x) = q_n(-x) = \frac{p_n(x) + p_n(x)}{2},
+        q_n(x) = q_n(-x) = \frac{p_n(x) + p_n(-x)}{2},
     \]
     so clearly that $q_n$ is even function, and since $q_n$ is polynomial function, we know that $q_n$ have even powers only.
 
@@ -112,7 +251,7 @@
 \end{proof}
 
 \begin{proof}[(b)]
-    By Weierstrass approximation theorem, there exists some $p_n = a_0 + a_1x + a_2x^2 + \cdots $ such that $\|p_n - f\|_\infty < \varepsilon$.
+    For any $\varepsilon > 0$, by Weierstrass Approximation theorem, there exists some $p_n = a_0 + a_1x + a_2x^2 + \cdots $ such that $\|p_n - f\|_\infty < \varepsilon$.
     Then we construct the function $q_n$ as
     \[
         q_n(x) = \frac{p_n(x) - p_n(-x)}{2}.
@@ -122,7 +261,7 @@
     \[
         q_n(x) = \frac{p_n(x) - p_n(-x)}{2} = - \frac{p_n(-x) - p_n(-(-x))}{2} = -q_n(-x),
     \]
-    , so clearly that $q_n$ is odd function, and since $q_n$ is polynomial function, we know that $q_n$ have odd powers only.
+    so clearly that $q_n$ is odd function, and since $q_n$ is polynomial function, we know that $q_n$ have odd powers only.
 
     And since for fixed $x$,
     \[
@@ -145,6 +284,56 @@
     is not compact.
     
 \end{problem}
+\begin{proof}
+    Let
+    \[
+        f_n(x)=x^n , \qquad x\in [0,1].
+    \]
+    Since each \(f_n\) is continuous on \([0,1]\) and
+    \[
+        \|f_n\|_\infty
+        =\sup_{x\in[0,1]} |x^n|
+        =1,
+    \]
+    we have \(f_n\in B\) for every \(n\in\mathbb{N}\).
+
+    We show that \(\{f_n\}\) has no convergent subsequence in
+    \((C[0,1],\|\cdot\|_\infty)\).
+
+    Let \(\{f_{n_k}\}\) be any subsequence of \(\{f_n\}\).
+    For every \(x\in [0,1)\),
+    \[
+        f_{n_k}(x)=x^{n_k}\to 0
+        \qquad (k\to\infty),
+    \]
+    since \(0\le x<1\). On the other hand,
+    \[
+        f_{n_k}(1)=1
+    \]
+    for all \(k\).
+
+    Hence any pointwise limit of \(\{f_{n_k}\}\) must be
+    \[
+        f(x)=
+        \begin{cases}
+            0, & 0\le x<1,\\
+            1, & x=1.
+        \end{cases}
+    \]
+    This function is not continuous on \([0,1]\).
+
+    Suppose, for contradiction, that \(\{f_{n_k}\}\) converges in
+    \((C[0,1],\|\cdot\|_\infty)\).
+    Convergence in the supremum norm is uniform convergence, and the
+    uniform limit of continuous functions is continuous.
+    Therefore the limit would have to be continuous, contradicting the
+    fact that the only possible pointwise limit is the discontinuous
+    function \(f\).
+
+    Thus \(\{f_n\}\) has no convergent subsequence in \(C[0,1]\).
+    Since every sequence in a compact set must have a convergent
+    subsequence, \(B\) is not compact.
+\end{proof}
 
 \begin{problem}
 
@@ -201,28 +390,28 @@
 \end{proof}
 
 \begin{proof}[(b)]
-    We show $\mathcal F$ is not closed by providing a function sequence that does not converge in $\mathcal F$.
+    We show $\mathcal F$ is not closed by providing a function sequence in $\mathcal{F}$ that does not converge in $\mathcal F$.
 
-    Suppose $(F_n)_{n=1}^\infty$ is a function sequence that define by 
+    Suppose $(F_n)_{n=1}^\infty$ is a function sequence defined by 
     \[
         F_n(x) = \sqrt{(x-\frac{1}{2})^2 + \frac{1}{n}} - \sqrt{\frac{1}{4} + \frac{1}{n}}, \quad x \in [0,1]. 
     \]
-    By FCT, we know 
+    By FTC, we know 
     \[
         F_n(x) = \int_0^x F_n'(t) dt. 
     \]
-    So to show that $F_n \in \mathcal F$, we need to show that $F'_n(x)$ is $C[0,1]$ and $\| F'_n\|_\infty \le 1$
+    So to show that $F_n \in \mathcal F$, we need to show that $F'_n(x) \in C[0,1]$ and $\| F'_n\|_\infty \le 1$.
     Since 
     \[
         \lvert F_n'(x) \rvert = \frac{\lvert x - \frac{1}{2} \lvert }{\sqrt{(x-\frac{1}{2})^2 + \frac{1}{n}}} = \frac{\sqrt{(x - \frac{1}{2})^2}}{\sqrt{(x-\frac{1}{2})^2 + \frac{1}{n}}} \le 1,
     \]
-    And since $x - \frac{1}{2}$ is continuous function, $\sqrt{(x-\frac{1}{2})^2 + \frac{1}{n}}$ is also a continuous function and it is strictly greater than zero, $F'_n(x)$ is continuous function, and hence $F_n \in \mathcal F$.
+    And since $x - \frac{1}{2}$ is a continuous function, $\sqrt{(x-\frac{1}{2})^2 + \frac{1}{n}}$ is also a continuous function and it is strictly greater than zero, $F'_n(x)$ is a continuous function, and hence $F_n \in \mathcal F$.
 
     However, we know that $F_n \to F$, where $F$ is
     \[
         F(x) = \sqrt{(x-\frac{1}{2})^2} - \sqrt{\frac{1}{4}} = \lvert x-\frac{1}{2} \rvert - \frac{1}{2}, \quad x \in [0,1]
     \] 
-    But $F$ is not differentiable at $x = \frac{1}{2}$, so $F'$ does not exist, $F \notin \mathcal F$, and hence $\mathcal F$ is not close.
+    But $F$ is not differentiable at $x = \frac{1}{2}$, so $F'$ does not exist, $F \notin \mathcal F$, and hence $\mathcal F$ is not closed.
 \end{proof}
 
 \begin{proof}[(c)]
@@ -300,7 +489,7 @@
         \begin{aligned}
             \lvert F_n(x) - f(x)\rvert &\le \lvert F_n(x) - F_n(t) \rvert + \lvert F_n(t) - f(t)\rvert + \lvert f(t) - f(x)\rvert \\
             &\le \lvert x-t \rvert + \lvert F_n(t) - f(t)\rvert + \lvert x-t\rvert ,\quad {\text{since $F, f$ are 1-Lipchitz}}. \\
-            &\le 2\lvert x-t \rvert + 0, \quad \text{since $t = k \cdot 2^n$ for some integer $k$} \\
+            &\le 2\lvert x-t \rvert + 0, \quad \text{since $t = k \cdot 2^{-N}$ for some integer $k$} \\
             &\le 2 \frac{1}{2^N} \le 2 \cdot \frac{1}{\frac{2}{\varepsilon}} \le \varepsilon.
         \end{aligned}
     \]
@@ -329,6 +518,46 @@
     
 \end{problem}
 
+\begin{proof}[(a)]
+
+    Since $\mathcal{F}$ is bounded, it is uniformly bounded. By assumption, $\mathcal{F}$ is also closed and equicontinuous. Hence, by the Arzelà-Ascoli Theorem, $\mathcal{F}$ is compact in $(C[0,1], \|\cdot\|_\infty)$. Define $I: C[0,1] \to \mathbb{R}$ by $I(f) = \int_0^1 f(x) dx$. For any $f, h \in C[0,1]$, we have
+    \[
+    |I(f) - I(h)| = \left| \int_0^1 (f(x) - h(x)) dx \right| \le \int_0^1 |f(x) - h(x)| dx \le \int_0^1 \|f - h\|_\infty dx = \|f - h\|_\infty
+    \]
+    Since $|I(f) - I(h)| \le \|f - h\|_\infty$, $I$ is Lipschitz continuous, and thus continuous. Since $I$ is continuous and $\mathcal{F}$ is compact, $I$ attains its maximum on $\mathcal{F}$. Hence, there exists $g \in \mathcal{F}$ such that $I(g) = \sup_{f \in \mathcal{F}} I(f)$. Equivalently,
+    \[
+    \int_0^1 g(x) dx \ge \int_0^1 f(x) dx
+    \]
+    for all $f \in \mathcal{F}$.
+    
+\end{proof}
+
+\begin{proof}[(b)]
+
+    Define $f_n(x) = 1 - x^n$ for $n \in \mathbb{N}$, and let
+    \[
+    \mathcal{F} = \{f_n \mid n \in \mathbb{N}\}.
+    \]
+    First, $\mathcal{F}$ is bounded since $0 \le 1 - x^n \le 1$ for all $x \in [0,1]$. Hence, $\|f_n\|_\infty \le 1$.
+
+    Next, suppose a sequence $\{f_{n_j}\} \subset \mathcal{F}$ converges uniformly to some $h \in C[0,1]$. Assume $\{n_j\}$ were unbounded, then there would exist a subsequence such that $n_j \to \infty$. For $0 \le x < 1$, $f_{n_j}(x) = 1 - x^{n_j} \to 1$, while $f_{n_j}(1) = 1 - 1^{n_j}=0$. Hence, the pointwise limit would be
+    \[
+    h(x)=
+    \begin{cases}
+    1, & 0 \le x < 1, \\
+    0, & x = 1.
+    \end{cases}
+    \]
+    It is not continuous, but we know that a uniform limit of continuous function must be continuous, so this contradicts the assumption. Hence, $\{n_j\}$ is bounded. Additionally, a convergent sequence taking values in a finite set must be eventually constant. Hence, its uniform limit belongs to $\mathcal{F}$, and thus $\mathcal{F}$ is closed.
+
+    We now compute the integrals:
+    \[
+    \int_0^1 f_n(x) dx = \int_0^1 (1 - x^n) dx = 1 - \frac{1}{n+1} = \frac{n}{n+1}.
+    \]
+    This sequence is strictly increasing and converges to 1. However, $\frac{n}{n+1} < 1$  for all $n$. Hence, the function $f \mapsto \int_0^1 f(x)\,dx$ has supremum 1 on $\mathcal{F}$, but it does not attain its supremum. Thus, there is no $g \in \mathcal{F}$ such that $\int_0^1 g(x)\,dx \ge \int_0^1 f(x)\,dx$ for all $f \in \mathcal{F}$.
+    
+\end{proof}
+
 \begin{problem}
 
     Let \((X,d)\) be a compact metric space, \(C>0\), \(0<\alpha\le 1\), and
@@ -350,3 +579,40 @@
     \]
     
 \end{problem}
+
+\begin{proof}
+    \(\forall \varepsilon > 0\) and \(\forall n \in \mathbb{N}\), if \(d(x, y) < \frac{1}{C^{\frac{1}{\alpha}}} \cdot \varepsilon^{\frac{1}{\alpha}}\), we have 
+    \[
+        \vert f_n(x) - f_n(y) \vert \le C d(x, y)^\alpha \le C \left( \frac{1}{C^{\frac{1}{\alpha}}} \cdot \varepsilon^{\frac{1}{\alpha}} \right)^\alpha = \varepsilon.  
+    \]   
+    Hence, \(f_n \subseteq C(X \to \mathbb{C})\) and \(\left\{ f_n \right\}_{n=1}^{\infty} \) is equicontinuous.
+    
+    Since \(X\) is compact, it is bounded, and thus \(\exists r > 0\) s.t. \(X \subseteq B(p, r)\). Hence, \(\forall x \in X\) and \(n \in \mathbb{N}\) we have 
+    \[
+        \vert f_n(x) \vert = \vert f_n(x) - f_n(p) \vert \le C d(x, p)^\alpha \le C r^\alpha.  
+    \]     
+    Hence, 
+    \[
+        \lVert f_n \rVert_X = \sup _{x \in X} \vert f_n(x) \vert \le Cr^\alpha.  
+    \]
+    This shows \(\left\{ f_n \right\}_{n=1}^{\infty} \) is uniformly bounded. 
+    
+    Now since \(\left\{ f_n \right\}_{n=1}^{\infty} \) is uniformly bounded and equicontinuous, there is a convergent subsequence converging to an \(f: X \to \mathbb{C}\). Suppose \(\left\{ f_{a_i} \right\}_{i=1}^{\infty} \subseteq \left\{ f_n \right\}_{n=1}^{\infty} \) and \(f_{a_i} \to f\) uniformly. Then,
+    \[
+        \vert f_{a_i}(p) - f(p) \vert = \vert f(p) \vert \to 0 \text{ as } i \to \infty,   
+    \]    
+    and \(\vert f(p) \vert \) is a constant, so \(\vert f(p) \vert = 0 \), i.e. \(f(p) = 0\). Now for any \(\varepsilon > 0\), we can pick some \(i \in \mathbb{N} \) s.t. 
+    \[
+        \vert f(x) - f_{a_i}(x) \vert \le \frac{\varepsilon}{2} \quad \forall x \in X, 
+    \]     
+    then for any \(x, y \in X\), we have
+    \begin{align*}
+        \vert f(x) - f(y) \vert &\le \vert f(x) - f_{a_i}(x) \vert + \vert f_{a_i}(x) - f_{a_i}(y) \vert + \vert f_{a_i}(y) - f(y) \vert \\
+        &\le \frac{\varepsilon}{2} + C d(x, y)^\alpha + \frac{\varepsilon}{2} \\
+        &= C d(x, y)^\alpha + \varepsilon.  
+    \end{align*}  
+    Since \(\varepsilon > 0\) can be arbitrary, we have 
+    \[
+        \vert f(x) - f(y) \vert \le C d(x, y)^\alpha. 
+    \]  
+\end{proof}
