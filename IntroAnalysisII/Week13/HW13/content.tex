@@ -1,0 +1,110 @@
+\def \lflr{\left\lfloor} %自定義 floor function
+\def \rflr{\right\rfloor} %自定義
+\newcommand{\n}{{\|}}
+
+\newcommand{\la}{\lambda}
+
+\begin{problem}
+    Let $X$ and $Y$ be normed spaces. A mapping $\phi:X\to Y$ is said to be {\em distance preserving} if for all $x_1,x_2\in X$ we have $$\n \phi (x_1)-\phi(x_2)\n = \n x_1-x_2\n,$$ and {\em affine}\index{affine} if it preserves convex combinations, i.e., for all $x_1,x_2\in X$ and real numbers $0<\la<1$ we have $$\phi ((1-\la)x_1+\la x_2) = (1-\la)\phi (x_1) + \la \phi (x_2).$$
+The aim of this problem is to prove the
+{\em Ulam--Mazur theorem}:\index{theorem!Ulam--Mazur} Every bijective distance preserving mapping $\phi :X\to Y$ between normed spaces is affine.
+
+For any mapping $\phi:X\to Y$, define the ``affine defect'' relative to the pair $(x_1,x_2)\in X\times X$ by
+\[
+\text{def}_{(x_1,x_2)}(\phi) := \Bigl\|\phi\Bigl(\frac{x_1 + x_2}{2}\Bigr) - \frac{\phi(x_1) + \phi(x_2)}{2}\Bigr\|.
+\]
+
+We now fix a bijective distance preserving mapping $\phi:X\to Y$.
+
+\begin{enumerate}
+ \item[(a)] \label{it:Ulam-Mazur1} Show that for all $x_1,x_2\in X$ we have $$\text{def}_{(x_1,x_2)}(\phi) \leq \frac{1}{2}\|x_1 - x_2\|.$$
+\end{enumerate}
+Let $\rho:Y\to Y$ be the reflection with respect to the point $\frac12(\phi(x_1) + \phi(x_2))$, i.e., $$\rho(y) = \phi(x_1) + \phi(x_2) - y, \quad y\in Y.$$
+\begin{enumerate}
+\item[(b)]\label{it:Ulam-Mazur2}  Show that $\psi := \phi^{-1}\rho\phi: X\to X$ is a bijective distance preserving mapping which satisfies
+$$ \text{def}_{(x_1,x_2)}(\psi) =2 \,\text{def}_{(x_1,x_2)}(\phi).$$
+\item[(c)]\label{it:Ulam-Mazur3}  By iterating part [(b)], conclude from part[(a)] that
+$\text{def}_{(x_1,x_2)}(\phi)= 0$.
+\item[(d)]\label{it:Ulam-Mazur4} Deduce from part [(c)] that $\phi$ is affine.
+\end{enumerate}
+
+\end{problem}
+
+\begin{problem}
+    This problem gives an example of a bounded operator that does not attain its norm.
+ Let $X$ be the space of continuous functions $f:[0,1]\to \R$ satisfying $f(0)=0$.
+\begin{enumerate}
+  \item[(a)] Show that $X$ is a closed subspace of $C[0,1]$.
+\end{enumerate}
+Thus, with the norm inherited from $C[0,1]$, $X$ is a Banach space.
+\begin{enumerate}
+  \item [(b)]Show that the operator $T: X\to\R$,
+  $$ Tf := \int_0^1 f(t) d t,$$
+  is bounded  and has norm $\n T\n =1$.
+  \item[(c)] Prove that $|Tf| <1$ for all $f\in X$ with $\n f\n_\infty \le 1$.
+\end{enumerate}
+\end{problem}
+
+\begin{problem}
+    Show that a subset $K$ of a Banach space $X$ is relatively compact if and only if $K$ is contained in the closed convex hull of a
+sequence $(x_n)_{n\ge 1}$ in $X$ satisfying $\lim_{n\to \infty} x_n = 0$.
+
+\noindent{\em Hint:}\ For the `only if' part, cover $K$ with finitely many
+balls of radius $3^{-n}$ and let $C_n$ be the set of their centres; $n=1,2,\dots$
+Let $D_1 := C_1$ and, for $n\ge 2$,
+$$ D_n := \bigl\{c_n - c_{n-1}:\ c_n\in C_n, \ c_{n-1}\in C_{n-1}, \ \n c_n - c_{n-1}\n < 3^{-n+1}\bigr\}.$$
+Check that each $x\in K$ can be represented as an absolutely convergent sum $x = \sum_{n\ge 1} d_n$
+with $d_n\in D_n$. Consider the sequence $(x_n)_{n\ge 1}$ given by $x_n := 2^n d_n$.
+\end{problem}
+
+\begin{problem}
+    Using Riesz's lemma, show that there exists a real number $\delta\in (0,1)$ with the property that the open unit ball of any infinite-dimensional normed space contains infinitely many disjoint open balls of radius $\delta$.
+\end{problem}
+
+\begin{problem}
+    A Banach space \(X\) is called \emph{strictly convex} if, for all norm
+one vectors \(x_0,x_1\in X\) with \(x_0\neq x_1\), and for all
+\(0<\lambda<1\), we have
+\[
+\|(1-\lambda)x_0+\lambda x_1\|<1.
+\]
+Prove that every Hilbert space is strictly convex.
+\end{problem}
+
+\begin{problem}
+    Let \((x_n)_{n\ge 1}\) be a sequence in a Hilbert space \(H\). Suppose
+that there exists \(x\in H\) such that:
+\begin{enumerate}
+\item[(i)] 
+\[
+\langle x_n,y\rangle \to \langle x,y\rangle
+\qquad
+\text{for all }y\in H;
+\]
+
+\item[(ii)]
+\[
+\|x_n\|\to \|x\|.
+\]
+\end{enumerate}
+Show that
+\[
+x_n\to x
+\qquad
+\text{in }H.
+\]
+\end{problem}
+
+\begin{problem}
+    Give an example of a nonempty compact convex set \(C\) in a two-dimensional
+Banach space \(X\), together with a vector \(x\in X\), such that the set
+\[
+\left\{
+c\in C:
+\|x-c\|
+=
+\min_{y\in C}\|x-y\|
+\right\}
+\]
+consists of more than one element.
+\end{problem}
